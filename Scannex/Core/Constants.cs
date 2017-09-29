@@ -14,6 +14,9 @@ namespace Scannex
         public static string SERVER_URL = "http://smartdrawers.net/";
         public static string ERROR_PATH = "";
         public static string FILE_PATH = "";
+        public static string USERNAME = "";
+        public static bool ISLOGIN;
+
 
         public static List<Locations> ST_LOCATIONS;
         public static List<Employees> ST_EMPLOYEES;

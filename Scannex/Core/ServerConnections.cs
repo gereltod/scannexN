@@ -24,9 +24,11 @@ namespace Scannex
         public static String Login(string username, string pwd)
         {
             string ret = string.Empty;
+            HttpWebResponse response = null;
+            HttpWebRequest req = null;
             try
             {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "oauth/token"));
+                req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "oauth/token"));
                 req.Headers.Set("Cache-Control", "no-cache");
                 req.Method = "POST";
                 req.KeepAlive = true;
@@ -41,24 +43,42 @@ namespace Scannex
                 swOut.Flush();
                 swOut.Close();
 
-                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+                response = (HttpWebResponse)req.GetResponse();
 
                 WebHeaderCollection header = response.Headers;
-
-                var encoding = ASCIIEncoding.UTF8;
-                using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    string responseText = reader.ReadToEnd();
-                    dynamic aa = JsonConvert.DeserializeObject(responseText);
-                    ACCESS_TOKEN = aa.access_token;
-                    ret="OK";
+                    var encoding = ASCIIEncoding.UTF8;
+                    using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+                    {
+                        string responseText = reader.ReadToEnd();
+                        dynamic aa = JsonConvert.DeserializeObject(responseText);
+                        ACCESS_TOKEN = aa.access_token;
+                        ret = "200";
+                        Constants.USERNAME = username;
+                        Constants.ISLOGIN = true;
+                    }
+                }
+                else if(response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    ret = "403";
+                    Constants.ISLOGIN = false;
                 }
 
-
             }
+            catch (WebException e)
+            {
+                if (e.Status == WebExceptionStatus.ProtocolError)
+                {
+                   ret= ((HttpWebResponse)e.Response).StatusCode.ToString();
+                }
+                
+            }            
             catch (Exception ex)
             {
                 FileLogger.LogStringInFile(ex.Message);
+                Constants.ISLOGIN = false;
+                ret = "error";
             }
 
             return ret;

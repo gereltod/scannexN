@@ -22,11 +22,32 @@ namespace Scannex
         private void button1_Click(object sender, EventArgs e)
         {
             string ret = ServerConnections.Login(textBox1.Text, textBox2.Text);
-            DialogResult = DialogResult.OK;
+            if (ret == "200")
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else if(ret == "Unauthorized")
+            {
+                MessageBox.Show("Invalid password or username", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (ret == "error")
+            {
+                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true;
+            }
         }
 
-
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using asprise_imaging_api;
 
 namespace Scannex
 {
@@ -117,7 +118,7 @@ namespace Scannex
         {
             frmView frmshow = new Scannex.frmView();
             frmshow.BackgroundImage = _imageList[_index];
-            frmshow.BackgroundImageLayout = ImageLayout.Stretch;
+            frmshow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             frmshow.StartPosition = FormStartPosition.CenterScreen;
             frmshow.ShowDialog();
         }
@@ -133,6 +134,19 @@ namespace Scannex
         private void button5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //Result result = new AspriseImaging().Scan(new Request()
+            //    .SetTwainCap(TwainConstants.ICAP_PIXELTYPE, TwainConstants.TWPT_RGB)
+            //    .SetTwainCap(TwainConstants.ICAP_SUPPORTEDSIZES, TwainConstants.TWSS_USLETTER)
+            //    .SetPromptScanMore(true) // prompt to scan more pages
+            //    .AddOutputItem(new RequestOutputItem(AspriseImaging.OUTPUT_SAVE, AspriseImaging.FORMAT_JPG)
+            //      .SetSavePath("D:\\")), // Environment variables in path will be expanded
+            //  "select", true, true); // "select" prompts device selection dialog.
+
+            //List<string> files = result == null ? null : result.GetImageFiles();
         }
     }
 }
