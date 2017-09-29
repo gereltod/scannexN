@@ -48,7 +48,7 @@ namespace Scannex
             }
             if (!isBe)
             {
-                frmshow = new frmScanner();
+                frmshow = new frmScanner(this);
                 frmshow.MdiParent = this;
                 frmshow.Show();
             }

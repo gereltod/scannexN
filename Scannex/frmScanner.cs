@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using TwainDotNet;
+using TwainDotNet.WinFroms;
 
 namespace Scannex
 {
@@ -15,11 +17,39 @@ namespace Scannex
     {
         List<Image> _imageList = new List<Image>();
         List<String> _imageName = new List<string>();
+
+        private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
+
+        Twain _twain;
+        ScanSettings _settings;
+
         int _index = 0;
 
         public frmScanner()
         {
+            InitializeComponent();          
+        }
+
+        public frmScanner(Form parent)
+        {
             InitializeComponent();
+
+            _twain = new Twain(new WinFormsWindowMessageHook(parent));
+            _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
+            {
+                if (args.Image != null)
+                {
+                    pImage.Image = args.Image;
+                    _imageList.Add(args.Image);
+                    
+                    //widthLabel.Text = "Width: " + pImage.Image.Width;
+                    //heightLabel.Text = "Height: " + pImage.Image.Height;
+                }
+            };
+            _twain.ScanningComplete += delegate
+            {
+                Enabled = true;
+            };
         }
         #region　Dataload
 
@@ -133,6 +163,42 @@ namespace Scannex
         private void button5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+
+            _settings = new ScanSettings();
+            _settings.UseDocumentFeeder = true;
+            _settings.ShowTwainUI = false;
+            _settings.ShowProgressIndicatorUI = false;
+            _settings.UseDuplex = true;
+            _settings.Resolution = ResolutionSettings.ColourPhotocopier;
+            _settings.Area = null;
+            _settings.ShouldTransferAllPages = true;
+
+            _settings.Rotation = new RotationSettings()
+            {
+                AutomaticRotate = true,
+                AutomaticBorderDetection = true
+            };
+
+            try
+            {
+                _twain.StartScanning(_settings);
+                LoadImage();
+            }
+            catch (TwainException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Enabled = true;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            _twain.SelectSource();
         }
     }
 }

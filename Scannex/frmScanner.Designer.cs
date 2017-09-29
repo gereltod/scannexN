@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.lblFile = new System.Windows.Forms.Label();
             this.lblPage = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -43,9 +45,8 @@
             this.pImage = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pImage)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +74,26 @@
             this.groupBox1.Size = new System.Drawing.Size(1006, 502);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(315, 232);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(53, 44);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "[";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(315, 182);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(53, 44);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "]";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // lblFile
             // 
@@ -206,26 +227,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(315, 182);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(53, 44);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "]";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(315, 232);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(53, 44);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "[";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(230, 520);
@@ -234,12 +235,24 @@
             this.button6.TabIndex = 1;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(235, 572);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // frmScanner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 721);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmScanner";
@@ -272,5 +285,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }
