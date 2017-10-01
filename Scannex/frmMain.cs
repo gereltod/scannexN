@@ -20,11 +20,27 @@ namespace Scannex
         private void frmMain_Load(object sender, EventArgs e)
         {
             frmLogin frmshow = new frmLogin();
-            frmshow.ShowDialog();
-            Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("/api/locs");
-            Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("/api/employees");
-            Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("/api/doctypes");
+            if (frmshow.ShowDialog() == DialogResult.OK)
+            {
+                Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("/api/locs");
+                Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("/api/employees");
+                Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("/api/doctypes");
+                toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
+                
+            }
+        }
 
+        private void MdiMenu()
+        {
+            foreach(Form child in this.MdiChildren)
+            {               
+               
+            }
+        }
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
@@ -53,5 +69,6 @@ namespace Scannex
                 frmshow.Show();
             }
         }
+                
     }
 }
