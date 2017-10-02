@@ -20,16 +20,27 @@ namespace Scannex
         private void frmMain_Load(object sender, EventArgs e)
         {
             frmLogin frmshow = new frmLogin();
-            frmshow.ShowDialog();
-
-            if (Constants.ISLOGIN)
+            if (frmshow.ShowDialog() == DialogResult.OK)
             {
                 Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("/api/locs");
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("/api/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("/api/doctypes");
-                toolStripMenuItem6.Enabled = true;
+                toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
+                
             }
+        }
 
+        private void MdiMenu()
+        {
+            foreach(Form child in this.MdiChildren)
+            {               
+               
+            }
+        }
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
@@ -53,29 +64,7 @@ namespace Scannex
             }
             if (!isBe)
             {
-                frmshow = new frmScanner();
-                frmshow.MdiParent = this;
-                frmshow.Show();
-            }
-        }
-
-        private void toolStripMenuItem5_Click(object sender, EventArgs e)
-        {
-            bool isBe = false;
-            frmLogin frmshow = null;
-            foreach (Form frm in this.MdiChildren)
-            {
-                if (typeof(frmLogin) == frm.GetType())
-                {
-                    frmshow = (frmLogin)frm;
-                    frmshow.Activate();
-                    isBe = true;
-                    break;
-                }
-            }
-            if (!isBe)
-            {
-                frmshow = new frmLogin();
+                frmshow = new frmScanner(this);
                 frmshow.MdiParent = this;
                 frmshow.Show();
             }
