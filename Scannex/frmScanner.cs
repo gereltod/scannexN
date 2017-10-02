@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using TwainDotNet;
 using TwainDotNet.WinFroms;
+using System.Security;
 
 namespace Scannex
 {
@@ -56,6 +57,7 @@ namespace Scannex
                 Enabled = true;
             };
         }
+
         #region　Dataload
 
         private void Comboload()
@@ -163,6 +165,13 @@ namespace Scannex
 
         #endregion
 
+        string ComputeFourDigitStringHash(string filepath)
+        {
+            string filename = System.IO.Path.GetFileNameWithoutExtension(filepath);
+            int hash = filename.GetHashCode() % 10000;
+            return hash.ToString("0000");
+        }
+
         private void frmScanner_Load(object sender, EventArgs e)
         {
             Comboload();
@@ -246,8 +255,40 @@ namespace Scannex
 
         private void button7_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = Constants.FILE_PATH;
-            folderBrowserDialog1.ShowDialog();
+            openFileDialog1.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff|"
+                                            + "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+            openFileDialog1.Title = "Please select an image file";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                foreach (String file in openFileDialog1.FileNames)
+                {                    
+                    try
+                    {
+                        string ext = Path.GetExtension(file);
+                        Image loadedImage = Image.FromFile(file);
+                        ImageFile f = new ImageFile();
+                        f.FileImage = loadedImage;
+                        f.FileName = String.Format("{0}.{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ext);
+                        _imageList.Add(f);                                                
+                    }
+                    catch (SecurityException ex)
+                    {
+                        FileLogger.LogStringInFile(ex.Message);
+                        MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
+                            "Error message: " + ex.Message + "\n\n" +
+                            "Details (send to Support):\n\n" + ex.StackTrace
+                        );
+                    }
+                    catch (Exception ex)
+                    {                     
+                        MessageBox.Show("Cannot display the image: " + file.Substring(file.LastIndexOf('\\'))
+                            + ". You may not have permission to read the file, or " +
+                            "it may be corrupt.\n\nReported error: " + ex.Message);
+                        FileLogger.LogStringInFile(ex.Message);
+                    }
+                }
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -272,20 +313,27 @@ namespace Scannex
         {
             if (cmbEmployee.SelectedIndex == -1)
             {
+                errorProvider1.SetError(cmbEmployee, "Enter your employee information");
                 cmbEmployee.Focus();    
                 return;
             }
             if (cmbLocation.SelectedIndex == -1)
             {
+                errorProvider1.SetError(cmbLocation, "Enter your location information");
                 cmbLocation.Focus();
                 return;
             }
             if (cmbDoctype.SelectedIndex == -1)
             {
+                errorProvider1.SetError(cmbDoctype, "Enter your doc type information");
                 cmbDoctype.Focus();
                 return;
             }
+            if (_imageListUpload.Count() == 0)
+            {
+                errorProvider1.SetError(pImageUp, "Enter your upload files");
 
+            }
 
         }
 
