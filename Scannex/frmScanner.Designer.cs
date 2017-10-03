@@ -84,30 +84,30 @@
             this.groupBox1.Controls.Add(this.pImage);
             this.groupBox1.Controls.Add(this.btnBack);
             this.groupBox1.Controls.Add(this.btnRight);
-            this.groupBox1.Location = new System.Drawing.Point(7, 8);
+            this.groupBox1.Location = new System.Drawing.Point(9, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(745, 338);
+            this.groupBox1.Size = new System.Drawing.Size(931, 422);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lblPageUp
             // 
             this.lblPageUp.AutoSize = true;
-            this.lblPageUp.Location = new System.Drawing.Point(398, 20);
+            this.lblPageUp.Location = new System.Drawing.Point(498, 25);
             this.lblPageUp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPageUp.Name = "lblPageUp";
-            this.lblPageUp.Size = new System.Drawing.Size(62, 13);
+            this.lblPageUp.Size = new System.Drawing.Size(82, 15);
             this.lblPageUp.TabIndex = 12;
             this.lblPageUp.Text = "Page 0 of 0";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(213, 186);
+            this.button5.Location = new System.Drawing.Point(266, 232);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(42, 35);
+            this.button5.Size = new System.Drawing.Size(52, 44);
             this.button5.TabIndex = 9;
             this.button5.Text = "[";
             this.button5.UseVisualStyleBackColor = true;
@@ -115,10 +115,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(213, 146);
+            this.button4.Location = new System.Drawing.Point(266, 182);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(42, 35);
+            this.button4.Size = new System.Drawing.Size(52, 44);
             this.button4.TabIndex = 8;
             this.button4.Text = "]";
             this.button4.UseVisualStyleBackColor = true;
@@ -127,20 +127,20 @@
             // lblFile
             // 
             this.lblFile.AutoSize = true;
-            this.lblFile.Location = new System.Drawing.Point(5, 316);
+            this.lblFile.Location = new System.Drawing.Point(6, 395);
             this.lblFile.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(55, 13);
+            this.lblFile.Size = new System.Drawing.Size(71, 15);
             this.lblFile.TabIndex = 7;
             this.lblFile.Text = "File name:";
             // 
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(142, 20);
+            this.lblPage.Location = new System.Drawing.Point(178, 25);
             this.lblPage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(62, 13);
+            this.lblPage.Size = new System.Drawing.Size(82, 15);
             this.lblPage.TabIndex = 6;
             this.lblPage.Text = "Page 0 of 0";
             // 
@@ -149,10 +149,10 @@
             this.btnNext.BackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnNext.Location = new System.Drawing.Point(178, 157);
+            this.btnNext.Location = new System.Drawing.Point(222, 196);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(19, 21);
+            this.btnNext.Size = new System.Drawing.Size(24, 26);
             this.btnNext.TabIndex = 5;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -160,22 +160,22 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(550, 101);
+            this.textBox1.Location = new System.Drawing.Point(688, 126);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(168, 54);
+            this.textBox1.Size = new System.Drawing.Size(209, 66);
             this.textBox1.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(481, 103);
+            this.label4.Location = new System.Drawing.Point(601, 129);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 15);
+            this.label4.Size = new System.Drawing.Size(86, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Comments:";
             // 
@@ -183,10 +183,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(481, 75);
+            this.label3.Location = new System.Drawing.Point(601, 94);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.Size = new System.Drawing.Size(76, 18);
             this.label3.TabIndex = 3;
             this.label3.Text = "Doc Type:";
             // 
@@ -194,10 +194,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(481, 47);
+            this.label2.Location = new System.Drawing.Point(601, 59);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
+            this.label2.Size = new System.Drawing.Size(69, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Location:";
             // 
@@ -205,10 +205,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(481, 20);
+            this.label1.Location = new System.Drawing.Point(601, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 15);
+            this.label1.Size = new System.Drawing.Size(78, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Employee:";
             // 
@@ -216,39 +216,39 @@
             // 
             this.cmbDoctype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDoctype.FormattingEnabled = true;
-            this.cmbDoctype.Location = new System.Drawing.Point(550, 73);
+            this.cmbDoctype.Location = new System.Drawing.Point(688, 91);
             this.cmbDoctype.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDoctype.Name = "cmbDoctype";
-            this.cmbDoctype.Size = new System.Drawing.Size(168, 21);
+            this.cmbDoctype.Size = new System.Drawing.Size(209, 23);
             this.cmbDoctype.TabIndex = 2;
             // 
             // cmbLocation
             // 
             this.cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Location = new System.Drawing.Point(550, 45);
+            this.cmbLocation.Location = new System.Drawing.Point(688, 56);
             this.cmbLocation.Margin = new System.Windows.Forms.Padding(2);
             this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(168, 21);
+            this.cmbLocation.Size = new System.Drawing.Size(209, 23);
             this.cmbLocation.TabIndex = 2;
             // 
             // cmbEmployee
             // 
             this.cmbEmployee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmployee.FormattingEnabled = true;
-            this.cmbEmployee.Location = new System.Drawing.Point(550, 18);
+            this.cmbEmployee.Location = new System.Drawing.Point(688, 22);
             this.cmbEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(168, 21);
+            this.cmbEmployee.Size = new System.Drawing.Size(209, 23);
             this.cmbEmployee.TabIndex = 2;
             // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(163, 387);
+            this.button6.Location = new System.Drawing.Point(204, 484);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(99, 36);
+            this.button6.Size = new System.Drawing.Size(124, 45);
             this.button6.TabIndex = 1;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
@@ -257,6 +257,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Multiselect = true;
             // 
             // errorProvider1
             // 
@@ -267,10 +268,10 @@
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.Image = global::Scannex.Properties.Resources.import;
             this.btnImport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImport.Location = new System.Drawing.Point(163, 350);
+            this.btnImport.Location = new System.Drawing.Point(204, 438);
             this.btnImport.Margin = new System.Windows.Forms.Padding(2);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(99, 36);
+            this.btnImport.Size = new System.Drawing.Size(124, 45);
             this.btnImport.TabIndex = 2;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -281,10 +282,10 @@
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Image = global::Scannex.Properties.Resources.upload_file;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpload.Location = new System.Drawing.Point(478, 260);
+            this.btnUpload.Location = new System.Drawing.Point(598, 325);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(99, 36);
+            this.btnUpload.Size = new System.Drawing.Size(124, 45);
             this.btnUpload.TabIndex = 14;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -294,10 +295,10 @@
             // 
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAll.Image = global::Scannex.Properties.Resources.file__2_;
-            this.btnDeleteAll.Location = new System.Drawing.Point(213, 266);
+            this.btnDeleteAll.Location = new System.Drawing.Point(266, 332);
             this.btnDeleteAll.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteAll.Name = "btnDeleteAll";
-            this.btnDeleteAll.Size = new System.Drawing.Size(42, 33);
+            this.btnDeleteAll.Size = new System.Drawing.Size(52, 41);
             this.btnDeleteAll.TabIndex = 13;
             this.btnDeleteAll.UseVisualStyleBackColor = true;
             this.btnDeleteAll.Click += new System.EventHandler(this.button8_Click);
@@ -306,10 +307,10 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = global::Scannex.Properties.Resources.file__1_;
-            this.btnDelete.Location = new System.Drawing.Point(213, 226);
+            this.btnDelete.Location = new System.Drawing.Point(266, 282);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(42, 33);
+            this.btnDelete.Size = new System.Drawing.Size(52, 41);
             this.btnDelete.TabIndex = 13;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.button2_Click);
@@ -318,10 +319,11 @@
             // 
             this.pImageUp.BackColor = System.Drawing.Color.White;
             this.pImageUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pImageUp.Location = new System.Drawing.Point(260, 36);
+            this.pImageUp.InitialImage = global::Scannex.Properties.Resources.nopicture;
+            this.pImageUp.Location = new System.Drawing.Point(325, 45);
             this.pImageUp.Margin = new System.Windows.Forms.Padding(2);
             this.pImageUp.Name = "pImageUp";
-            this.pImageUp.Size = new System.Drawing.Size(204, 264);
+            this.pImageUp.Size = new System.Drawing.Size(254, 330);
             this.pImageUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pImageUp.TabIndex = 10;
             this.pImageUp.TabStop = false;
@@ -330,10 +332,11 @@
             // 
             this.pImage.BackColor = System.Drawing.Color.White;
             this.pImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pImage.Location = new System.Drawing.Point(3, 36);
+            this.pImage.InitialImage = global::Scannex.Properties.Resources.nopicture;
+            this.pImage.Location = new System.Drawing.Point(4, 45);
             this.pImage.Margin = new System.Windows.Forms.Padding(2);
             this.pImage.Name = "pImage";
-            this.pImage.Size = new System.Drawing.Size(204, 264);
+            this.pImage.Size = new System.Drawing.Size(254, 330);
             this.pImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pImage.TabIndex = 1;
             this.pImage.TabStop = false;
@@ -343,10 +346,10 @@
             // 
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Image = global::Scannex.Properties.Resources.back;
-            this.btnBack.Location = new System.Drawing.Point(213, 85);
+            this.btnBack.Location = new System.Drawing.Point(266, 106);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(42, 33);
+            this.btnBack.Size = new System.Drawing.Size(52, 41);
             this.btnBack.TabIndex = 0;
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -355,19 +358,19 @@
             // 
             this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRight.Image = global::Scannex.Properties.Resources.next__2_;
-            this.btnRight.Location = new System.Drawing.Point(213, 42);
+            this.btnRight.Location = new System.Drawing.Point(266, 52);
             this.btnRight.Margin = new System.Windows.Forms.Padding(2);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(42, 33);
+            this.btnRight.Size = new System.Drawing.Size(52, 41);
             this.btnRight.TabIndex = 0;
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmScanner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(794, 450);
+            this.ClientSize = new System.Drawing.Size(992, 562);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.groupBox1);

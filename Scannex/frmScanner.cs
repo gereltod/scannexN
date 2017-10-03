@@ -20,12 +20,11 @@ namespace Scannex
         List<ImageFile> _imageListUpload = new List<ImageFile>();
 
         private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
-
+        Form _parent;
         Twain _twain;
         ScanSettings _settings;
 
         int _index = -1;
-
         int _indexUpload = -1;
 
         public frmScanner()
@@ -33,11 +32,9 @@ namespace Scannex
             InitializeComponent();
         }
 
-        public frmScanner(Form parent)
+        public void Init()
         {
-            InitializeComponent();
-
-            _twain = new Twain(new WinFormsWindowMessageHook(parent));
+            _twain = new Twain(new WinFormsWindowMessageHook(_parent));
             _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
             {
                 if (args.Image != null)
@@ -45,7 +42,7 @@ namespace Scannex
                     pImage.Image = args.Image;
                     ImageFile file = new Scannex.ImageFile();
                     file.FileImage = args.Image;
-                    file.FileName = "";
+                    file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
                     _imageList.Add(file);
 
                     //widthLabel.Text = "Width: " + pImage.Image.Width;
@@ -56,6 +53,13 @@ namespace Scannex
             {
                 Enabled = true;
             };
+        }
+
+        public frmScanner(Form parent)
+        {
+            InitializeComponent();
+            _parent = parent;
+            Init();
         }
 
         #region　Dataload
@@ -248,6 +252,7 @@ namespace Scannex
                 {
                     MessageBox.Show(ex.Message);
                     Enabled = true;
+                    Init();
                 }
             }
 
@@ -261,15 +266,16 @@ namespace Scannex
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 foreach (String file in openFileDialog1.FileNames)
-                {                    
+                {
                     try
                     {
                         string ext = Path.GetExtension(file);
                         Image loadedImage = Image.FromFile(file);
                         ImageFile f = new ImageFile();
                         f.FileImage = loadedImage;
-                        f.FileName = String.Format("{0}.{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ext);
-                        _imageList.Add(f);                                                
+                        f.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ext);
+                        _imageList.Add(f);
+                        button3_Click((Object)btnNext, new EventArgs());
                     }
                     catch (SecurityException ex)
                     {
@@ -280,7 +286,7 @@ namespace Scannex
                         );
                     }
                     catch (Exception ex)
-                    {                     
+                    {
                         MessageBox.Show("Cannot display the image: " + file.Substring(file.LastIndexOf('\\'))
                             + ". You may not have permission to read the file, or " +
                             "it may be corrupt.\n\nReported error: " + ex.Message);
@@ -341,13 +347,20 @@ namespace Scannex
         {
             if (pImage.Image != null)
             {
-                ImageFile f = new ImageFile();
-                f.FileImage = pImage.Image;
-                f.FileName = _imageList[_index].FileName;
-                _imageListUpload.Add(f);
-                _indexUpload++;
-                _imageList.RemoveAt(_index);
-                LoadImageUpload();
+                if (_index > -1)
+                {
+                    ImageFile f = new ImageFile();
+                    f.FileImage = pImage.Image;
+                    f.FileName = _imageList[_index].FileName;
+                    _imageListUpload.Add(f);
+                    _indexUpload++;
+                    _imageList.RemoveAt(_index);
+                    _index--;
+                    LoadImageUpload();
+                    button3_Click((object)btnNext, new EventArgs());
+                }
+                else
+                    pImage.Image = (Image)Scannex.Properties.Resources.nopicture;
             }
         }
 
@@ -355,15 +368,20 @@ namespace Scannex
         {
             if (pImageUp.Image != null)
             {
-                if (_indexUpload != -1)
+                if (_indexUpload > -1)
                 {
                     ImageFile f = new ImageFile();
                     f.FileImage = pImageUp.Image;
-                    f.FileName = _imageListUpload[_index].FileName;
+                    f.FileName = _imageListUpload[_indexUpload].FileName;
 
                     _imageList.Add(f);
+                    _imageListUpload.RemoveAt(_indexUpload);
+                    _indexUpload--;
                     LoadImageUpload();
+                    button3_Click((object)btnNext, new EventArgs());
                 }
+                else
+                    pImageUp.Image = (Image)Scannex.Properties.Resources.nopicture;
             }
         }
     }

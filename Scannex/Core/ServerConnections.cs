@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using System.Drawing;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Scannex
 {
@@ -34,7 +35,7 @@ namespace Scannex
                 req.KeepAlive = true;
                 req.ContentType = "application/x-www-form-urlencoded";
 
-                string post = "client_id=1&client_secret=LJzFy35Tyc5L4IJdlJIQQXPBnkMSVb3ZPqTakMJY&username=" + username + "&password=" + pwd + "&scope=*&grant+type=password";
+                string post = "client_id=1&client_secret=7tDmIFmIDsyr1osuRlhsb3vf43cfhWAgdIsd2T2o&username=" + username + "&password=" + pwd + "&scope=*&grant+type=password";
 
                 req.ContentLength = post.Length;
                 req.SendChunked = true;
@@ -114,6 +115,62 @@ namespace Scannex
                 FileLogger.LogStringInFile(ex.Message);
                 return default(T);
             }
+        }
+
+        public static String Server(string url)
+        {
+            String res;
+            try
+            {
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "api/s3-signature"));
+                req.Headers.Set("Cache-Control", "no-cache");
+                req.Method = "GET";
+                req.KeepAlive = true;
+                req.Headers.Add("Authorization", "Bearer " + ACCESS_TOKEN);
+
+                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+
+                WebHeaderCollection header = response.Headers;
+
+                var encoding = ASCIIEncoding.UTF8;
+                using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+                {
+                    string responseText = reader.ReadToEnd();
+                    res = responseText;
+                }
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                FileLogger.LogStringInFile(ex.Message);
+                return "";
+            }
+        }
+
+        public static string SendServer()
+        {
+            string ret = "";
+            
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "api/s3-signature"));
+            req.Headers.Set("Cache-Control", "no-cache");
+            req.Method = "POST";
+            req.KeepAlive = true;
+
+            HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+
+            WebHeaderCollection header = response.Headers;
+
+            var encoding = ASCIIEncoding.UTF8;
+            using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+            {
+                string responseText = reader.ReadToEnd();
+                ret = responseText;
+            }
+
+            return ret;
         }
 
         public static T ServerData<T>(string url, string contentType)

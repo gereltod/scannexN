@@ -26,7 +26,7 @@ namespace Scannex
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("/api/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("/api/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
-                
+                ServerConnections.Server("");
             }
         }
 

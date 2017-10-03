@@ -71,10 +71,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="TwainDotNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3cd6e1539fa8c71, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet\bin\Debug\TwainDotNet.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet\bin\Debug\TwainDotNet.dll</HintPath>
     </Reference>
     <Reference Include="TwainDotNet.WinFroms">
-      <HintPath>..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet.WinFroms\bin\Debug\TwainDotNet.WinFroms.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet.WinFroms\bin\Debug\TwainDotNet.WinFroms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -173,9 +173,7 @@
     <None Include="Resources\next %282%29.png" />
     <None Include="Resources\next.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="dll\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\file %281%29.png" />
   </ItemGroup>
@@ -199,6 +197,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nopicture.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\TwainDotNet.dll" />
+    <Content Include="dll\TwainDotNet.WinFroms.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
