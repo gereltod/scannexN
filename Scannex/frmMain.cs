@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Scannex
 {
@@ -26,7 +27,10 @@ namespace Scannex
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("/api/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("/api/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
-                ServerConnections.Server("");
+
+                byte[] bytes = System.IO.File.ReadAllBytes(@"d:\aa.pdf");
+
+                ServerConnections.Server(bytes);
             }
         }
 

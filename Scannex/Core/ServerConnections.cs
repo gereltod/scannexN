@@ -117,7 +117,7 @@ namespace Scannex
             }
         }
 
-        public static String Server(string url)
+        public static String Server(byte[] img)
         {
             String res;
             try
@@ -137,7 +137,9 @@ namespace Scannex
                 using (var reader = new StreamReader(response.GetResponseStream(), encoding))
                 {
                     string responseText = reader.ReadToEnd();
-                    res = responseText;
+                    string[] b = responseText.Split(':');
+                    
+                    res = SendServer(img, b[8].Split(',')[0].Replace('"', ' ').Trim(), b[4].Split(',')[0].Replace('"', ' ').Trim(), @"AKIAIZGID2M7YCKFURUA/20171007/us-east-1/s3/aws4_request", b[7].Split(',')[0].Replace('"', ' ').Trim());
                 }
 
                 return res;
@@ -149,25 +151,32 @@ namespace Scannex
             }
         }
 
-        public static string SendServer()
+        public static string SendServer(byte[] arrImage, string sign,string policy, string xcred, string xdate)
         {
             string ret = "";
-            
-
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "api/s3-signature"));
-            req.Headers.Set("Cache-Control", "no-cache");
-            req.Method = "POST";
-            req.KeepAlive = true;
-
-            HttpWebResponse response = (HttpWebResponse)req.GetResponse();
-
-            WebHeaderCollection header = response.Headers;
-
-            var encoding = ASCIIEncoding.UTF8;
-            using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+            try
             {
-                string responseText = reader.ReadToEnd();
-                ret = responseText;
+                var multipart = new MultipartFormDataContent();
+                multipart.Add(new StringContent(""), "Content-Type");
+                multipart.Add(new StringContent("private"), "acl");
+                multipart.Add(new StringContent("201"), "success_action_status");
+                multipart.Add(new StringContent(policy), "policy");
+                multipart.Add(new StringContent(xcred), "X-amz-credential");
+                multipart.Add(new StringContent("AWS4-HMAC-SHA256"), "X-amz-algorithm");
+                multipart.Add(new StringContent(xdate), "X-amz-date");
+                multipart.Add(new StringContent(sign), "X-amz-signature");
+
+                multipart.Add(new StringContent("3x6gjmyv34q8kvwl/7blindsyooo.pdf"), "key");
+                multipart.Add(new ByteArrayContent(arrImage), "file");
+                var httpClient = new HttpClient();
+                var response = httpClient.PostAsync(new Uri("https://s3.amazonaws.com/staging.smartdrawers.com"), multipart).Result;
+
+                string d = response.Content.ReadAsStringAsync().Result;
+                ret = d;
+            }
+            catch
+            {
+                ret = null;
             }
 
             return ret;
@@ -231,48 +240,7 @@ namespace Scannex
             catch { }
             return ret;
         }
-
-        public static bool InsertArtist(string url, string post, bool isUpdate, out string id)
-        {
-            bool ret = false;
-            id = "";
-            try
-            {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + url));
-                if (!isUpdate)
-                    req.Method = "POST";
-                else
-                    req.Method = "PUT";
-
-                req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-                req.ContentLength = post.Length;
-                req.SendChunked = true;
-                StreamWriter swOut = new StreamWriter(req.GetRequestStream());
-                swOut.Write(post);
-                swOut.Flush();
-                swOut.Close();
-
-                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
-
-                WebHeaderCollection header = response.Headers;
-
-                var encoding = ASCIIEncoding.UTF8;
-                using (var reader = new StreamReader(response.GetResponseStream(), encoding))
-                {
-                    string responseText = reader.ReadToEnd();
-                    if (responseText.Contains("success"))
-                    {
-                        string[] a = responseText.Split('-');
-                        if (a.Length > 1)
-                            id = a[1];
-
-                        ret = true;
-                    }
-                }
-            }
-            catch { }
-            return ret;
-        }
+ 
 
         //public static string InsertImage(byte[] arrImage, string filename, string fileext)
         //{
