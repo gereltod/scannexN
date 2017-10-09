@@ -119,6 +119,7 @@
     <Compile Include="Models\ImageFile.cs" />
     <Compile Include="Models\Locations.cs" />
     <Compile Include="Models\ServerUpload.cs" />
+    <Compile Include="Models\SubTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\ServerConnections.cs" />

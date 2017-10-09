@@ -23,9 +23,9 @@ namespace Scannex
             frmLogin frmshow = new frmLogin();
             if (frmshow.ShowDialog() == DialogResult.OK)
             {
-                Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("api/locations?type=flatwithdepth");
-                Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/users?role_name=employee");
-                Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/doctypes");
+                Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("api/scannex/v2/locations");
+                Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/scannex/v2/employees");
+                Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
 
                 //byte[] bytes = System.IO.File.ReadAllBytes(@"d:\aa.pdf");

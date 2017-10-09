@@ -72,18 +72,18 @@ namespace Scannex
         private void Comboload()
         {
             cmbEmployee.DataSource = Constants.ST_EMPLOYEES;
-            cmbEmployee.DisplayMember = "last_name";
+            cmbEmployee.DisplayMember = "name";
             cmbEmployee.ValueMember = "id";
             cmbEmployee.SelectedIndex = -1;
 
             cmbLocation.DataSource = Constants.ST_LOCATIONS;
             cmbLocation.DisplayMember = "name";
-            cmbLocation.ValueMember = "id";
+            cmbLocation.ValueMember = "hashid";
             cmbLocation.SelectedIndex = -1;
 
             cmbDoctype.DataSource = Constants.ST_DOCTYPES;
             cmbDoctype.DisplayMember = "name";
-            cmbDoctype.ValueMember = "id";
+            cmbDoctype.ValueMember = "hashid";
             cmbDoctype.SelectedIndex = -1;
         }
 
@@ -310,7 +310,7 @@ namespace Scannex
                 try
                 {
                     _twain.StartScanning(_settings);
-                    LoadImage();
+                    ShowImage();
                 }
                 catch (TwainException ex)
                 {
@@ -389,11 +389,17 @@ namespace Scannex
 
         private void button9_Click(object sender, EventArgs e)
         {
+            string json = "{";
+
             if (cmbEmployee.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cmbEmployee, "Enter your employee information");
                 cmbEmployee.Focus();
                 return;
+            }
+            else
+            {
+                json += "'employee':'" + cmbEmployee.SelectedValue.ToString() + "',";
             }
             if (cmbLocation.SelectedIndex == -1)
             {
@@ -401,23 +407,67 @@ namespace Scannex
                 cmbLocation.Focus();
                 return;
             }
+            else
+            {
+                json += "'location':'" + cmbLocation.SelectedValue.ToString() + "',";
+            }
+
             if (cmbDoctype.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cmbDoctype, "Enter your doc type information");
                 cmbDoctype.Focus();
                 return;
             }
+            
             if (_imageListUpload.Count() == 0)
             {
                 errorProvider1.SetError(pImageUp, "Enter your upload files");
-
+                return;
             }
 
-            string file=Convertpdf();
+
+            string file = Convertpdf();
+            json += "'fields':[" + GetControlsValue() + "]";
             if (file != "")
             {
 
             }
+        }
+
+        public string GetControlsValue()
+        {
+            string ret = "";
+            string v = "";
+            string h = "";
+            string json = "";
+
+            foreach (Control c in pnlAdd.Controls)
+            {
+                if (c.GetType() == typeof(TextBox))
+                {
+                    v = ((TextBox)c).Text;
+                    h = ((TextBox)c).Tag.ToString();
+                }
+                else if (c.GetType() == typeof(ComboBox))
+                {
+                    v = ((ComboBox)c).SelectedText;
+                    h = ((ComboBox)c).Tag.ToString();
+                }
+                else if (c.GetType() == typeof(CheckBox))
+                {
+                    v = ((CheckBox)c).Checked.ToString();
+                    h = ((CheckBox)c).Tag.ToString();
+                }
+                else if (c.GetType() == typeof(DateTimePicker))
+                {
+                    v = ((DateTimePicker)c).Value.ToString("yyyy-MM-dd");
+                    h = ((DateTimePicker)c).Tag.ToString();
+                }
+                json = String.Format("'field_id':'{0}','value':'{1}'", h, v);
+                ret += "{" + json + "}";             
+            }
+
+            return ret;
         }
 
         private string Convertpdf()
@@ -429,7 +479,7 @@ namespace Scannex
                 iTextSharp.text.Document document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4);
                 try
                 {
-                    string name = cmbEmployee.SelectedText;
+                    string name = cmbEmployee.Text;
                     string filename = String.Format("{0}_{1}.{2}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), name, "pdf");
                     PdfWriter.GetInstance(document, new FileStream(path + filename, FileMode.Create));
 
@@ -548,6 +598,108 @@ namespace Scannex
         {
             _indexUpload++;
             ShowImageUp();
+        }
+
+        private void cmbDoctype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDoctype.SelectedIndex != -1)
+            {
+                pnlAdd.Controls.Clear();
+                foreach(DocTypes t in Constants.ST_DOCTYPES)
+                {
+                    if (t.hashid == cmbDoctype.SelectedValue.ToString())
+                    {
+                        CreateElem(t.fields);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void CreateElem(List<SubTypes> l)
+        {
+            int i = 0;
+            int p = 0;
+            foreach(SubTypes s in l)
+            {
+                int x = 5;
+                int y = p + i * 5;       
+                Label lb = new Label();
+                lb.Name = Guid.NewGuid().ToString();
+                lb.Text = s.name;
+                lb.Location = new Point(x, y);
+               
+                switch (s.type)
+                {
+                   
+                    case "date":
+                        DateTimePicker dp = new DateTimePicker();
+                        dp.Name = Guid.NewGuid().ToString();
+                        dp.Tag = s.hashid;
+                        dp.CustomFormat = "yyyy-MM-dd";
+                        dp.Size = new Size(165, 22);
+                        dp.Value = DateTime.Now;
+                        dp.Format = DateTimePickerFormat.Custom;
+                        //y = i * 5 + p;
+                        dp.Location = new Point(x + 100, y);
+                        pnlAdd.Controls.Add(dp);
+                        pnlAdd.Controls.Add(lb);
+                        break;
+                    case "checkbox":
+                        CheckBox chk = new CheckBox();
+                        chk.Name = Guid.NewGuid().ToString();
+                        chk.Size = new Size(150, 22);
+                        chk.Tag = s.hashid;
+                        chk.Text = s.name;
+                        //y = i * 5 + p;
+                        chk.Location = new Point(x, y);
+                        pnlAdd.Controls.Add(chk);
+                        break;
+                    case "shorttext":
+                        TextBox txt = new TextBox();
+                        txt.Name = Guid.NewGuid().ToString();
+                        txt.Size = new Size(100, 22);
+                        txt.Tag = s.hashid;
+                        //y = i * 5 + p;
+                        txt.Location = new Point(x + 100, y);
+                        pnlAdd.Controls.Add(txt);
+                        pnlAdd.Controls.Add(lb);
+                        break;
+                    case "longtext":
+                        TextBox txtM = new TextBox();
+                        txtM.Name = Guid.NewGuid().ToString();
+                        txtM.Multiline = true;
+                        txtM.Size = new Size(100, 45);
+                        txtM.Tag = s.hashid;
+                        //y = i * 10 + p + 45;
+                        txtM.Location = new Point(x + 100, y);
+                        y = y + 40;
+                        pnlAdd.Controls.Add(txtM);
+                        pnlAdd.Controls.Add(lb);
+                        break;
+                    case "dropdown":
+                        ComboBox cmb = new ComboBox();
+                        cmb.Name = Guid.NewGuid().ToString();
+                        cmb.Size = new Size(120, 45);
+                        cmb.Tag = s.hashid;
+                        if (s.options != null)
+                        {
+                            string[] v = s.options.Split(',');
+                            foreach (string d in v)
+                            {
+                                cmb.Items.Add(d.Trim());
+                            }
+                        }
+                        //y = i * 10 + p + 45;
+                        cmb.Location = new Point(x + 100, y);
+
+                        pnlAdd.Controls.Add(cmb);
+                        pnlAdd.Controls.Add(lb);
+                        break;
+                }
+                p = y;
+                i++;
+            }
         }
     }
 }

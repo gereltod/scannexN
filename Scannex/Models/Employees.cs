@@ -13,6 +13,7 @@ namespace Scannex
         public string first_name { get; set; }
         public string middle_name { get; set; }
         public string last_name { get; set; }
+        public string name { get; set; }
         public int receives_notifications { get; set; }
         public string status { get; set; }
         public DateTime created_at { get; set; }

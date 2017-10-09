@@ -12,6 +12,7 @@ namespace Scannex
         public int client_id { get; set; }
         public int? parent_id { get; set; }
         public string name { get; set; }
+        public string hashid { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
 
