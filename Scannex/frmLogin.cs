@@ -21,6 +21,18 @@ namespace Scannex
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBox1, "Enter your username");
+                textBox1.Focus();
+                return;
+            }
+            if (textBox2.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBox2, "Enter your password");
+                textBox2.Focus();
+                return;
+            }
             string ret = ServerConnections.Login(textBox1.Text, textBox2.Text);
             if (ret == "200")
             {

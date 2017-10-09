@@ -53,6 +53,9 @@
       <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -69,12 +72,13 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TwainDotNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3cd6e1539fa8c71, processorArchitecture=x86">
+    <Reference Include="TwainDotNet, Version=1.0.0.2, Culture=neutral, PublicKeyToken=d3cd6e1539fa8c71, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet\bin\Debug\TwainDotNet.dll</HintPath>
+      <HintPath>dll\TwainDotNet.dll</HintPath>
     </Reference>
-    <Reference Include="TwainDotNet.WinFroms">
-      <HintPath>..\..\..\..\..\Downloads\twaindotnet-master\src\TwainDotNet.WinFroms\bin\Debug\TwainDotNet.WinFroms.dll</HintPath>
+    <Reference Include="TwainDotNet.WinFroms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3cd6e1539fa8c71, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\TwainDotNet.WinFroms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -203,8 +207,14 @@
     <None Include="Resources\nopicture.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\TwainDotNet.dll" />
-    <Content Include="dll\TwainDotNet.WinFroms.dll" />
+    <Content Include="dll\TwainDotNet.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dll\TwainDotNet.WinFroms.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\scanner.png" />
+    <None Include="Resources\clockwise-rotation.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

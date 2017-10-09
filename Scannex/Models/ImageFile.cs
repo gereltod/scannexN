@@ -11,5 +11,11 @@ namespace Scannex
     {
         public string FileName { get; set; }
         public Image FileImage { get; set; }
+
+
+        public void SaveAll(string path)
+        {
+            this.FileImage.Save(path + this.FileName);
+        }
     }
 }

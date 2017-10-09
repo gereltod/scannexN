@@ -11,6 +11,8 @@ using System.IO;
 using TwainDotNet;
 using TwainDotNet.WinFroms;
 using System.Security;
+using iTextSharp;
+using iTextSharp.text.pdf;
 
 namespace Scannex
 {
@@ -30,6 +32,7 @@ namespace Scannex
         public frmScanner()
         {
             InitializeComponent();
+            Init();
         }
 
         public void Init()
@@ -39,14 +42,16 @@ namespace Scannex
             {
                 if (args.Image != null)
                 {
+                    if (_index == -1)
+                        _index = 0;
+
                     pImage.Image = args.Image;
                     ImageFile file = new Scannex.ImageFile();
                     file.FileImage = args.Image;
                     file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
                     _imageList.Add(file);
-
-                    //widthLabel.Text = "Width: " + pImage.Image.Width;
-                    //heightLabel.Text = "Height: " + pImage.Image.Height;
+                    string path = Constants.FILE_PATH_TODAY + "\\" + file.FileName;
+                    file.FileImage.Save(path);
                 }
             };
             _twain.ScanningComplete += delegate
@@ -93,6 +98,8 @@ namespace Scannex
                     Directory.CreateDirectory(path);
                     Directory.CreateDirectory(path + "\\UPLOAD");
                 }
+                Constants.FILE_PATH_TODAY = path;
+
 
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 var fileList = (directoryInfo.GetFiles())
@@ -100,11 +107,11 @@ namespace Scannex
                 if (fileList != null)
                 {
                     foreach (var p in fileList)
-                    {
+                    {   
                         System.Drawing.Image img = System.Drawing.Bitmap.FromFile(p.FullName);
                         ImageFile f = new ImageFile();
                         f.FileImage = img;
-                        f.FileName = "";
+                        f.FileName = p.Name;
                         _imageList.Add(f);
                     }
                 }
@@ -181,14 +188,66 @@ namespace Scannex
             Comboload();
             LoadFolder();
             LoadImage();
+            ShowImage();
+            pImageUp.Image = Scannex.Properties.Resources.nopicture;
+        }
+
+        private void ShowImage()
+        {
+            if (_imageList.Count() > 0 && _index == -1)
+                _index = 0;
+
+            if (_imageList.Count() == 0)
+            {
+                _index = -1;
+                pImage.Image = Scannex.Properties.Resources.nopicture;                
+            }
+            else
+            {
+                if (_imageList.Count() == _index)
+                {
+                    _index = 0;
+                }
+
+                if (_index != -1)
+                {
+                    pImage.Image = _imageList[_index].FileImage;
+                    lblFile.Text = String.Format("File name:{0}", _imageList[_index].FileName);
+                }
+            }
+
+            lblPage.Text = String.Format("Page {0} of {1}", _index + 1, _imageList.Count());           
+        }
+
+        private void ShowImageUp()
+        {
+            if (_imageListUpload.Count() > 0 && _indexUpload==-1)
+                _indexUpload = 0;
+
+            if (_imageListUpload.Count() == 0)
+            {
+                _indexUpload = -1;
+                pImageUp.Image = Scannex.Properties.Resources.nopicture;
+            }
+            else
+            {
+                if (_imageListUpload.Count() == _indexUpload)
+                {
+                    _indexUpload = 0;
+                }
+
+                if (_indexUpload != -1)
+                    pImageUp.Image = _imageListUpload[_indexUpload].FileImage;
+                
+            }
+
+            lblPageUp.Text = String.Format("Page {0} of {1}", _indexUpload + 1, _imageListUpload.Count());
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             _index++;
-            if (_index >= _imageList.Count()) _index = 0;
-
-            LoadImage();
+            ShowImage();
         }
 
         private void pImage_DoubleClick(object sender, EventArgs e)
@@ -200,19 +259,24 @@ namespace Scannex
             frmshow.ShowDialog();
         }
 
+        private void RotateAndSaveImage(String input, String output)
+        {
+            //create an object that we can use to examine an image file
+            using (Image img = Image.FromFile(input))
+            {
+                //rotate the picture by 90 degrees and re-save the picture as a Jpeg
+                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                img.Save(output, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             Image img = _imageList[_index].FileImage;
-            img.RotateFlip(RotateFlipType.Rotate90FlipX);
-            _imageList[_index].FileImage = img;
-            LoadImage();
+            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            _imageList[_index].FileImage = img;            
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void button6_Click(object sender, EventArgs e)
         {
             frmScanPages frmshow = new frmScanPages();
@@ -260,8 +324,11 @@ namespace Scannex
 
         private void button7_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff|"
-                                            + "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+            if (_index == -1)
+                _index = 0;
+
+            openFileDialog1.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff|"
+                                            + "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             openFileDialog1.Title = "Please select an image file";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -275,7 +342,10 @@ namespace Scannex
                         f.FileImage = loadedImage;
                         f.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ext);
                         _imageList.Add(f);
-                        button3_Click((Object)btnNext, new EventArgs());
+
+                        string path = Constants.FILE_PATH_TODAY + "\\" + f.FileName;
+                        f.FileImage.Save(path);
+
                     }
                     catch (SecurityException ex)
                     {
@@ -293,6 +363,7 @@ namespace Scannex
                         FileLogger.LogStringInFile(ex.Message);
                     }
                 }
+                ShowImage();
             }
 
         }
@@ -300,9 +371,9 @@ namespace Scannex
         private void button2_Click(object sender, EventArgs e)
         {
             if (_index != -1)
-            {
+            {                       
                 _imageList.RemoveAt(_index);
-                pImage.Image = _imageList[_index].FileImage;
+                ShowImage();
             }
         }
 
@@ -311,7 +382,8 @@ namespace Scannex
             if (MessageBox.Show("", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 _imageList.Clear();
-
+                _index = -1;
+                ShowImage();
             }
         }
 
@@ -320,7 +392,7 @@ namespace Scannex
             if (cmbEmployee.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cmbEmployee, "Enter your employee information");
-                cmbEmployee.Focus();    
+                cmbEmployee.Focus();
                 return;
             }
             if (cmbLocation.SelectedIndex == -1)
@@ -341,6 +413,92 @@ namespace Scannex
 
             }
 
+            string file=Convertpdf();
+            if (file != "")
+            {
+
+            }
+        }
+
+        private string Convertpdf()
+        {
+            string ret = "";
+            if (_imageListUpload.Count > 0)
+            {
+                string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
+                iTextSharp.text.Document document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4);
+                try
+                {
+                    string name = cmbEmployee.SelectedText;
+                    string filename = String.Format("{0}_{1}.{2}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), name, "pdf");
+                    PdfWriter.GetInstance(document, new FileStream(path + filename, FileMode.Create));
+
+                    document.Open();
+
+                    foreach (ImageFile image in _imageListUpload)
+                    {
+
+                        iTextSharp.text.Image pic = iTextSharp.text.Image.GetInstance(image.FileImage, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                        if (pic.Height > pic.Width)
+                        {
+                            //Maximum height is 800 pixels.
+                            float percentage = 0.0f;
+                            percentage = 780 / pic.Height;
+                            pic.ScalePercent(percentage * 100);
+                        }
+                        else
+                        {
+                            //Maximum width is 600 pixels.
+                            float percentage = 0.0f;
+                            percentage = 580 / pic.Width;
+                            pic.ScalePercent(percentage * 100);
+                        }
+
+                        document.Add(pic);
+                        document.NewPage();
+                    }
+                    ret = filename;
+                }
+                catch (iTextSharp.text.DocumentException de)
+                {
+                    FileLogger.LogStringInFile(de.Message);
+                }
+                catch (IOException ioe)
+                {
+                    FileLogger.LogStringInFile(ioe.Message);
+                }
+
+                document.Close();
+                DeleteUploadFiles(path);
+            }
+            return ret;
+        }
+
+        private void DeleteUploadFiles(string path)
+        {
+            List<string> delFile = new List<string>();
+            foreach (ImageFile image in _imageListUpload)
+            {
+                image.SaveAll(path);
+                delFile.Add(image.FileName);
+                image.FileImage.Dispose();
+            }
+            _imageListUpload.Clear();
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
+
+            foreach (string f in delFile)
+            {
+                string p = Constants.FILE_PATH_TODAY + "\\" + f;
+                if (File.Exists(p))
+                {
+                    FileInfo info = new FileInfo(p);
+                    info.IsReadOnly = false;
+                    File.Delete(p);
+                }
+            }
+            ShowImageUp();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -353,11 +511,11 @@ namespace Scannex
                     f.FileImage = pImage.Image;
                     f.FileName = _imageList[_index].FileName;
                     _imageListUpload.Add(f);
-                    _indexUpload++;
+                                        
                     _imageList.RemoveAt(_index);
-                    _index--;
-                    LoadImageUpload();
-                    button3_Click((object)btnNext, new EventArgs());
+                    
+                    ShowImage();
+                    ShowImageUp();
                 }
                 else
                     pImage.Image = (Image)Scannex.Properties.Resources.nopicture;
@@ -375,14 +533,21 @@ namespace Scannex
                     f.FileName = _imageListUpload[_indexUpload].FileName;
 
                     _imageList.Add(f);
+                    
                     _imageListUpload.RemoveAt(_indexUpload);
-                    _indexUpload--;
-                    LoadImageUpload();
-                    button3_Click((object)btnNext, new EventArgs());
+                   
+                    ShowImage();
+                    ShowImageUp();
                 }
                 else
                     pImageUp.Image = (Image)Scannex.Properties.Resources.nopicture;
             }
+        }
+
+        private void btnNextUp_Click(object sender, EventArgs e)
+        {
+            _indexUpload++;
+            ShowImageUp();
         }
     }
 }
