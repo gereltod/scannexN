@@ -399,7 +399,7 @@ namespace Scannex
             }
             else
             {
-                json += "'employee':'" + cmbEmployee.SelectedValue.ToString() + "',";
+                json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
             }
             if (cmbLocation.SelectedIndex == -1)
             {
@@ -409,7 +409,7 @@ namespace Scannex
             }
             else
             {
-                json += "'location':'" + cmbLocation.SelectedValue.ToString() + "',";
+                json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
             }
 
             if (cmbDoctype.SelectedIndex == -1)
@@ -418,7 +418,12 @@ namespace Scannex
                 cmbDoctype.Focus();
                 return;
             }
-            
+            else
+            {
+                json += "\"doc_type_id\":\"" + cmbDoctype.SelectedValue.ToString() + "\",";
+            }
+
+
             if (_imageListUpload.Count() == 0)
             {
                 errorProvider1.SetError(pImageUp, "Enter your upload files");
@@ -427,7 +432,12 @@ namespace Scannex
 
 
             string file = Convertpdf();
-            json += "'fields':[" + GetControlsValue() + "]";
+            string subjson = GetControlsValue();
+
+            if (subjson.Length > 0)
+                subjson = subjson.Substring(0, subjson.Length - 1);
+
+            json += "\"fields\":[" + subjson  + "]}";
             if (file != "")
             {
 
@@ -440,6 +450,7 @@ namespace Scannex
             string v = "";
             string h = "";
             string json = "";
+            bool isEnter = false;
 
             foreach (Control c in pnlAdd.Controls)
             {
@@ -447,24 +458,32 @@ namespace Scannex
                 {
                     v = ((TextBox)c).Text;
                     h = ((TextBox)c).Tag.ToString();
+                    isEnter = true;
                 }
                 else if (c.GetType() == typeof(ComboBox))
                 {
-                    v = ((ComboBox)c).SelectedText;
+                    v = ((ComboBox)c).Text;
                     h = ((ComboBox)c).Tag.ToString();
+                    isEnter = true;
                 }
                 else if (c.GetType() == typeof(CheckBox))
                 {
                     v = ((CheckBox)c).Checked.ToString();
                     h = ((CheckBox)c).Tag.ToString();
+                    isEnter = true;
                 }
                 else if (c.GetType() == typeof(DateTimePicker))
                 {
                     v = ((DateTimePicker)c).Value.ToString("yyyy-MM-dd");
                     h = ((DateTimePicker)c).Tag.ToString();
+                    isEnter = true;
                 }
-                json = String.Format("'field_id':'{0}','value':'{1}'", h, v);
-                ret += "{" + json + "}";             
+                if (isEnter)
+                {
+                    json = String.Format("\"field_id\":\"{0}\",\"value\":\"{1}\"", h, v);
+                    ret += "{" + json + "},";
+                    isEnter = false;
+                }
             }
 
             return ret;
@@ -617,21 +636,20 @@ namespace Scannex
         }
 
         private void CreateElem(List<SubTypes> l)
-        {
-            int i = 0;
-            int p = 0;
-            foreach(SubTypes s in l)
+        {          
+            int p = 5;
+            int y = 0;
+            foreach (SubTypes s in l)
             {
                 int x = 5;
-                int y = p + i * 5;       
-                Label lb = new Label();
+                y = p + 6;       
+                Label lb = new System.Windows.Forms.Label();
                 lb.Name = Guid.NewGuid().ToString();
                 lb.Text = s.name;
                 lb.Location = new Point(x, y);
                
                 switch (s.type)
-                {
-                   
+                {                   
                     case "date":
                         DateTimePicker dp = new DateTimePicker();
                         dp.Name = Guid.NewGuid().ToString();
@@ -640,10 +658,10 @@ namespace Scannex
                         dp.Size = new Size(165, 22);
                         dp.Value = DateTime.Now;
                         dp.Format = DateTimePickerFormat.Custom;
-                        //y = i * 5 + p;
                         dp.Location = new Point(x + 100, y);
-                        pnlAdd.Controls.Add(dp);
+                        y += 25;
                         pnlAdd.Controls.Add(lb);
+                        pnlAdd.Controls.Add(dp);                        
                         break;
                     case "checkbox":
                         CheckBox chk = new CheckBox();
@@ -651,8 +669,8 @@ namespace Scannex
                         chk.Size = new Size(150, 22);
                         chk.Tag = s.hashid;
                         chk.Text = s.name;
-                        //y = i * 5 + p;
-                        chk.Location = new Point(x, y);
+                        chk.Location = new Point(x + 100, y);
+                        y += 30;
                         pnlAdd.Controls.Add(chk);
                         break;
                     case "shorttext":
@@ -660,10 +678,10 @@ namespace Scannex
                         txt.Name = Guid.NewGuid().ToString();
                         txt.Size = new Size(100, 22);
                         txt.Tag = s.hashid;
-                        //y = i * 5 + p;
                         txt.Location = new Point(x + 100, y);
-                        pnlAdd.Controls.Add(txt);
+                        y += 25;
                         pnlAdd.Controls.Add(lb);
+                        pnlAdd.Controls.Add(txt);                        
                         break;
                     case "longtext":
                         TextBox txtM = new TextBox();
@@ -673,9 +691,9 @@ namespace Scannex
                         txtM.Tag = s.hashid;
                         //y = i * 10 + p + 45;
                         txtM.Location = new Point(x + 100, y);
-                        y = y + 40;
-                        pnlAdd.Controls.Add(txtM);
+                        y += 40;
                         pnlAdd.Controls.Add(lb);
+                        pnlAdd.Controls.Add(txtM);                        
                         break;
                     case "dropdown":
                         ComboBox cmb = new ComboBox();
@@ -690,15 +708,13 @@ namespace Scannex
                                 cmb.Items.Add(d.Trim());
                             }
                         }
-                        //y = i * 10 + p + 45;
                         cmb.Location = new Point(x + 100, y);
-
-                        pnlAdd.Controls.Add(cmb);
                         pnlAdd.Controls.Add(lb);
+                        pnlAdd.Controls.Add(cmb);
+                        y += 25;
                         break;
                 }
                 p = y;
-                i++;
             }
         }
     }
