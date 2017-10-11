@@ -15,7 +15,7 @@ namespace Scannex
         [STAThread]
         static void Main()
         {
-            Constants.ERROR_PATH = Application.StartupPath + "\\LOGS";
+            Constants.ERROR_PATH = Application.StartupPath + "\\Logs\\";
             Constants.FILE_PATH = System.Configuration.ConfigurationManager.AppSettings["FILEPATH"].ToString();
             FileLogger.InitLog(Constants.ERROR_PATH, Constants.FILE_NAME);
 

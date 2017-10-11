@@ -51,6 +51,7 @@
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(258, 86);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 30);
@@ -66,16 +67,17 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(162, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "sage@equizitive.com";
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.MouseCaptureChanged += new System.EventHandler(this.textBox1_MouseCaptureChanged);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(143, 52);
             this.textBox2.MaxLength = 100;
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(162, 21);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "sage";
             // 
             // label1
             // 
@@ -105,8 +107,10 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(368, 134);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -116,11 +120,13 @@
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
             this.Text = "SmartDrawers Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLogin_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

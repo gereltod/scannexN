@@ -28,9 +28,6 @@ namespace Scannex
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
 
-                //byte[] bytes = System.IO.File.ReadAllBytes(@"d:\aa.pdf");
-
-                //ServerConnections.Server(bytes);
             }
         }
                 

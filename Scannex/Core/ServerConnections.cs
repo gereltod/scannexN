@@ -89,8 +89,7 @@ namespace Scannex
         {
             T res;
             try
-            {
-                
+            {                
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + url));
                 req.Headers.Set("Cache-Control", "no-cache");
                 req.Method = "GET";
@@ -117,12 +116,53 @@ namespace Scannex
             }
         }
 
-        public static String Server(byte[] img)
+        public static string ServerPostData(string url, string post)
+        {
+            string ret = "";
+            HttpWebResponse response = null;
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + url));
+                req.Headers.Set("Cache-Control", "no-cache");
+                req.Method = "POST";
+                req.KeepAlive = true;
+                req.Headers.Add("Authorization", "Bearer " + ACCESS_TOKEN);
+                
+                req.ContentLength = post.Length;
+                req.SendChunked = true;
+                StreamWriter swOut = new StreamWriter(req.GetRequestStream());
+                swOut.Write(post);
+                swOut.Flush();
+                swOut.Close();
+
+                response = (HttpWebResponse)req.GetResponse();
+
+                WebHeaderCollection header = response.Headers;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var encoding = ASCIIEncoding.UTF8;
+                    using (var reader = new StreamReader(response.GetResponseStream(), encoding))
+                    {
+                        string responseText = reader.ReadToEnd();
+                    }
+                }
+
+                ret = "OK";
+            }
+            catch (Exception ex)
+            {
+                FileLogger.LogStringInFile(ex.Message);
+                ret = ex.Message;
+            }
+
+            return ret;
+        }
+
+        public static String ServerFile(string filename, byte[] img)
         {
             String res;
             try
             {
-
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(Constants.SERVER_URL + "api/s3-signature"));
                 req.Headers.Set("Cache-Control", "no-cache");
                 req.Method = "GET";
@@ -137,9 +177,9 @@ namespace Scannex
                 using (var reader = new StreamReader(response.GetResponseStream(), encoding))
                 {
                     string responseText = reader.ReadToEnd();
-                    string[] b = responseText.Split(':');
-                    
-                    res = SendServer(img, b[8].Split(',')[0].Replace('"', ' ').Trim(), b[4].Split(',')[0].Replace('"', ' ').Trim(), @"AKIAIZGID2M7YCKFURUA/20171007/us-east-1/s3/aws4_request", b[7].Split(',')[0].Replace('"', ' ').Trim());
+                    var sign = JsonConvert.DeserializeObject<Signature>(responseText);
+
+                    res = SendServerAWS(filename, img, sign);
                 }
 
                 return res;
@@ -150,23 +190,24 @@ namespace Scannex
                 return "";
             }
         }
-
-        public static string SendServer(byte[] arrImage, string sign,string policy, string xcred, string xdate)
+                
+        public static string SendServerAWS(string fileName, byte[] arrImage, Signature signature)
         {
             string ret = "";
             try
             {
                 var multipart = new MultipartFormDataContent();
                 multipart.Add(new StringContent(""), "Content-Type");
-                multipart.Add(new StringContent("private"), "acl");
+                multipart.Add(new StringContent(signature.Acl), "acl");
                 multipart.Add(new StringContent("201"), "success_action_status");
-                multipart.Add(new StringContent(policy), "policy");
-                multipart.Add(new StringContent(xcred), "X-amz-credential");
-                multipart.Add(new StringContent("AWS4-HMAC-SHA256"), "X-amz-algorithm");
-                multipart.Add(new StringContent(xdate), "X-amz-date");
-                multipart.Add(new StringContent(sign), "X-amz-signature");
+                multipart.Add(new StringContent(signature.Policy), "policy");
+                multipart.Add(new StringContent(signature.XamzCredential), "X-amz-credential");
+                multipart.Add(new StringContent(signature.XamzAlgorithm), "X-amz-algorithm");
+                multipart.Add(new StringContent(signature.XamzDate), "X-amz-date");
+                multipart.Add(new StringContent(signature.XamzSignature), "X-amz-signature");
 
-                multipart.Add(new StringContent("3x6gjmyv34q8kvwl/7blindsyooo.pdf"), "key");
+                string f = signature.Key.Replace("${filename}", fileName);
+                multipart.Add(new StringContent(f), "key");
                 multipart.Add(new ByteArrayContent(arrImage), "file");
                 var httpClient = new HttpClient();
                 var response = httpClient.PostAsync(new Uri("https://s3.amazonaws.com/staging.smartdrawers.com"), multipart).Result;
@@ -174,8 +215,9 @@ namespace Scannex
                 string d = response.Content.ReadAsStringAsync().Result;
                 ret = d;
             }
-            catch
+            catch(Exception ex)
             {
+                FileLogger.LogStringInFile(ex.Message);
                 ret = null;
             }
 
@@ -213,56 +255,7 @@ namespace Scannex
                 FileLogger.LogStringInFile(ex.Message);
                 return default(T); }
         }
-
-        public static bool Delete(string url, string id)
-        {
-            bool ret = false;
-
-            try
-            {
-                string ur = String.Format("{0}{1}/{2}", Constants.SERVER_URL, url, id);
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(ur));
-                req.Headers.Set("Cache-Control", "no-cache");
-                req.Method = "DELETE";
-                //req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
-
-                WebHeaderCollection header = response.Headers;
-
-                var encoding = ASCIIEncoding.UTF8;
-                using (var reader = new StreamReader(response.GetResponseStream(), encoding))
-                {
-                    string responseText = reader.ReadToEnd();
-                    if (responseText.Contains("success"))
-                        ret = true;
-                }
-            }
-            catch { }
-            return ret;
-        }
- 
-
-        //public static string InsertImage(byte[] arrImage, string filename, string fileext)
-        //{
-        //    string ret = "";
-        //    try
-        //    {
-        //        var multipart = new MultipartFormDataContent();
-        //        multipart.Add(new ByteArrayContent(arrImage), "uploads", filename);
-        //        multipart.Add(new StringContent(fileext), "fileext");
-        //        var httpClient = new HttpClient();
-        //        var response = httpClient.PostAsync(new Uri(Core.Constants.URL + "upload"), multipart).Result;
-
-        //        string d = response.Content.ReadAsStringAsync().Result;
-        //        ret = d;
-        //    }
-        //    catch
-        //    {
-        //        ret = null;
-        //    }
-        //    return ret;
-        //}
-
+                                
         public static Bitmap ReadImage(string name)
         {
             System.Drawing.Bitmap bmp;

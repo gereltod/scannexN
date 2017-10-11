@@ -41,7 +41,7 @@
             this.lblFile = new System.Windows.Forms.Label();
             this.lblPage = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtComment = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             this.groupBox1.Controls.Add(this.lblFile);
             this.groupBox1.Controls.Add(this.lblPage);
             this.groupBox1.Controls.Add(this.btnNext);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtComment);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -100,7 +100,7 @@
             // 
             this.pnlAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlAdd.Location = new System.Drawing.Point(509, 158);
-            this.pnlAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlAdd.Margin = new System.Windows.Forms.Padding(2);
             this.pnlAdd.Name = "pnlAdd";
             this.pnlAdd.Size = new System.Drawing.Size(278, 142);
             this.pnlAdd.TabIndex = 16;
@@ -229,15 +229,15 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox1
+            // txtComment
             // 
-            this.textBox1.Location = new System.Drawing.Point(585, 96);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(168, 54);
-            this.textBox1.TabIndex = 4;
+            this.txtComment.Location = new System.Drawing.Point(585, 96);
+            this.txtComment.Margin = new System.Windows.Forms.Padding(2);
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtComment.Size = new System.Drawing.Size(168, 54);
+            this.txtComment.TabIndex = 4;
             // 
             // label4
             // 
@@ -429,7 +429,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

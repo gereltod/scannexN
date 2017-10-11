@@ -274,7 +274,8 @@ namespace Scannex
         {
             Image img = _imageList[_index].FileImage;
             img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            _imageList[_index].FileImage = img;            
+            _imageList[_index].FileImage = img;
+            ShowImage();
         }
         
         private void button6_Click(object sender, EventArgs e)
@@ -314,6 +315,7 @@ namespace Scannex
                 }
                 catch (TwainException ex)
                 {
+                    FileLogger.LogStringInFile(ex.Message);
                     MessageBox.Show(ex.Message);
                     Enabled = true;
                     Init();
@@ -379,7 +381,7 @@ namespace Scannex
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete all?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 _imageList.Clear();
                 _index = -1;
@@ -389,106 +391,103 @@ namespace Scannex
 
         private void button9_Click(object sender, EventArgs e)
         {
-            string json = "{";
-
-            if (cmbEmployee.SelectedIndex == -1)
+            try
             {
-                errorProvider1.SetError(cmbEmployee, "Enter your employee information");
-                cmbEmployee.Focus();
-                return;
+                string json = "{";
+
+                if (cmbEmployee.SelectedIndex == -1)
+                {
+                    errorProvider1.SetError(cmbEmployee, "Enter your employee information");
+                    cmbEmployee.Focus();
+                    return;
+                }
+                else
+                {
+                    json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
+                }
+                if (cmbLocation.SelectedIndex == -1)
+                {
+                    errorProvider1.SetError(cmbLocation, "Enter your location information");
+                    cmbLocation.Focus();
+                    return;
+                }
+                else
+                {
+                    json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
+                }
+
+                if (cmbDoctype.SelectedIndex == -1)
+                {
+                    errorProvider1.SetError(cmbDoctype, "Enter your doc type information");
+                    cmbDoctype.Focus();
+                    return;
+                }
+                else
+                {
+                    json += "\"doc_type_id\":\"" + cmbDoctype.SelectedValue.ToString() + "\",";
+                }
+                
+                if (_imageListUpload.Count() == 0)
+                {
+                    errorProvider1.SetError(pImageUp, "Enter your upload files");
+                    btnRight.Focus();
+                    return;
+                }
+
+
+                string file = Convertpdf();
+                string subjson = GetControlsValue();
+
+                if (subjson.Length > 0)
+                    subjson = subjson.Substring(0, subjson.Length - 1);
+                json += "\"comment\":\"" + txtComment.Text + "\",";
+                json += "\"fields\":[" + subjson + "],";
+                if (file != "")
+                {
+                    string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
+
+                    byte[] bytes = System.IO.File.ReadAllBytes(path + file);
+
+                    string ret = ServerConnections.ServerFile(file, bytes);
+                    var postMessage = Constants.Deserialize<PostResponse>(ret);
+                    if (postMessage != null)
+                    {
+                        string aws = Newtonsoft.Json.JsonConvert.SerializeObject(postMessage);
+
+                        json += "\"s3-response\":" + aws + "}";
+
+                        ret = ServerConnections.ServerPostData("/api/s3doc", json);
+
+                        if (ret == "OK")
+                        {
+                            DeleteUploadFiles(path);
+                            MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ResetControl();
+                        }
+                        else
+                        {
+                            MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
             }
-            else
+            catch(Exception ex)
             {
-                json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
-            }
-            if (cmbLocation.SelectedIndex == -1)
-            {
-                errorProvider1.SetError(cmbLocation, "Enter your location information");
-                cmbLocation.Focus();
-                return;
-            }
-            else
-            {
-                json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
-            }
-
-            if (cmbDoctype.SelectedIndex == -1)
-            {
-                errorProvider1.SetError(cmbDoctype, "Enter your doc type information");
-                cmbDoctype.Focus();
-                return;
-            }
-            else
-            {
-                json += "\"doc_type_id\":\"" + cmbDoctype.SelectedValue.ToString() + "\",";
-            }
-
-
-            if (_imageListUpload.Count() == 0)
-            {
-                errorProvider1.SetError(pImageUp, "Enter your upload files");
-                return;
-            }
-
-
-            string file = Convertpdf();
-            string subjson = GetControlsValue();
-
-            if (subjson.Length > 0)
-                subjson = subjson.Substring(0, subjson.Length - 1);
-
-            json += "\"fields\":[" + subjson  + "]}";
-            if (file != "")
-            {
-
+                FileLogger.LogStringInFile(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public string GetControlsValue()
+        #region File
+        private void ResetControl()
         {
-            string ret = "";
-            string v = "";
-            string h = "";
-            string json = "";
-            bool isEnter = false;
-
-            foreach (Control c in pnlAdd.Controls)
-            {
-                if (c.GetType() == typeof(TextBox))
-                {
-                    v = ((TextBox)c).Text;
-                    h = ((TextBox)c).Tag.ToString();
-                    isEnter = true;
-                }
-                else if (c.GetType() == typeof(ComboBox))
-                {
-                    v = ((ComboBox)c).Text;
-                    h = ((ComboBox)c).Tag.ToString();
-                    isEnter = true;
-                }
-                else if (c.GetType() == typeof(CheckBox))
-                {
-                    v = ((CheckBox)c).Checked.ToString();
-                    h = ((CheckBox)c).Tag.ToString();
-                    isEnter = true;
-                }
-                else if (c.GetType() == typeof(DateTimePicker))
-                {
-                    v = ((DateTimePicker)c).Value.ToString("yyyy-MM-dd");
-                    h = ((DateTimePicker)c).Tag.ToString();
-                    isEnter = true;
-                }
-                if (isEnter)
-                {
-                    json = String.Format("\"field_id\":\"{0}\",\"value\":\"{1}\"", h, v);
-                    ret += "{" + json + "},";
-                    isEnter = false;
-                }
-            }
-
-            return ret;
+            cmbEmployee.SelectedIndex = -1;
+            cmbLocation.SelectedIndex = -1;
+            cmbDoctype.SelectedIndex = -1;
+            txtComment.Text = "";
+            pnlAdd.Controls.Clear();
         }
-
+        
         private string Convertpdf()
         {
             string ret = "";
@@ -499,7 +498,7 @@ namespace Scannex
                 try
                 {
                     string name = cmbEmployee.Text;
-                    string filename = String.Format("{0}_{1}.{2}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), name, "pdf");
+                    string filename = String.Format("{0}_{1}.{2}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), name.Trim(), "pdf");
                     PdfWriter.GetInstance(document, new FileStream(path + filename, FileMode.Create));
 
                     document.Open();
@@ -538,8 +537,7 @@ namespace Scannex
                     FileLogger.LogStringInFile(ioe.Message);
                 }
 
-                document.Close();
-                DeleteUploadFiles(path);
+                document.Close();               
             }
             return ret;
         }
@@ -569,6 +567,8 @@ namespace Scannex
             }
             ShowImageUp();
         }
+
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -635,6 +635,7 @@ namespace Scannex
             }
         }
 
+        #region ComponentForAdd
         private void CreateElem(List<SubTypes> l)
         {          
             int p = 5;
@@ -717,5 +718,53 @@ namespace Scannex
                 p = y;
             }
         }
+        
+        public string GetControlsValue()
+        {
+            string ret = "";
+            string v = "";
+            string h = "";
+            string json = "";
+            bool isEnter = false;
+
+            foreach (Control c in pnlAdd.Controls)
+            {
+                if (c.GetType() == typeof(TextBox))
+                {
+                    v = ((TextBox)c).Text == null ? "" : ((TextBox)c).Text;
+                    h = ((TextBox)c).Tag.ToString();
+                    isEnter = true;
+                }
+                else if (c.GetType() == typeof(ComboBox))
+                {
+                    v = ((ComboBox)c).Text;
+                    h = ((ComboBox)c).Tag.ToString();
+                    isEnter = true;
+                }
+                else if (c.GetType() == typeof(CheckBox))
+                {
+                    v = ((CheckBox)c).Checked.ToString();
+                    h = ((CheckBox)c).Tag.ToString();
+                    isEnter = true;
+                }
+                else if (c.GetType() == typeof(DateTimePicker))
+                {
+                    v = ((DateTimePicker)c).Value.ToString("yyyy-MM-dd");
+                    h = ((DateTimePicker)c).Tag.ToString();
+                    isEnter = true;
+                }
+                if (isEnter)
+                {
+                    json = String.Format("\"field_id\":\"{0}\",\"value\":\"{1}\"", h, v);
+                    ret += "{" + json + "},";
+                    isEnter = false;
+                }
+            }
+
+            return ret;
+        }
+
+        #endregion
+
     }
 }

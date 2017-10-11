@@ -66,5 +66,29 @@ namespace Scannex
         {
 
         }
+
+        private void frmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                
+            }
+        }
+
+        private void textBox1_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+                textBox1.SelectAll();
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+                textBox1.SelectAll();
+        }
     }
 }
