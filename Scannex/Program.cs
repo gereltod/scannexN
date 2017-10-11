@@ -17,6 +17,8 @@ namespace Scannex
         {
             Constants.ERROR_PATH = Application.StartupPath + "\\Logs\\";
             Constants.FILE_PATH = System.Configuration.ConfigurationManager.AppSettings["FILEPATH"].ToString();
+            Constants.DELETE_DAY = double.Parse(System.Configuration.ConfigurationManager.AppSettings["DELETEDAY"].ToString());
+
             FileLogger.InitLog(Constants.ERROR_PATH, Constants.FILE_NAME);
 
             

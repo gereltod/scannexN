@@ -16,6 +16,8 @@ namespace Scannex
         public static string ERROR_PATH = "";
         public static string FILE_PATH = "";
         public static string FILE_PATH_TODAY = "";
+        public static double DELETE_DAY = 30;
+
         public static string USERNAME = "";
         public static bool ISLOGIN;
 
