@@ -140,5 +140,27 @@ namespace Scannex
                 frmshow.Show();
             }
         }
+
+        private void toolStripMenuItem15_Click(object sender, EventArgs e)
+        {
+            bool isBe = false;
+            frmOptions f = null;
+            foreach(Form frm in this.MdiChildren)
+            {
+                if(typeof(frmOptions)==frm.GetType())
+                {
+                    f = (frmOptions)frm;
+                    f.Activate();
+                    isBe = true;
+                    break;
+                }
+            }
+            if (!isBe)
+            {
+                f = new frmOptions();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

@@ -272,10 +272,13 @@ namespace Scannex
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Image img = _imageList[_index].FileImage;
-            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            _imageList[_index].FileImage = img;
-            ShowImage();
+            if (_imageList.Count() > 0)
+            {
+                Image img = _imageList[_index].FileImage;
+                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                _imageList[_index].FileImage = img;
+                ShowImage();
+            }
         }
         
         private void button6_Click(object sender, EventArgs e)
@@ -318,6 +321,7 @@ namespace Scannex
                     FileLogger.LogStringInFile(ex.Message);
                     MessageBox.Show(ex.Message);
                     Enabled = true;
+                    _twain = null;
                     Init();
                 }
             }
@@ -373,9 +377,12 @@ namespace Scannex
         private void button2_Click(object sender, EventArgs e)
         {
             if (_index != -1)
-            {                       
-                _imageList.RemoveAt(_index);
-                ShowImage();
+            {
+                if (_imageList.Count() > 0)
+                {
+                    _imageList.RemoveAt(_index);
+                    ShowImage();
+                }
             }
         }
 

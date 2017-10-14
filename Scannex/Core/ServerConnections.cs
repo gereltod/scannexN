@@ -73,7 +73,7 @@ namespace Scannex
                 {
                    ret= ((HttpWebResponse)e.Response).StatusCode.ToString();
                 }
-                
+                FileLogger.LogStringInFile(e.Message);
             }            
             catch (Exception ex)
             {
