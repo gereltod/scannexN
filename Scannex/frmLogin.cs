@@ -13,6 +13,7 @@ namespace Scannex
     public partial class frmLogin : Form
     {
         bool islogin = false;
+        public string _UserName = "";
 
         public frmLogin()
         {
@@ -64,7 +65,8 @@ namespace Scannex
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            if (_UserName.Length > 0)
+                textBox1.Text = _UserName;
         }
 
         private void frmLogin_KeyDown(object sender, KeyEventArgs e)

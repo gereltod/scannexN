@@ -12,15 +12,62 @@ using System.Globalization;
 
 namespace Scannex
 {
-    public partial class frmMain : Form
+    public partial class frmMain : Form, IMessageFilter
     {
+        private Timer mTimer;
+        private int mDialogCount;
+
         public frmMain()
         {
             InitializeComponent();
             backgroundWorker1.DoWork += _work_DoWork;
             backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            mTimer = new Timer();           
+            mTimer.Tick += LogoutUser;
+           
+            Application.AddMessageFilter(this);
+        }
 
+        public bool PreFilterMessage(ref Message m)
+        {
+            // Monitor message for keyboard and mouse messages
+            bool active = m.Msg == 0x100 || m.Msg == 0x101;  // WM_KEYDOWN/UP
+            active = active || m.Msg == 0xA0 || m.Msg == 0x200;  // WM_(NC)MOUSEMOVE
+            active = active || m.Msg == 0x10;  // WM_CLOSE, in case dialog closes
+            if (active)
+            {
+                mTimer.Enabled = false;
+                mTimer.Start();
+            }
+            return false;
+        }
+
+        private void LogoutUser(object sender, EventArgs e)
+        {
+            // No activity, logout user
+            if (mDialogCount > 0) return;
+            mTimer.Enabled = false;
+            if (Constants.ISLOGIN)
+            {
+                foreach (Form frm in this.MdiChildren)
+                {
+                    frmScanner f = null;
+                    if (typeof(frmScanner) == frm.GetType())
+                    {
+                        f = (frmScanner)frm;
+                        f.Close();
+                        break;
+                    }
+                }
+                Constants.ISLOGIN = false;
+                frmLogin frmshow = new frmLogin();
+                frmshow._UserName = Constants.USERNAME;
+                if (frmshow.ShowDialog() == DialogResult.OK)
+                {
+                    Constants.ISLOGIN = true;
+                }
+            }
         }
 
         void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -100,8 +147,9 @@ namespace Scannex
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/scannex/v2/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
-                                               
-                
+                mTimer.Interval = Constants.EXPIRE_TIME;
+                mTimer.Enabled = true;
+
                 tProgressBar.Step = 1;
                 backgroundWorker1.WorkerReportsProgress = true;
                 backgroundWorker1.RunWorkerAsync();
@@ -162,5 +210,7 @@ namespace Scannex
                 f.Show();
             }
         }
+
+        
     }
 }

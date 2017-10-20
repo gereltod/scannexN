@@ -55,6 +55,7 @@ namespace Scannex
                         string responseText = reader.ReadToEnd();
                         dynamic aa = JsonConvert.DeserializeObject(responseText);
                         ACCESS_TOKEN = aa.access_token;
+                        Constants.EXPIRE_TIME = aa.expires_in;
                         ret = "200";
                         Constants.USERNAME = username;
                         Constants.ISLOGIN = true;
