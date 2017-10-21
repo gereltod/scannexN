@@ -13,6 +13,7 @@ using TwainDotNet.WinFroms;
 using System.Security;
 using iTextSharp;
 using iTextSharp.text.pdf;
+using System.Threading;
 
 namespace Scannex
 {
@@ -20,6 +21,7 @@ namespace Scannex
     {
         List<ImageFile> _imageList = new List<ImageFile>();
         List<ImageFile> _imageListUpload = new List<ImageFile>();
+        frmTwainLoading progressDialog = new frmTwainLoading();
 
         private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
         Form _parent;
@@ -310,10 +312,16 @@ namespace Scannex
                     AutomaticRotate = true,
                     AutomaticBorderDetection = true
                 };
+              
+                Thread backgroundThread = new Thread(new ThreadStart(Progress));
+                progressDialog = new frmTwainLoading();
+                backgroundThread.Start();
 
                 try
                 {
+
                     _twain.StartScanning(_settings);
+                    progressDialog.CloseForm();
                     ShowImage();
                 }
                 catch (TwainException ex)
@@ -322,10 +330,19 @@ namespace Scannex
                     MessageBox.Show(ex.Message);
                     Enabled = true;
                     _twain = null;
+                    progressDialog.CloseForm();
                     Init();
+
                 }
+                backgroundThread.Abort();
             }
 
+        }
+   
+        private void Progress()
+        {           
+            progressDialog.ShowDialog();
+            progressDialog.Dispose();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -773,5 +790,22 @@ namespace Scannex
 
         #endregion
 
+        private void btnProv_Click(object sender, EventArgs e)
+        {
+            _index--;
+            if (_index == -1)
+                _index = _imageList.Count() - 1;
+
+            ShowImage();
+        }
+
+        private void btnProvUp_Click(object sender, EventArgs e)
+        {
+            _indexUpload--;
+            if (_indexUpload == -1)
+                _indexUpload = _imageListUpload.Count() - 1;
+
+            ShowImageUp();
+        }
     }
 }

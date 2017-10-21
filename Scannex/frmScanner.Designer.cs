@@ -58,6 +58,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnProv = new System.Windows.Forms.Button();
+            this.btnProvUp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pImageUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pImage)).BeginInit();
@@ -66,6 +68,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnProvUp);
+            this.groupBox1.Controls.Add(this.btnProv);
             this.groupBox1.Controls.Add(this.pnlAdd);
             this.groupBox1.Controls.Add(this.btnNextUp);
             this.groupBox1.Controls.Add(this.btnUpload);
@@ -403,6 +407,34 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Add Pages";
             // 
+            // btnProv
+            // 
+            this.btnProv.BackColor = System.Drawing.Color.Transparent;
+            this.btnProv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProv.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnProv.Location = new System.Drawing.Point(22, 159);
+            this.btnProv.Margin = new System.Windows.Forms.Padding(2);
+            this.btnProv.Name = "btnProv";
+            this.btnProv.Size = new System.Drawing.Size(19, 21);
+            this.btnProv.TabIndex = 17;
+            this.btnProv.Text = "<";
+            this.btnProv.UseVisualStyleBackColor = true;
+            this.btnProv.Click += new System.EventHandler(this.btnProv_Click);
+            // 
+            // btnProvUp
+            // 
+            this.btnProvUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnProvUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProvUp.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnProvUp.Location = new System.Drawing.Point(293, 159);
+            this.btnProvUp.Margin = new System.Windows.Forms.Padding(2);
+            this.btnProvUp.Name = "btnProvUp";
+            this.btnProvUp.Size = new System.Drawing.Size(19, 21);
+            this.btnProvUp.TabIndex = 18;
+            this.btnProvUp.Text = "<";
+            this.btnProvUp.UseVisualStyleBackColor = true;
+            this.btnProvUp.Click += new System.EventHandler(this.btnProvUp_Click);
+            // 
             // frmScanner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -457,5 +489,7 @@
         private System.Windows.Forms.Panel pnlAdd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnProv;
+        private System.Windows.Forms.Button btnProvUp;
     }
 }
