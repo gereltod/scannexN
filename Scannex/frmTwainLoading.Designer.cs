@@ -33,25 +33,27 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(26, 35);
+            this.progressBar1.Location = new System.Drawing.Point(32, 44);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(269, 23);
+            this.progressBar1.Size = new System.Drawing.Size(336, 29);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 0;
             // 
             // frmTwainLoading
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(325, 103);
+            this.ClientSize = new System.Drawing.Size(406, 129);
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTwainLoading";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TWAIN ";
+            this.Text = "SCANNING";
             this.Load += new System.EventHandler(this.frmTwainLoading_Load);
             this.ResumeLayout(false);
 

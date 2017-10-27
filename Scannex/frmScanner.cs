@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using TwainDotNet;
 using TwainDotNet.WinFroms;
 using System.Security;
-using iTextSharp;
 using iTextSharp.text.pdf;
 using System.Threading;
 
@@ -34,7 +29,6 @@ namespace Scannex
         public frmScanner()
         {
             InitializeComponent();
-            Init();
         }
 
         public void Init()
@@ -54,6 +48,7 @@ namespace Scannex
                     _imageList.Add(file);
                     string path = Constants.FILE_PATH_TODAY + "\\" + file.FileName;
                     file.FileImage.Save(path);
+                    ShowImage();
                 }
             };
             _twain.ScanningComplete += delegate
@@ -319,7 +314,6 @@ namespace Scannex
 
                 try
                 {
-
                     _twain.StartScanning(_settings);
                     progressDialog.CloseForm();
                     ShowImage();
@@ -329,14 +323,15 @@ namespace Scannex
                     FileLogger.LogStringInFile(ex.Message);
                     MessageBox.Show(ex.Message);
                     Enabled = true;
-                    _twain = null;
                     progressDialog.CloseForm();
                     Init();
-
+                }
+                finally
+                {
+                   
                 }
                 backgroundThread.Abort();
             }
-
         }
    
         private void Progress()
@@ -805,6 +800,40 @@ namespace Scannex
             if (_indexUpload == -1)
                 _indexUpload = _imageListUpload.Count() - 1;
 
+            ShowImageUp();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            for (int i = 0; i <= _imageList.Count; i++)
+            {
+                ImageFile f = new ImageFile();
+                f.FileImage = _imageList[i].FileImage;
+                f.FileName = _imageList[i].FileName;
+                _imageListUpload.Add(f);
+
+                _imageList.RemoveAt(i);
+            }
+            pImage.Image = Scannex.Properties.Resources.nopicture;
+            _index = -1;
+            ShowImage();
+            ShowImageUp();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            for (int i = 0; i <= _imageListUpload.Count; i++)
+            {
+                ImageFile f = new ImageFile();
+                f.FileImage = _imageListUpload[i].FileImage;
+                f.FileName = _imageListUpload[i].FileName;
+                _imageList.Add(f);
+
+                _imageListUpload.RemoveAt(i);
+            }
+            pImageUp.Image = Scannex.Properties.Resources.nopicture;
+            _indexUpload = -1;
+            ShowImage();
             ShowImageUp();
         }
     }

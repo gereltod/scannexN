@@ -20,6 +20,12 @@ namespace Scannex
             InitializeComponent();
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Application.Exit();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length == 0)
@@ -91,6 +97,35 @@ namespace Scannex
         {
             if (textBox1.Text.Length > 0)
                 textBox1.SelectAll();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void textBox2_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length > 0)
+                textBox2.SelectAll();
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length > 0)
+                textBox2.SelectAll();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length == 0)
+            {
+                textBox2.PasswordChar = ' ';
+            }
+            else
+            {
+                textBox2.PasswordChar = '*';
+            }
         }
     }
 }
