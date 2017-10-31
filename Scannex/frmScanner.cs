@@ -805,15 +805,14 @@ namespace Scannex
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            for (int i = 0; i <= _imageList.Count; i++)
+            for (int i = 0; i < _imageList.Count; i++)
             {
                 ImageFile f = new ImageFile();
                 f.FileImage = _imageList[i].FileImage;
                 f.FileName = _imageList[i].FileName;
-                _imageListUpload.Add(f);
-
-                _imageList.RemoveAt(i);
+                _imageListUpload.Add(f);                
             }
+            _imageList.Clear();
             pImage.Image = Scannex.Properties.Resources.nopicture;
             _index = -1;
             ShowImage();
@@ -822,15 +821,14 @@ namespace Scannex
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            for (int i = 0; i <= _imageListUpload.Count; i++)
+            for (int i = 0; i < _imageListUpload.Count; i++)
             {
                 ImageFile f = new ImageFile();
                 f.FileImage = _imageListUpload[i].FileImage;
                 f.FileName = _imageListUpload[i].FileName;
-                _imageList.Add(f);
-
-                _imageListUpload.RemoveAt(i);
+                _imageList.Add(f);                                
             }
+            _imageListUpload.Clear();
             pImageUp.Image = Scannex.Properties.Resources.nopicture;
             _indexUpload = -1;
             ShowImage();

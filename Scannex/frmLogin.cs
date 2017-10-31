@@ -23,7 +23,7 @@ namespace Scannex
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-                Application.Exit();
+                DialogResult = DialogResult.No;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,6 +43,7 @@ namespace Scannex
             string ret = ServerConnections.Login(textBox1.Text, textBox2.Text);
             if (ret == "200")
             {
+                Constants.USERNAME = textBox1.Text;
                 DialogResult = DialogResult.OK;
             }
             else if(ret == "Unauthorized")
@@ -83,7 +84,7 @@ namespace Scannex
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                
+                DialogResult = DialogResult.No;
             }
         }
 
@@ -126,6 +127,20 @@ namespace Scannex
             {
                 textBox2.PasswordChar = '*';
             }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+                if (e.KeyCode == Keys.Enter)
+                    textBox1.Focus();
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (textBox2.Text.Length > 0)
+                if (e.KeyCode == Keys.Enter)
+                    button1.Focus();
         }
     }
 }

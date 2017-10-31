@@ -67,6 +67,8 @@ namespace Scannex
                 {
                     Constants.ISLOGIN = true;
                 }
+                else
+                    Application.Exit();
             }
         }
 
@@ -149,12 +151,15 @@ namespace Scannex
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
                 mTimer.Interval = Constants.EXPIRE_TIME;
                 mTimer.Enabled = true;
+                tLabelName.Text = String.Format("Username: {0}", Constants.USERNAME);
 
                 tProgressBar.Step = 1;
                 backgroundWorker1.WorkerReportsProgress = true;
                 backgroundWorker1.RunWorkerAsync();
 
             }
+            else
+                Application.Exit();
         }
                 
         private void Item_Click(object sender, EventArgs e)
