@@ -249,11 +249,14 @@ namespace Scannex
 
         private void pImage_DoubleClick(object sender, EventArgs e)
         {
-            frmView frmshow = new Scannex.frmView();
-            frmshow.BackgroundImage = _imageList[_index].FileImage;
-            frmshow.BackgroundImageLayout = ImageLayout.Stretch;
-            frmshow.StartPosition = FormStartPosition.CenterScreen;
-            frmshow.ShowDialog();
+            if (_imageList.Count > 0)
+            {
+                frmView frmshow = new Scannex.frmView();
+                frmshow.BackgroundImage = _imageList[_index].FileImage;
+                frmshow.BackgroundImageLayout = ImageLayout.Stretch;
+                frmshow.StartPosition = FormStartPosition.CenterScreen;
+                frmshow.ShowDialog();
+            }
         }
 
         private void RotateAndSaveImage(String input, String output)
@@ -422,6 +425,7 @@ namespace Scannex
                 }
                 else
                 {
+                    errorProvider1.SetError(cmbEmployee, "");
                     json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
                 }
                 if (cmbLocation.SelectedIndex == -1)
@@ -432,6 +436,7 @@ namespace Scannex
                 }
                 else
                 {
+                    errorProvider1.SetError(cmbLocation, "");
                     json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
                 }
 
@@ -443,6 +448,7 @@ namespace Scannex
                 }
                 else
                 {
+                    errorProvider1.SetError(cmbDoctype, "");
                     json += "\"doc_type_id\":\"" + cmbDoctype.SelectedValue.ToString() + "\",";
                 }
                 
@@ -686,10 +692,11 @@ namespace Scannex
                     case "checkbox":
                         CheckBox chk = new CheckBox();
                         chk.Name = Guid.NewGuid().ToString();
-                        chk.Size = new Size(150, 22);
+                        chk.Size = new Size(100, 22);
                         chk.Tag = s.hashid;
                         chk.Text = s.name;
-                        chk.Location = new Point(x + 100, y);
+                        chk.RightToLeft = RightToLeft.Yes;
+                        chk.Location = new Point(x + 16, y);
                         y += 30;
                         pnlAdd.Controls.Add(chk);
                         break;
@@ -711,7 +718,7 @@ namespace Scannex
                         txtM.Tag = s.hashid;
                         //y = i * 10 + p + 45;
                         txtM.Location = new Point(x + 100, y);
-                        y += 40;
+                        y += 45;
                         pnlAdd.Controls.Add(lb);
                         pnlAdd.Controls.Add(txtM);                        
                         break;
@@ -833,6 +840,18 @@ namespace Scannex
             _indexUpload = -1;
             ShowImage();
             ShowImageUp();
+        }
+
+        private void pImageUp_DoubleClick(object sender, EventArgs e)
+        {
+            if (_imageListUpload.Count > 0)
+            {
+                frmView frmshow = new Scannex.frmView();
+                frmshow.BackgroundImage = _imageListUpload[_indexUpload].FileImage;
+                frmshow.BackgroundImageLayout = ImageLayout.Stretch;
+                frmshow.StartPosition = FormStartPosition.CenterScreen;
+                frmshow.ShowDialog();
+            }
         }
     }
 }

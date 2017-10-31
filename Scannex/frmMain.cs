@@ -149,7 +149,7 @@ namespace Scannex
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/scannex/v2/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
                 toolStripMenuItem6_Click((Object)toolStripMenuItem6, new EventArgs());
-                mTimer.Interval = Constants.EXPIRE_TIME;
+                mTimer.Interval = Constants.EXPIRE_TIME * 1000;
                 mTimer.Enabled = true;
                 tLabelName.Text = String.Format("Username: {0}", Constants.USERNAME);
 

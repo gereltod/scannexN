@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -26,6 +27,18 @@ namespace Scannex
                 DialogResult = DialogResult.No;
         }
 
+        private void SaveConfig()
+        {
+            string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string configFile = System.IO.Path.Combine(appPath, "Scannex.exe.config");
+            ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
+            configFileMap.ExeConfigFilename = configFile;
+            System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+
+            config.AppSettings.Settings["LASTUSER"].Value = textBox1.Text;
+            config.Save();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length == 0)
@@ -44,6 +57,7 @@ namespace Scannex
             if (ret == "200")
             {
                 Constants.USERNAME = textBox1.Text;
+                SaveConfig();
                 DialogResult = DialogResult.OK;
             }
             else if(ret == "Unauthorized")
@@ -70,8 +84,11 @@ namespace Scannex
             Application.Exit();
         }
 
+
+
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            _UserName = System.Configuration.ConfigurationManager.AppSettings["LASTUSER"].ToString();
             if (_UserName.Length > 0)
                 textBox1.Text = _UserName;
         }
