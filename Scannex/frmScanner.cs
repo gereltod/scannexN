@@ -109,6 +109,7 @@ namespace Scannex
                         ImageFile f = new ImageFile();
                         f.FileImage = img;
                         f.FileName = p.Name;
+                        f.ViewImage = Constants.ResizeImageFixedWidth(img, Constants.IMAGE_WIDTH);
                         _imageList.Add(f);
                     }
                 }
@@ -208,7 +209,7 @@ namespace Scannex
 
                 if (_index != -1)
                 {
-                    pImage.Image = _imageList[_index].FileImage;
+                    pImage.Image = _imageList[_index].ViewImage;
                     lblFile.Text = String.Format("File name:{0}", _imageList[_index].FileName);
                 }
             }
@@ -234,7 +235,7 @@ namespace Scannex
                 }
 
                 if (_indexUpload != -1)
-                    pImageUp.Image = _imageListUpload[_indexUpload].FileImage;
+                    pImageUp.Image = _imageListUpload[_indexUpload].ViewImage;
                 
             }
 
@@ -252,8 +253,8 @@ namespace Scannex
             if (_imageList.Count > 0)
             {
                 frmView frmshow = new Scannex.frmView();
-                frmshow.BackgroundImage = _imageList[_index].FileImage;
-                frmshow.BackgroundImageLayout = ImageLayout.Stretch;
+                frmshow.BackgroundImage = Constants.ResizeImageFixedWidth(_imageList[_index].FileImage, Constants.IMAGETHUMB_WIDTH);
+                //frmshow.BackgroundImageLayout = ImageLayout.Stretch;
                 frmshow.StartPosition = FormStartPosition.CenterScreen;
                 frmshow.ShowDialog();
             }
@@ -361,6 +362,7 @@ namespace Scannex
                         Image loadedImage = Image.FromFile(file);
                         ImageFile f = new ImageFile();
                         f.FileImage = loadedImage;
+                        f.ViewImage = Constants.ResizeImageFixedWidth(loadedImage, Constants.IMAGE_WIDTH);
                         f.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ext);
                         _imageList.Add(f);
 
@@ -604,6 +606,7 @@ namespace Scannex
                     ImageFile f = new ImageFile();
                     f.FileImage = pImage.Image;
                     f.FileName = _imageList[_index].FileName;
+                    f.ViewImage = _imageList[_index].ViewImage;
                     _imageListUpload.Add(f);
                                         
                     _imageList.RemoveAt(_index);
@@ -625,7 +628,7 @@ namespace Scannex
                     ImageFile f = new ImageFile();
                     f.FileImage = pImageUp.Image;
                     f.FileName = _imageListUpload[_indexUpload].FileName;
-
+                    f.ViewImage = _imageListUpload[_indexUpload].ViewImage;
                     _imageList.Add(f);
                     
                     _imageListUpload.RemoveAt(_indexUpload);
@@ -696,7 +699,7 @@ namespace Scannex
                         chk.Tag = s.hashid;
                         chk.Text = s.name;
                         chk.RightToLeft = RightToLeft.Yes;
-                        chk.Location = new Point(x + 16, y);
+                        chk.Location = new Point(x + 15, y);
                         y += 30;
                         pnlAdd.Controls.Add(chk);
                         break;
@@ -817,6 +820,8 @@ namespace Scannex
                 ImageFile f = new ImageFile();
                 f.FileImage = _imageList[i].FileImage;
                 f.FileName = _imageList[i].FileName;
+                f.ViewImage = _imageList[i].ViewImage;
+
                 _imageListUpload.Add(f);                
             }
             _imageList.Clear();
@@ -833,6 +838,7 @@ namespace Scannex
                 ImageFile f = new ImageFile();
                 f.FileImage = _imageListUpload[i].FileImage;
                 f.FileName = _imageListUpload[i].FileName;
+                f.ViewImage = _imageListUpload[i].ViewImage;
                 _imageList.Add(f);                                
             }
             _imageListUpload.Clear();
@@ -847,8 +853,8 @@ namespace Scannex
             if (_imageListUpload.Count > 0)
             {
                 frmView frmshow = new Scannex.frmView();
-                frmshow.BackgroundImage = _imageListUpload[_indexUpload].FileImage;
-                frmshow.BackgroundImageLayout = ImageLayout.Stretch;
+                frmshow.BackgroundImage = Constants.ResizeImageFixedWidth(_imageListUpload[_index].FileImage, Constants.IMAGETHUMB_WIDTH); 
+                //frmshow.BackgroundImageLayout = ImageLayout.Stretch;
                 frmshow.StartPosition = FormStartPosition.CenterScreen;
                 frmshow.ShowDialog();
             }
