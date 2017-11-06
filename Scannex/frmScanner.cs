@@ -25,6 +25,7 @@ namespace Scannex
 
         int _index = -1;
         int _indexUpload = -1;
+        bool hasEmployee = false;
 
         public frmScanner()
         {
@@ -45,6 +46,8 @@ namespace Scannex
                     ImageFile file = new Scannex.ImageFile();
                     file.FileImage = args.Image;
                     file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
+                    file.ViewImage = args.Image;
+
                     _imageList.Add(file);
                     string path = Constants.FILE_PATH_TODAY + "\\" + file.FileName;
                     file.FileImage.Save(path);
@@ -417,30 +420,44 @@ namespace Scannex
         {
             try
             {
+               
                 string json = "{";
 
                 if (cmbEmployee.SelectedIndex == -1)
                 {
-                    errorProvider1.SetError(cmbEmployee, "Enter your employee information");
-                    cmbEmployee.Focus();
-                    return;
+                    if (cmbLocation.SelectedIndex == -1)
+                    {
+                        json += "\"location\":\"\",";
+                        errorProvider1.SetError(cmbLocation, "Enter your location or employee");
+                        return;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(cmbLocation, "");
+                        json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
+                        cmbEmployee.SelectedIndex = -1;
+                        json += "\"employee\":\"\",";
+                    }
                 }
                 else
                 {
-                    errorProvider1.SetError(cmbEmployee, "");
-                    json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
+                    if (cmbLocation.SelectedIndex == -1)
+                    {
+                        errorProvider1.SetError(cmbLocation, "");
+                        json += "\"location\":\"\",";
+                        errorProvider1.SetError(cmbEmployee, "");
+                        json += "\"employee\":\"" + cmbEmployee.SelectedValue.ToString() + "\",";
+
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(cmbLocation, "");
+                        json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
+                        cmbEmployee.SelectedIndex = -1;
+                        json += "\"employee\":\"\",";
+                    }
                 }
-                if (cmbLocation.SelectedIndex == -1)
-                {
-                    errorProvider1.SetError(cmbLocation, "Enter your location information");
-                    cmbLocation.Focus();
-                    return;
-                }
-                else
-                {
-                    errorProvider1.SetError(cmbLocation, "");
-                    json += "\"location\":\"" + cmbLocation.SelectedValue.ToString() + "\",";
-                }
+               
 
                 if (cmbDoctype.SelectedIndex == -1)
                 {
@@ -461,6 +478,10 @@ namespace Scannex
                     return;
                 }
 
+                this.Enabled = false;
+                ThreadStart myThreadStart = new ThreadStart(MyThreadRoutine);
+                Thread myThread = new Thread(myThreadStart);
+                myThread.Start();
 
                 string file = Convertpdf();
                 string subjson = GetControlsValue();
@@ -503,6 +524,8 @@ namespace Scannex
                 FileLogger.LogStringInFile(ex.Message);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            this.Enabled = true;
         }
 
         #region File
@@ -858,6 +881,57 @@ namespace Scannex
                 frmshow.StartPosition = FormStartPosition.CenterScreen;
                 frmshow.ShowDialog();
             }
+        }
+
+        private void cmbEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(cmbLocation, "");
+
+            if (cmbEmployee.SelectedIndex != -1)
+            {
+                cmbLocation.SelectedIndex = -1;
+            }
+            else
+                hasEmployee = true;
+        }
+
+        private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(cmbEmployee, "");
+            if (cmbLocation.SelectedIndex != -1)
+            {
+                cmbEmployee.SelectedIndex = -1;
+            }
+            else
+            {
+                hasEmployee = false;
+            }
+        }
+
+
+        private void MyThreadRoutine()
+        {
+            frmLoading f = new frmLoading();
+           
+            this.Invoke((MethodInvoker)delegate {
+                f.TopMost = true;
+                f.Show();
+            });
+            
+            System.Threading.Thread.Sleep(5000);
+            this.Invoke((MethodInvoker)delegate {
+                f.Close();
+                this.Enabled = true;
+            });
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            ThreadStart myThreadStart = new ThreadStart(MyThreadRoutine);
+            Thread myThread = new Thread(myThreadStart);
+            myThread.Start();
+            System.Threading.Thread.Sleep(5000);
         }
     }
 }

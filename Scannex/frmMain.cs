@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Scannex
 {
@@ -216,6 +217,16 @@ namespace Scannex
             }
         }
 
-        
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            frmAbout f = new frmAbout();
+            f.ShowDialog();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/support/scannex/2.0");
+            Process.Start(sInfo);
+        }
     }
 }

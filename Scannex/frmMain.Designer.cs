@@ -35,24 +35,23 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tLabelName = new System.Windows.Forms.ToolStripStatusLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -115,38 +114,10 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(47, 24);
             this.toolStripMenuItem2.Text = "Edit";
             // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.Image = global::Scannex.Properties.Resources.icon;
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem10.Text = "Undo    Ctrl+Z";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
-            // 
-            // toolStripMenuItem11
-            // 
-            this.toolStripMenuItem11.Image = global::Scannex.Properties.Resources.file;
-            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem11.Text = "Cut        Ctrl+X";
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Image = global::Scannex.Properties.Resources.copy;
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem12.Text = "Copy     Ctrl+C";
-            // 
-            // toolStripMenuItem13
-            // 
-            this.toolStripMenuItem13.Image = global::Scannex.Properties.Resources.paste;
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem13.Text = "Paste     Ctrl+V";
             // 
             // toolStripMenuItem14
             // 
@@ -172,9 +143,8 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem5,
             this.toolStripMenuItem8,
-            this.toolStripMenuItem9});
+            this.toolStripMenuItem5});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(53, 24);
             this.toolStripMenuItem4.Text = "Help";
@@ -182,20 +152,16 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(178, 26);
-            this.toolStripMenuItem5.Text = "Help Contents";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(195, 26);
+            this.toolStripMenuItem5.Text = "Scannex Support";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(178, 26);
-            this.toolStripMenuItem8.Text = "About...";
-            // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(178, 26);
-            this.toolStripMenuItem9.Text = "Licesne";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(195, 26);
+            this.toolStripMenuItem8.Text = "About";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // statusStrip1
             // 
@@ -235,6 +201,34 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 5;
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Image = global::Scannex.Properties.Resources.icon;
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem10.Text = "Undo    Ctrl+Z";
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Image = global::Scannex.Properties.Resources.file;
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem11.Text = "Cut        Ctrl+X";
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Image = global::Scannex.Properties.Resources.copy;
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem12.Text = "Copy     Ctrl+C";
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Image = global::Scannex.Properties.Resources.paste;
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem13.Text = "Paste     Ctrl+V";
             // 
             // frmMain
             // 
@@ -278,7 +272,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar tProgressBar;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;

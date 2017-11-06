@@ -13,7 +13,6 @@ namespace Scannex
 {
     public partial class frmLogin : Form
     {
-        bool islogin = false;
         public string _UserName = "";
 
         public frmLogin()

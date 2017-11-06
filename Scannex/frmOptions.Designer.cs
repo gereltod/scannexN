@@ -32,22 +32,24 @@
             this.txtDelete = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 34);
+            this.label1.Location = new System.Drawing.Point(12, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 15);
+            this.label1.Size = new System.Drawing.Size(142, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Keep days";
+            this.label1.Text = "Keep documents for ";
             // 
             // txtDelete
             // 
-            this.txtDelete.Location = new System.Drawing.Point(144, 31);
+            this.txtDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDelete.Location = new System.Drawing.Point(155, 30);
             this.txtDelete.Name = "txtDelete";
-            this.txtDelete.Size = new System.Drawing.Size(63, 22);
+            this.txtDelete.Size = new System.Drawing.Size(50, 22);
             this.txtDelete.TabIndex = 1;
             // 
             // button1
@@ -70,11 +72,21 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(208, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "days";
+            // 
             // frmOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(371, 130);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtDelete);
@@ -83,6 +95,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOptions";
+            this.Text = "Keep days";
             this.Load += new System.EventHandler(this.frmOptions_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,5 +108,6 @@
         private System.Windows.Forms.TextBox txtDelete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
     }
 }
