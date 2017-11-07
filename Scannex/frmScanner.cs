@@ -9,6 +9,7 @@ using TwainDotNet.WinFroms;
 using System.Security;
 using iTextSharp.text.pdf;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Scannex
 {
@@ -17,6 +18,7 @@ namespace Scannex
         List<ImageFile> _imageList = new List<ImageFile>();
         List<ImageFile> _imageListUpload = new List<ImageFile>();
         frmTwainLoading progressDialog = new frmTwainLoading();
+        frmLoading progressLoading = new frmLoading();
 
         private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
         Form _parent;
@@ -25,7 +27,7 @@ namespace Scannex
 
         int _index = -1;
         int _indexUpload = -1;
-        bool hasEmployee = false;
+        
 
         public frmScanner()
         {
@@ -419,8 +421,7 @@ namespace Scannex
         private void button9_Click(object sender, EventArgs e)
         {
             try
-            {
-               
+            {               
                 string json = "{";
 
                 if (cmbEmployee.SelectedIndex == -1)
@@ -479,54 +480,67 @@ namespace Scannex
                 }
 
                 this.Enabled = false;
-                ThreadStart myThreadStart = new ThreadStart(MyThreadRoutine);
-                Thread myThread = new Thread(myThreadStart);
-                myThread.Start();
+                Thread backgroundThread = new Thread(new ThreadStart(MyThreadRoutine));
+                progressLoading = new frmLoading();
+                backgroundThread.Start();
 
-                string file = Convertpdf();
-                string subjson = GetControlsValue();
+                Save(json);
 
-                if (subjson.Length > 0)
-                    subjson = subjson.Substring(0, subjson.Length - 1);
-                json += "\"comment\":\"" + txtComment.Text + "\",";
-                json += "\"fields\":[" + subjson + "],";
-                if (file != "")
-                {
-                    string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
-
-                    byte[] bytes = System.IO.File.ReadAllBytes(path + file);
-
-                    string ret = ServerConnections.ServerFile(file, bytes);
-                    var postMessage = Constants.Deserialize<PostResponse>(ret);
-                    if (postMessage != null)
-                    {
-                        string aws = Newtonsoft.Json.JsonConvert.SerializeObject(postMessage);
-
-                        json += "\"s3-response\":" + aws + "}";
-
-                        ret = ServerConnections.ServerPostData("/api/s3doc", json);
-
-                        if (ret == "OK")
-                        {
-                            DeleteUploadFiles(path);
-                            MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ResetControl();
-                        }
-                        else
-                        {
-                            MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
             }
             catch(Exception ex)
             {
+                progressLoading.CloseForm();
                 FileLogger.LogStringInFile(ex.Message);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             this.Enabled = true;
         }
+
+        private void Save(object param)
+        {
+            string file = Convertpdf();
+            string subjson = GetControlsValue();
+            string json = param.ToString();
+
+            if (subjson.Length > 0)
+                subjson = subjson.Substring(0, subjson.Length - 1);
+            json += "\"comment\":\"" + txtComment.Text + "\",";
+            json += "\"fields\":[" + subjson + "],";
+            if (file != "")
+            {
+                string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
+
+                byte[] bytes = System.IO.File.ReadAllBytes(path + file);
+
+                string ret = ServerConnections.ServerFile(file, bytes);
+                var postMessage = Constants.Deserialize<PostResponse>(ret);
+                if (postMessage != null)
+                {
+                    string aws = Newtonsoft.Json.JsonConvert.SerializeObject(postMessage);
+
+                    json += "\"s3-response\":" + aws + "}";
+
+                    ret = ServerConnections.ServerPostData("/api/s3doc", json);
+
+                    if (ret == "OK")
+                    {
+                        DeleteUploadFiles(path);
+                        progressLoading.CloseForm();
+                        this.TopMost = true;
+                        MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ResetControl();
+                    }
+                    else
+                    {
+                        progressLoading.CloseForm();
+                        this.TopMost = true;
+                        MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
 
         #region File
         private void ResetControl()
@@ -876,7 +890,7 @@ namespace Scannex
             if (_imageListUpload.Count > 0)
             {
                 frmView frmshow = new Scannex.frmView();
-                frmshow.BackgroundImage = Constants.ResizeImageFixedWidth(_imageListUpload[_index].FileImage, Constants.IMAGETHUMB_WIDTH); 
+                frmshow.BackgroundImage = Constants.ResizeImageFixedWidth(_imageListUpload[_indexUpload].FileImage, Constants.IMAGETHUMB_WIDTH); 
                 //frmshow.BackgroundImageLayout = ImageLayout.Stretch;
                 frmshow.StartPosition = FormStartPosition.CenterScreen;
                 frmshow.ShowDialog();
@@ -890,9 +904,7 @@ namespace Scannex
             if (cmbEmployee.SelectedIndex != -1)
             {
                 cmbLocation.SelectedIndex = -1;
-            }
-            else
-                hasEmployee = true;
+            }            
         }
 
         private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -902,36 +914,14 @@ namespace Scannex
             {
                 cmbEmployee.SelectedIndex = -1;
             }
-            else
-            {
-                hasEmployee = false;
-            }
         }
 
 
         private void MyThreadRoutine()
         {
-            frmLoading f = new frmLoading();
-           
-            this.Invoke((MethodInvoker)delegate {
-                f.TopMost = true;
-                f.Show();
-            });
-            
-            System.Threading.Thread.Sleep(5000);
-            this.Invoke((MethodInvoker)delegate {
-                f.Close();
-                this.Enabled = true;
-            });
+            progressLoading.ShowDialog();
+            progressLoading.Dispose();
         }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-            ThreadStart myThreadStart = new ThreadStart(MyThreadRoutine);
-            Thread myThread = new Thread(myThreadStart);
-            myThread.Start();
-            System.Threading.Thread.Sleep(5000);
-        }
+      
     }
 }

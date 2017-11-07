@@ -16,5 +16,11 @@ namespace Scannex
         {
             InitializeComponent();
         }
+
+        public void CloseForm()
+        {
+            DialogResult = DialogResult.No;
+        }
+
     }
 }

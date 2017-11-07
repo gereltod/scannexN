@@ -280,6 +280,7 @@
     <Content Include="dll\TwainDotNet.dll" />
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
+    <None Include="Resources\lg.double-ring-spinner.gif" />
     <None Include="Resources\tenor.gif" />
     <None Include="Resources\unnamed.png" />
     <None Include="Resources\1 -1.png" />
