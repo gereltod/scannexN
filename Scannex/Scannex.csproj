@@ -113,6 +113,12 @@
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\FileLogger.cs" />
+    <Compile Include="Custom\MyComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\MyComponent.Designer.cs">
+      <DependentUpon>MyComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,12 @@
     <Compile Include="frmScanner.Designer.cs">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmScannerNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScannerNew.Designer.cs">
+      <DependentUpon>frmScannerNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmScanPages.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +190,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\ServerConnections.cs" />
+    <EmbeddedResource Include="Custom\MyComponent.resx">
+      <DependentUpon>MyComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmScanner.resx">
       <DependentUpon>frmScanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScannerNew.resx">
+      <DependentUpon>frmScannerNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmScanPages.resx">
       <DependentUpon>frmScanPages.cs</DependentUpon>
@@ -280,6 +298,13 @@
     <Content Include="dll\TwainDotNet.dll" />
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\import1.png" />
+    <None Include="Resources\scan.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\backgr.png" />
+    <None Include="Resources\Login_distr.png" />
     <None Include="Resources\lg.double-ring-spinner.gif" />
     <None Include="Resources\tenor.gif" />
     <None Include="Resources\unnamed.png" />

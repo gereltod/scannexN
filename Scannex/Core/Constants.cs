@@ -20,7 +20,7 @@ namespace Scannex
         public static string FILE_PATH_TODAY = "";
         public static double DELETE_DAY = 30;
         public static int EXPIRE_TIME = 2000;
-        public static int IMAGE_WIDTH = 250;
+        public static int IMAGE_WIDTH = 265;
         public static int IMAGETHUMB_WIDTH = 540;
         public static string USERNAME = "";
         public static bool ISLOGIN;
