@@ -878,6 +878,7 @@ namespace Scannex
                 {
                     _twain.StartScanning(_settings);
                     progressDialog.CloseForm();
+                    this.Activate();
                 }
                 catch (TwainException ex)
                 {
@@ -957,9 +958,11 @@ namespace Scannex
                 this.Enabled = false;
                 Thread backgroundThread = new Thread(new ThreadStart(MyThreadRoutine));
                 progressLoading = new frmMessage();
+                progressLoading.Message(cmbDoctype.Text);
+                progressLoading.StartPosition = FormStartPosition.CenterParent;
                 progressLoading.Title("Uploading");
                 backgroundThread.Start();
-
+                progressLoading.Activate();
                 Save(json);
 
             }

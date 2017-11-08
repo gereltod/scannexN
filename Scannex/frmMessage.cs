@@ -15,7 +15,16 @@ namespace Scannex
         public frmMessage()
         {
             InitializeComponent();
+            lblName.Text = string.Format("for {0}", Constants.USERNAME);
         }
+
+        public void Message(string msg)
+        {
+            lblMessage.Text = msg;
+            lblName.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 3, lblMessage.Location.Y);
+        }
+
+        
 
         public void Title(string title)
         {

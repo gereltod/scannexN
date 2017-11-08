@@ -114,7 +114,6 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(34, 34);
             this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "      ";
             this.linkLabel1.UseCompatibleTextRendering = true;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -144,7 +143,7 @@
             this.textBox2.Location = new System.Drawing.Point(188, 265);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 14);
+            this.textBox2.Size = new System.Drawing.Size(259, 18);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -159,9 +158,10 @@
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(217, 411);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 16);
+            this.label3.Size = new System.Drawing.Size(184, 19);
             this.label3.TabIndex = 7;
             this.label3.Text = "                                   ";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmLogin
             // 

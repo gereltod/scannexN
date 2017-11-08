@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -161,6 +162,12 @@ namespace Scannex
             if (textBox2.Text.Length > 0)
                 if (e.KeyCode == Keys.Enter)
                     button1.Focus();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/support/scannex/2.0");
+            Process.Start(sInfo);
         }
     }
 }
