@@ -14,10 +14,12 @@ namespace Scannex
         public Image FileImage { get; set; }
         public Image ViewImage { get; set; }
         public PictureBox MyPicture { get; set; }
+        public PictureBox MyCheck { get; set; }
+        public Label MyLabel { get; set; }
 
         public void SaveAll(string path)
         {
-            this.FileImage.Save(path + this.FileName);
+            this.FileImage.Save(path + "\\"+ this.FileName);
         }
     }
 }

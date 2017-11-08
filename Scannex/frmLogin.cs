@@ -15,6 +15,8 @@ namespace Scannex
     {
         public string _UserName = "";
 
+
+
         public frmLogin()
         {
             InitializeComponent();
@@ -89,7 +91,9 @@ namespace Scannex
         {
             _UserName = System.Configuration.ConfigurationManager.AppSettings["LASTUSER"].ToString();
             if (_UserName.Length > 0)
-                textBox1.Text = _UserName;
+            {
+                textBox1.Text = _UserName.Trim();                
+            }
         }
 
         private void frmLogin_KeyDown(object sender, KeyEventArgs e)

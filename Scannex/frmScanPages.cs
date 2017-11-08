@@ -108,5 +108,10 @@ namespace Scannex
         {
             DialogResult = DialogResult.No;
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+        }
     }
 }

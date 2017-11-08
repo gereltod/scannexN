@@ -106,14 +106,13 @@
             // linkLabel1
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel1.Font = new System.Drawing.Font("MS UI Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(0, 2);
-            this.linkLabel1.Location = new System.Drawing.Point(555, 15);
+            this.linkLabel1.Location = new System.Drawing.Point(559, 9);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(38, 23);
+            this.linkLabel1.Size = new System.Drawing.Size(34, 34);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "      ";
@@ -126,11 +125,13 @@
             this.textBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Gray;
             this.textBox1.Location = new System.Drawing.Point(188, 225);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(259, 18);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "User email";
+            this.textBox1.WordWrap = false;
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.textBox1.MouseCaptureChanged += new System.EventHandler(this.textBox1_MouseCaptureChanged);
@@ -143,7 +144,7 @@
             this.textBox2.Location = new System.Drawing.Point(188, 265);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 18);
+            this.textBox2.Size = new System.Drawing.Size(259, 14);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -158,7 +159,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(217, 411);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 19);
+            this.label3.Size = new System.Drawing.Size(148, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "                                   ";
             // 
@@ -205,8 +206,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

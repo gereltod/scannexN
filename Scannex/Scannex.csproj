@@ -55,7 +55,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>login-default-logo11.ico</ApplicationIcon>
+    <ApplicationIcon>logo_b9O_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -143,6 +143,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessage.resx">
+      <DependentUpon>frmMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOptions.resx">
       <DependentUpon>frmOptions.cs</DependentUpon>
@@ -298,6 +307,10 @@
     <Content Include="dll\TwainDotNet.dll" />
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
+    <Content Include="logo_b9O_icon.ico" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\error.png" />
     <None Include="Resources\help.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\import1.png" />

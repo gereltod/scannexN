@@ -20,11 +20,15 @@ namespace Scannex
         public static string FILE_PATH_TODAY = "";
         public static double DELETE_DAY = 30;
         public static int EXPIRE_TIME = 2000;
-        public static int IMAGE_WIDTH = 265;
+        public static int IMAGE_WIDTH = 218;
         public static int IMAGETHUMB_WIDTH = 540;
         public static string USERNAME = "";
         public static bool ISLOGIN;
 
+        public static int PADDING_SIZE = 30;
+        public static int PIC_SIZEX = 220;
+        public static int PIC_SIZEY = 330;
+        public static Int16 PAGE_SIZE = 4;
 
         public static List<Locations> ST_LOCATIONS;
         public static List<Employees> ST_EMPLOYEES;
