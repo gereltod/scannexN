@@ -538,6 +538,10 @@ namespace Scannex
 
         private void frmScannerNew_Load(object sender, EventArgs e)
         {
+            this.Left = this.Top = 0;
+            this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+
             frmLogin frmshow = new frmLogin();
             if (frmshow.ShowDialog() == DialogResult.OK)
             {

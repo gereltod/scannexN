@@ -548,7 +548,6 @@
             this.MinimumSize = new System.Drawing.Size(750, 550);
             this.Name = "frmScannerNew";
             this.Text = "frmScannerNew";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmScannerNew_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmScannerNew_KeyDown_1);
             this.panel1.ResumeLayout(false);
