@@ -973,10 +973,11 @@ namespace Scannex
             catch (Exception ex)
             {
                 progressLoading.CloseForm();
+                this.Activate();
                 FileLogger.LogStringInFile(ex.Message);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            progressLoading.CloseForm();
+            //progressLoading.CloseForm();
             this.Enabled = true;
         }
 
@@ -1009,9 +1010,9 @@ namespace Scannex
 
                     if (ret == "OK")
                     {
-                        progressLoading.CloseForm();
-                        this.Activate();
-                        MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        progressLoading.Done();
+                        //this.Activate();
+                        //MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         pnlPictures.Controls.Clear();
                         imageList = new Dictionary<int, ImageFile>();
                         DeleteUploadFiles(path);
@@ -1021,7 +1022,7 @@ namespace Scannex
                     else
                     {
                         progressLoading.CloseForm();
-                        this.TopMost = true;
+                        this.Activate();
                         MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

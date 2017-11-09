@@ -24,7 +24,11 @@ namespace Scannex
             lblName.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 3, lblMessage.Location.Y);
         }
 
-        
+        public void Done()
+        {
+            this.Invoke(new Action(() => { pictureBox1.Visible = false; }));
+            this.Invoke(new Action(() => { pictureBox3.Visible = true; }));
+        }
 
         public void Title(string title)
         {
@@ -36,6 +40,16 @@ namespace Scannex
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+        }
+
+        private void lblDone_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
         }

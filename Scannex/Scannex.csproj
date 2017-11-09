@@ -308,6 +308,7 @@
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
     <Content Include="logo_b9O_icon.ico" />
+    <None Include="Resources\success1.png" />
     <None Include="Resources\loading.gif" />
     <None Include="Resources\checked.png" />
     <None Include="Resources\error.png" />
