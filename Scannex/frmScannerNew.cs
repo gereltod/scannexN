@@ -728,15 +728,15 @@ namespace Scannex
 
         private void lblAll_Click(object sender, EventArgs e)
         {
+            lblOnly.ForeColor = Color.DarkGray;
+            pnlOnly.BackColor = Color.DarkGray;
+            lblUnselected.ForeColor = Color.DarkGray;
+            pnlUnselected.BackColor = Color.DarkGray;
+            lblAll.ForeColor = Color.Black;
+            pnlAll.BackColor = Color.Red;
             if (imageList.Count > 0)
             {
-                RefreshPnl(true);
-                lblOnly.ForeColor = Color.DarkGray;
-                pnlOnly.BackColor = Color.DarkGray;
-                lblUnselected.ForeColor = Color.DarkGray;
-                pnlUnselected.BackColor = Color.DarkGray;
-                lblAll.ForeColor = Color.Black;
-                pnlAll.BackColor = Color.Red;
+                RefreshPnl(true);               
             }
         }
 

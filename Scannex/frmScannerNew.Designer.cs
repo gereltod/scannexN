@@ -201,7 +201,7 @@
             this.panel2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(749, 60);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 417);
+            this.panel2.Size = new System.Drawing.Size(250, 457);
             this.panel2.TabIndex = 1;
             // 
             // pnlAdd
@@ -299,7 +299,7 @@
             this.panel3.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(0, 477);
+            this.panel3.Location = new System.Drawing.Point(0, 517);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(999, 33);
             this.panel3.TabIndex = 2;
@@ -352,16 +352,18 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(749, 417);
+            this.panel4.Size = new System.Drawing.Size(749, 457);
             this.panel4.TabIndex = 3;
             // 
             // pnlPictures
             // 
             this.pnlPictures.AutoScroll = true;
+            this.pnlPictures.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlPictures.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPictures.Location = new System.Drawing.Point(0, 50);
+            this.pnlPictures.MinimumSize = new System.Drawing.Size(700, 350);
             this.pnlPictures.Name = "pnlPictures";
-            this.pnlPictures.Size = new System.Drawing.Size(749, 367);
+            this.pnlPictures.Size = new System.Drawing.Size(749, 407);
             this.pnlPictures.TabIndex = 1;
             // 
             // panel5
@@ -536,13 +538,14 @@
             // frmScannerNew
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(999, 510);
+            this.ClientSize = new System.Drawing.Size(999, 550);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(750, 550);
             this.Name = "frmScannerNew";
             this.Text = "frmScannerNew";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
