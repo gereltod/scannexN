@@ -21,6 +21,40 @@ namespace Scannex
     {
         Dictionary<int, ImageFile> imageList = new Dictionary<int, ImageFile>();
         List<ImageFile> imageListSelected = new List<ImageFile>();
+        private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
+
+        Twain _twain;
+        ScanSettings _settings;
+
+        frmTwainLoading progressDialog = new frmTwainLoading();
+        frmMessage progressLoading = new frmMessage();
+        private System.Windows.Forms.Timer mTimer;
+        private int mDialogCount;
+        private bool mouseDown;
+        private Point lastLocation;
+
+
+        public void Init()
+        {
+            _twain = new Twain(new WinFormsWindowMessageHook(this));
+            _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
+            {
+                if (args.Image != null)
+                {
+                    ImageFile file = new Scannex.ImageFile();
+                    file.FileImage = args.Image;
+                    file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
+                    file.ViewImage = args.Image;
+                    AddPicList(args.Image, ".jpg", file.FileName, true, true);
+                }
+                pnlPictures.VerticalScroll.Value = pnlPictures.VerticalScroll.Maximum;
+            };
+            _twain.ScanningComplete += delegate
+            {
+                Enabled = true;
+            };
+        }
+
         int selected = 0;
         int unselected = 0;
 
@@ -38,9 +72,7 @@ namespace Scannex
 
             Application.AddMessageFilter(this);
         }
-
-        #region Mouse
-
+             
         private void FrmScannerNew_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Control && e.KeyCode == Keys.A)
@@ -48,6 +80,8 @@ namespace Scannex
                 MessageBox.Show("ctrl +a ");
             }
         }
+
+        #region Zoom
 
         private void lblZoomIn_MouseHover(object sender, EventArgs e)
         {
@@ -59,6 +93,45 @@ namespace Scannex
             ((Label)sender).ForeColor = Color.DimGray;
         }
 
+        private void lblZoomOut_Click(object sender, EventArgs e)
+        {
+            if (lblAll.ForeColor == Color.Black)
+            {
+                int sizex = Constants.PIC_SIZEX + 30;
+                int sizey = Constants.PIC_SIZEY + 30;
+
+                Constants.PIC_SIZEX = sizex;
+                Constants.PIC_SIZEY = sizey;
+                Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH + 30;
+                int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
+                Constants.PAGE_SIZE = (short)t;
+
+                RefreshPnl(true);
+            }
+        }
+
+        private void lblZoomIn_Click(object sender, EventArgs e)
+        {
+            if (lblAll.ForeColor == Color.Black)
+            {
+
+                int sizex = Constants.PIC_SIZEX - 30;
+                int sizey = Constants.PIC_SIZEY - 30;
+                if (sizex > 0)
+                {
+                    Constants.PIC_SIZEX = sizex;
+                    Constants.PIC_SIZEY = sizey;
+                    Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH - 30;
+                    int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
+                    Constants.PAGE_SIZE = (short)t;
+                }
+                RefreshPnl(true);
+            }
+        }
+
+        #endregion
+
+        #region PicCreate
         private void AddPicList(Image img, string ext,string fname, bool saveFile, bool noList)
         {
             pnlPictures.VerticalScroll.Value = 0;
@@ -251,7 +324,7 @@ namespace Scannex
                    
 
         }
-
+        
         private void Com_MouseClick(object sender, MouseEventArgs e)
         {
             if (imageList.Count() > 0)
@@ -264,6 +337,17 @@ namespace Scannex
             }
         }
 
+        private void Com_MouseLeave(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).BorderStyle = BorderStyle.None;
+        }
+
+        private void Com_MouseHover(object sender, EventArgs e)
+        {
+            ((PictureBox)sender).BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        #endregion
         private void RefreshPnl(bool all)
         {
             pnlPictures.Controls.Clear();
@@ -398,21 +482,9 @@ namespace Scannex
                 pnlPictures.VerticalScroll.Value = pnlPictures.VerticalScroll.Maximum;
             }
         }
-
-        private void Com_MouseLeave(object sender, EventArgs e)
-        {
-            ((PictureBox)sender).BorderStyle = BorderStyle.None;
-        }
-
-        private void Com_MouseHover(object sender, EventArgs e)
-        {
-            ((PictureBox)sender).BorderStyle = BorderStyle.FixedSingle;
-        }
       
-
-        private bool mouseDown;
-        private Point lastLocation;
-
+        
+        #region FormMove
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -469,9 +541,7 @@ namespace Scannex
 
 
         #endregion
-
-        private System.Windows.Forms.Timer mTimer;
-        private int mDialogCount;
+               
         public bool PreFilterMessage(ref Message m)
         {
             // Monitor message for keyboard and mouse messages
@@ -541,6 +611,10 @@ namespace Scannex
             this.Left = this.Top = 0;
             this.Width = Screen.PrimaryScreen.WorkingArea.Width;
             this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+            int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
+            Constants.PAGE_SIZE = (short)t;
+            int c = (pnlPictures.Width) / 2;
+            
 
             frmLogin frmshow = new frmLogin();
             if (frmshow.ShowDialog() == DialogResult.OK)
@@ -777,67 +851,8 @@ namespace Scannex
 
             RefreshPnl(false);
         }
-
-        private void lblZoomOut_Click(object sender, EventArgs e)
-        {
-            if (lblAll.ForeColor == Color.Black)
-            {
-                int sizex = Constants.PIC_SIZEX + 50;
-                int sizey = Constants.PIC_SIZEY + 50;
-
-                Constants.PIC_SIZEX = sizex;
-                Constants.PIC_SIZEY = sizey;
-                Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH + 50;
-
-                RefreshPnl(true);
-            }
-        }
-
-        private void lblZoomIn_Click(object sender, EventArgs e)
-        {
-            if (lblAll.ForeColor == Color.Black)
-            {
-                
-                int sizex = Constants.PIC_SIZEX - 50;
-                int sizey = Constants.PIC_SIZEY - 50;
-                if (sizex > 0)
-                {
-                    Constants.PIC_SIZEX = sizex;
-                    Constants.PIC_SIZEY = sizey;
-                    Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH - 50;
-                }
-                RefreshPnl(true);
-            }
-        }
-
-
-        frmTwainLoading progressDialog = new frmTwainLoading();        
-        frmMessage progressLoading = new frmMessage();
-
-        private static AreaSettings AreaSettings = new AreaSettings(TwainDotNet.TwainNative.Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
         
-        Twain _twain;
-        ScanSettings _settings;
-        public void Init()
-        {
-            _twain = new Twain(new WinFormsWindowMessageHook(this));
-            _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
-            {
-                if (args.Image != null)
-                {                   
-                    ImageFile file = new Scannex.ImageFile();
-                    file.FileImage = args.Image;
-                    file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
-                    file.ViewImage = args.Image;
-                    AddPicList(args.Image, ".jpg", file.FileName, true, true);
-                }
-                pnlPictures.VerticalScroll.Value = pnlPictures.VerticalScroll.Maximum;
-            };
-            _twain.ScanningComplete += delegate
-            {
-                Enabled = true;
-            };
-        }
+              
         private void Progress()
         {
             progressDialog.ShowDialog();
@@ -879,17 +894,19 @@ namespace Scannex
                 backgroundThread.Start();
 
                 try
-                {
+                {                    
                     _twain.StartScanning(_settings);
-                    progressDialog.CloseForm();
                     this.Activate();
+                    progressDialog.CloseForm();                    
                 }
                 catch (TwainException ex)
                 {
+                    progressDialog.CloseForm();
+                    this.Activate();
                     FileLogger.LogStringInFile(ex.Message);
                     MessageBox.Show(ex.Message);
                     Enabled = true;
-                    progressDialog.CloseForm();
+                    
                     Init();
                 }
                 finally
@@ -1126,22 +1143,7 @@ namespace Scannex
 
         #endregion
 
-        private void cmbDoctype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbDoctype.SelectedIndex != -1)
-            {
-                pnlAdd.Controls.Clear();
-                foreach (DocTypes t in Constants.ST_DOCTYPES)
-                {
-                    if (t.hashid == cmbDoctype.SelectedValue.ToString())
-                    {
-                        CreateElem(t.fields);
-                        break;
-                    }
-                }
-            }
-        }
-
+       
         #region ComponentForAdd
         private void CreateElem(List<SubTypes> l)
         {
@@ -1280,6 +1282,23 @@ namespace Scannex
 
         #endregion
 
+        #region ComboChange
+        private void cmbDoctype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDoctype.SelectedIndex != -1)
+            {
+                pnlAdd.Controls.Clear();
+                foreach (DocTypes t in Constants.ST_DOCTYPES)
+                {
+                    if (t.hashid == cmbDoctype.SelectedValue.ToString())
+                    {
+                        CreateElem(t.fields);
+                        break;
+                    }
+                }
+            }
+        }
+
         private void cmbEmployee_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorProvider1.SetError(cmbLocation, "");
@@ -1299,7 +1318,7 @@ namespace Scannex
             }
         }
 
-
+        #endregion
         private void MyThreadRoutine()
         {
             progressLoading.ShowDialog();

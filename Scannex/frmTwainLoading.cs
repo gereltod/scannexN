@@ -24,8 +24,7 @@ namespace Scannex
 
         private void frmTwainLoading_Load(object sender, EventArgs e)
         {
-            progressBar1.Style = ProgressBarStyle.Marquee;
-            progressBar1.MarqueeAnimationSpeed = 30;
+           
         }
     }
 }

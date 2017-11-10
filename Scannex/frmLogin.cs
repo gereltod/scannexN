@@ -166,7 +166,7 @@ namespace Scannex
 
         private void label3_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/support/scannex/2.0");
+            ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/password/reset");
             Process.Start(sInfo);
         }
     }
