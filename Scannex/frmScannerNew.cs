@@ -170,7 +170,7 @@ namespace Scannex
             PictureBox check = new PictureBox();
             check.Location = new Point(x, y);
             check.BackColor = Color.Transparent;
-            check.Size = new Size(50, 50);
+            check.Size = new Size(32, 32);
             check.SizeMode = PictureBoxSizeMode.StretchImage;
             check.Visible = false;
             foreach (ImageFile sf in imageListSelected)
@@ -242,7 +242,7 @@ namespace Scannex
             PictureBox check = new PictureBox();
             check.Location = new Point(x, y);
             check.BackColor = Color.Transparent;
-            check.Size = new Size(50, 50);
+            check.Size = new Size(32, 32);
             check.SizeMode = PictureBoxSizeMode.StretchImage;
             check.Visible = false;
             check.Image = Scannex.Properties.Resources._checked;
@@ -305,7 +305,7 @@ namespace Scannex
             PictureBox check = new PictureBox();
             check.Location = new Point(x, y);
             check.BackColor = Color.Transparent;
-            check.Size = new Size(50, 50);
+            check.Size = new Size(32, 32);
             check.SizeMode = PictureBoxSizeMode.StretchImage;
             check.Visible = false;
             check.Image = Scannex.Properties.Resources._checked;
@@ -393,6 +393,16 @@ namespace Scannex
                 {
                     fname = imageList[f].FileName;
                     imageList.Remove(f);
+
+                    for (int i = 0; i < imageListSelected.Count(); i++)
+                    {
+                        if (imageListSelected[i].MyPicture.Name == name)
+                        {
+                            imageListSelected.RemoveAt(i);
+                            break;
+                        }
+                    }
+
                     RefreshPnl(true);
                     break;
                 }
@@ -512,7 +522,7 @@ namespace Scannex
 
         private void panel1_DoubleClick(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void label1_DoubleClick(object sender, EventArgs e)
@@ -622,7 +632,8 @@ namespace Scannex
                 Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("api/scannex/v2/locations");
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/scannex/v2/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
-               
+                Constants.COMPANY = ServerConnections.ServerGETData<Info>("api/scannex/v2/user");
+                lblCompany.Text = Constants.COMPANY.client_name;
                 mTimer.Interval = Constants.EXPIRE_TIME * 1000;
                 mTimer.Enabled = true;
                 lblStatus.Text = String.Format("Logged in as {0}", Constants.USERNAME);

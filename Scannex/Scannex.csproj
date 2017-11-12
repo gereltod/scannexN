@@ -188,6 +188,7 @@
     <Compile Include="Models\DocTypes.cs" />
     <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\ImageFile.cs" />
+    <Compile Include="Models\Info.cs" />
     <Compile Include="Models\Locations.cs" />
     <Compile Include="Models\PostResponse.cs" />
     <Compile Include="Models\ServerUpload.cs" />
@@ -308,6 +309,7 @@
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
     <Content Include="logo_b9O_icon.ico" />
+    <None Include="Resources\Login close icon3.png" />
     <None Include="Resources\Loading_icon.gif" />
     <None Include="Resources\success1.png" />
     <None Include="Resources\loading.gif" />

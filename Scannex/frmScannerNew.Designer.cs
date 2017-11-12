@@ -31,7 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScannerNew));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblCompany = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnImport = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlAdd = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,31 +70,25 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.btnImport = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnImport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblCompany);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.btnImport);
@@ -104,19 +104,90 @@
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // label1
+            // pictureBox3
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(787, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 22);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Sage Corp, LLC.";
-            this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = global::Scannex.Properties.Resources.error;
+            this.pictureBox3.Location = new System.Drawing.Point(962, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(32, 36);
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // lblCompany
+            // 
+            this.lblCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCompany.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompany.ForeColor = System.Drawing.Color.White;
+            this.lblCompany.Location = new System.Drawing.Point(604, 17);
+            this.lblCompany.Name = "lblCompany";
+            this.lblCompany.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblCompany.Size = new System.Drawing.Size(350, 27);
+            this.lblCompany.TabIndex = 5;
+            this.lblCompany.Text = "Sage Corp, LLC.";
+            this.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCompany.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox5.Image = global::Scannex.Properties.Resources.help;
+            this.pictureBox5.Location = new System.Drawing.Point(500, 13);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(40, 36);
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = global::Scannex.Properties.Resources.settings;
+            this.pictureBox4.Location = new System.Drawing.Point(400, 12);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(85, 36);
+            this.pictureBox4.TabIndex = 3;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImport.Image = global::Scannex.Properties.Resources.import1;
+            this.btnImport.Location = new System.Drawing.Point(301, 12);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(85, 36);
+            this.btnImport.TabIndex = 2;
+            this.btnImport.TabStop = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = global::Scannex.Properties.Resources.scan;
+            this.pictureBox2.Location = new System.Drawing.Point(93, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(170, 38);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Scannex.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(22, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // panel2
             // 
@@ -152,7 +223,7 @@
             this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(18, 339);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(155, 15);
+            this.label8.Size = new System.Drawing.Size(182, 17);
             this.label8.TabIndex = 7;
             this.label8.Text = "Custom longtext field label:";
             // 
@@ -172,7 +243,7 @@
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(18, 99);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 15);
+            this.label7.Size = new System.Drawing.Size(118, 18);
             this.label7.TabIndex = 5;
             this.label7.Text = "Document Type";
             // 
@@ -182,7 +253,7 @@
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(18, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 15);
+            this.label6.Size = new System.Drawing.Size(55, 18);
             this.label6.TabIndex = 4;
             this.label6.Text = "Owner";
             // 
@@ -202,7 +273,7 @@
             this.cmbDoctype.FormattingEnabled = true;
             this.cmbDoctype.Location = new System.Drawing.Point(21, 118);
             this.cmbDoctype.Name = "cmbDoctype";
-            this.cmbDoctype.Size = new System.Drawing.Size(204, 23);
+            this.cmbDoctype.Size = new System.Drawing.Size(204, 25);
             this.cmbDoctype.TabIndex = 2;
             this.cmbDoctype.SelectedIndexChanged += new System.EventHandler(this.cmbDoctype_SelectedIndexChanged);
             // 
@@ -211,7 +282,7 @@
             this.cmbLocation.FormattingEnabled = true;
             this.cmbLocation.Location = new System.Drawing.Point(21, 64);
             this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(204, 23);
+            this.cmbLocation.Size = new System.Drawing.Size(204, 25);
             this.cmbLocation.TabIndex = 1;
             this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
@@ -220,7 +291,7 @@
             this.cmbEmployee.FormattingEnabled = true;
             this.cmbEmployee.Location = new System.Drawing.Point(21, 35);
             this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(204, 23);
+            this.cmbEmployee.Size = new System.Drawing.Size(204, 25);
             this.cmbEmployee.TabIndex = 0;
             this.cmbEmployee.SelectedIndexChanged += new System.EventHandler(this.cmbEmployee_SelectedIndexChanged);
             // 
@@ -248,7 +319,7 @@
             this.label5.ForeColor = System.Drawing.Color.DimGray;
             this.label5.Location = new System.Drawing.Point(891, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 14);
+            this.label5.Size = new System.Drawing.Size(105, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scannex v2.0.1";
             // 
@@ -262,7 +333,7 @@
             this.lblSelected.ForeColor = System.Drawing.Color.DimGray;
             this.lblSelected.Location = new System.Drawing.Point(608, 8);
             this.lblSelected.Name = "lblSelected";
-            this.lblSelected.Size = new System.Drawing.Size(95, 14);
+            this.lblSelected.Size = new System.Drawing.Size(122, 16);
             this.lblSelected.TabIndex = 1;
             this.lblSelected.Text = "Selected of pages";
             // 
@@ -273,7 +344,7 @@
             this.lblStatus.ForeColor = System.Drawing.Color.DimGray;
             this.lblStatus.Location = new System.Drawing.Point(13, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(69, 14);
+            this.lblStatus.Size = new System.Drawing.Size(90, 16);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Logged in as";
             // 
@@ -338,7 +409,7 @@
             this.lblUnselected.ForeColor = System.Drawing.Color.DarkGray;
             this.lblUnselected.Location = new System.Drawing.Point(213, 17);
             this.lblUnselected.Name = "lblUnselected";
-            this.lblUnselected.Size = new System.Drawing.Size(108, 16);
+            this.lblUnselected.Size = new System.Drawing.Size(124, 19);
             this.lblUnselected.TabIndex = 10;
             this.lblUnselected.Text = "Unselected only";
             this.lblUnselected.Click += new System.EventHandler(this.lblUnselected_Click);
@@ -360,7 +431,7 @@
             this.lblOnly.ForeColor = System.Drawing.Color.DarkGray;
             this.lblOnly.Location = new System.Drawing.Point(114, 17);
             this.lblOnly.Name = "lblOnly";
-            this.lblOnly.Size = new System.Drawing.Size(93, 16);
+            this.lblOnly.Size = new System.Drawing.Size(107, 19);
             this.lblOnly.TabIndex = 8;
             this.lblOnly.Text = "Selected only";
             this.lblOnly.Click += new System.EventHandler(this.lblOnly_Click);
@@ -381,7 +452,7 @@
             this.lblAll.ForeColor = System.Drawing.Color.Black;
             this.lblAll.Location = new System.Drawing.Point(13, 17);
             this.lblAll.Name = "lblAll";
-            this.lblAll.Size = new System.Drawing.Size(98, 16);
+            this.lblAll.Size = new System.Drawing.Size(113, 19);
             this.lblAll.TabIndex = 6;
             this.lblAll.Text = "View all pages";
             this.lblAll.Click += new System.EventHandler(this.lblAll_Click);
@@ -424,7 +495,7 @@
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(702, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 16);
+            this.label4.Size = new System.Drawing.Size(43, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "90°L";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -439,7 +510,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(653, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.Size = new System.Drawing.Size(45, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "90°R";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -453,7 +524,7 @@
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(530, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 16);
+            this.label2.Size = new System.Drawing.Size(125, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Rotate selected:";
             // 
@@ -469,76 +540,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = global::Scannex.Properties.Resources.error;
-            this.pictureBox3.Location = new System.Drawing.Point(964, 12);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 36);
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Image = global::Scannex.Properties.Resources.help;
-            this.pictureBox5.Location = new System.Drawing.Point(500, 13);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(40, 36);
-            this.pictureBox5.TabIndex = 4;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Image = global::Scannex.Properties.Resources.settings;
-            this.pictureBox4.Location = new System.Drawing.Point(400, 12);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(85, 36);
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImport.Image = global::Scannex.Properties.Resources.import1;
-            this.btnImport.Location = new System.Drawing.Point(301, 12);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(85, 36);
-            this.btnImport.TabIndex = 2;
-            this.btnImport.TabStop = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::Scannex.Properties.Resources.scan;
-            this.pictureBox2.Location = new System.Drawing.Point(93, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(170, 38);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Scannex.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // frmScannerNew
             // 
@@ -556,7 +557,12 @@
             this.Load += new System.EventHandler(this.frmScannerNew_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmScannerNew_KeyDown_1);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -565,12 +571,6 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -586,7 +586,7 @@
         private System.Windows.Forms.PictureBox btnImport;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

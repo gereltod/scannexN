@@ -114,6 +114,7 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(34, 34);
             this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "      ";
             this.linkLabel1.UseCompatibleTextRendering = true;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -167,7 +168,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::Scannex.Properties.Resources.Login_distr;
             this.ClientSize = new System.Drawing.Size(600, 500);
             this.ControlBox = false;

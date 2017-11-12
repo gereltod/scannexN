@@ -15,13 +15,15 @@ namespace Scannex
         public frmMessage()
         {
             InitializeComponent();
-            lblName.Text = string.Format("for {0}", Constants.USERNAME);
+            
         }
 
         public void Message(string msg)
         {
+            lblName.Text = string.Format("{0}", Constants.COMPANY.name);
             lblMessage.Text = msg;
-            lblName.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 3, lblMessage.Location.Y);
+            label3.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 3, lblMessage.Location.Y);
+            lblName.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 28, lblMessage.Location.Y);
         }
 
         public void Done()
