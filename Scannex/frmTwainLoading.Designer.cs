@@ -69,13 +69,15 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::Scannex.Properties.Resources.error;
+            this.pictureBox2.Image = global::Scannex.Properties.Resources.error50;
             this.pictureBox2.Location = new System.Drawing.Point(361, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
             // 
             // label1
             // 
@@ -112,6 +114,7 @@
             this.lblDone.Size = new System.Drawing.Size(33, 13);
             this.lblDone.TabIndex = 5;
             this.lblDone.Text = "Done";
+            this.lblDone.Visible = false;
             // 
             // lblName
             // 

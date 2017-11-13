@@ -56,7 +56,7 @@
             // 
             this.txtDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDelete.Location = new System.Drawing.Point(140, 20);
-            this.txtDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDelete.Margin = new System.Windows.Forms.Padding(2);
             this.txtDelete.Name = "txtDelete";
             this.txtDelete.Size = new System.Drawing.Size(40, 20);
             this.txtDelete.TabIndex = 1;
@@ -64,7 +64,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(166, 65);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(60, 26);
             this.button1.TabIndex = 2;
@@ -75,7 +75,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(230, 65);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(60, 26);
             this.button2.TabIndex = 3;
@@ -123,7 +123,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::Scannex.Properties.Resources.error;
+            this.pictureBox2.Image = global::Scannex.Properties.Resources.error50;
             this.pictureBox2.Location = new System.Drawing.Point(286, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
@@ -131,6 +131,8 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
             // 
             // label3
             // 
@@ -151,7 +153,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOptions";

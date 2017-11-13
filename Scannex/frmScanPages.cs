@@ -113,5 +113,15 @@ namespace Scannex
         {
             DialogResult = DialogResult.No;
         }
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Scannex.Properties.Resources.error_over;
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Scannex.Properties.Resources.error50;
+        }
     }
 }

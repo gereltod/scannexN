@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -449,6 +450,7 @@ namespace Scannex
                     break;
                 }
             }
+            errorProvider1.SetError(lblOnly, "");
             lblSelected.Text = String.Format("Selected {0} of {1} pages", imageListSelected.Count, imageList.Count);
         }
 
@@ -928,8 +930,16 @@ namespace Scannex
             }
         }
 
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        //CancellationToken token = tokenSource.Token;
+        public bool isOk = false;
+
         private void button1_Click(object sender, EventArgs e)
-        {           
+        {
+            tokenSource = new CancellationTokenSource();
+            isOk = false;
+            CancellationToken token = tokenSource.Token;
+
             try
             {
                 string json = "{";
@@ -986,16 +996,57 @@ namespace Scannex
                     errorProvider1.SetError(lblOnly, "Enter your upload files");
                     return;
                 }
+                string name = cmbEmployee.Text;
+                if (name == String.Empty)
+                    name = Constants.USERNAME;
 
+                Task t;
+                var tasks = new ConcurrentBag<Task>();
+                               
                 this.Enabled = false;
                 Thread backgroundThread = new Thread(new ThreadStart(MyThreadRoutine));
                 progressLoading = new frmMessage();
+                progressLoading.tokenSource = this.tokenSource;
                 progressLoading.Message(cmbDoctype.Text);
                 progressLoading.StartPosition = FormStartPosition.CenterParent;
                 progressLoading.Title("Uploading");
                 backgroundThread.Start();
                 progressLoading.Activate();
-                Save(json);
+                //Save(json);
+
+                t = Task.Factory.StartNew(() => Save(json, name, token), token);                
+                tasks.Add(t);
+                string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
+                //if (progressLoading.IsDisposed)
+                //{
+                //    tokenSource.Cancel();
+                //    progressLoading.CloseForm();
+                //    this.Activate();  
+                //    MessageBox.Show("Command cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                try
+                {
+                    Task.WaitAll(tasks.ToArray());
+
+                    if (isOk)
+                    {
+                        pnlPictures.Controls.Clear();
+                        DeleteUploadFiles(path);
+                        ResetControl();
+                        LoadFolder();
+                    }
+                }               
+                catch (AggregateException err)
+                {
+                    FileLogger.LogStringInFile(err.Message);
+                    progressLoading.CloseForm();
+                    this.Activate();
+                    MessageBox.Show("Command cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    tokenSource.Dispose();
+                }
 
             }
             catch (Exception ex)
@@ -1010,50 +1061,90 @@ namespace Scannex
         }
 
 
-        private void Save(object param)
+
+        private void Save(object param, string name, CancellationToken ct)
         {
-            string file = Convertpdf();
-            string subjson = GetControlsValue();
-            string json = param.ToString();
-
-            if (subjson.Length > 0)
-                subjson = subjson.Substring(0, subjson.Length - 1);
-            json += "\"comment\":\"" + txtComment.Text + "\",";
-            json += "\"fields\":[" + subjson + "],";
-            if (file != "")
+            try
             {
-                string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
-
-                byte[] bytes = System.IO.File.ReadAllBytes(path + file);
-
-                string ret = ServerConnections.ServerFile(file, bytes);
-                var postMessage = Constants.Deserialize<PostResponse>(ret);
-                if (postMessage != null)
+                if (ct.IsCancellationRequested)
                 {
-                    string aws = Newtonsoft.Json.JsonConvert.SerializeObject(postMessage);
+                    ct.ThrowIfCancellationRequested();
+                }
+                string file = Convertpdf(name);
+                if (ct.IsCancellationRequested)
+                {
+                    ct.ThrowIfCancellationRequested();
+                }
+                string subjson = GetControlsValue();
+                if (ct.IsCancellationRequested)
+                {
+                    ct.ThrowIfCancellationRequested();
+                }
+                string json = param.ToString();
 
-                    json += "\"s3-response\":" + aws + "}";
+                if (subjson.Length > 0)
+                    subjson = subjson.Substring(0, subjson.Length - 1);
+                json += "\"comment\":\"" + txtComment.Text + "\",";
+                json += "\"fields\":[" + subjson + "],";
 
-                    ret = ServerConnections.ServerPostData("/api/s3doc", json);
+                if (ct.IsCancellationRequested)
+                {
+                    ct.ThrowIfCancellationRequested();
+                }
+                if (file != "")
+                {
+                    string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
 
-                    if (ret == "OK")
+                    byte[] bytes = System.IO.File.ReadAllBytes(path + file);
+                    if (ct.IsCancellationRequested)
                     {
-                        progressLoading.Done();
-                        //this.Activate();
-                        //MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        pnlPictures.Controls.Clear();
-                        imageList = new Dictionary<int, ImageFile>();
-                        DeleteUploadFiles(path);
-                        ResetControl();
-                        LoadFolder();
+                        ct.ThrowIfCancellationRequested();
                     }
-                    else
+                    string ret = ServerConnections.ServerFile(file, bytes);
+                    if (ct.IsCancellationRequested)
                     {
-                        progressLoading.CloseForm();
-                        this.Activate();
-                        MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ct.ThrowIfCancellationRequested();
+                    }
+                    var postMessage = Constants.Deserialize<PostResponse>(ret);
+                    if (ct.IsCancellationRequested)
+                    {
+                        ct.ThrowIfCancellationRequested();
+                    }
+                    if (postMessage != null)
+                    {
+                        string aws = Newtonsoft.Json.JsonConvert.SerializeObject(postMessage);
+
+                        json += "\"s3-response\":" + aws + "}";
+
+                        if (ct.IsCancellationRequested)
+                        {
+                            ct.ThrowIfCancellationRequested();
+                        }
+                        ret = ServerConnections.ServerPostData("/api/s3doc", json);
+                        if (ct.IsCancellationRequested)
+                        {
+                            ct.ThrowIfCancellationRequested();
+                        }
+                        if (ret == "OK")
+                        {
+                            progressLoading.Done();
+                            //this.Activate();
+                            //MessageBox.Show("File saved successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            imageList = new Dictionary<int, ImageFile>();
+                            isOk = true;
+                        }
+                        else
+                        {
+                            progressLoading.CloseForm();
+                            this.Activate();
+                            MessageBox.Show(ret, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+            }
+            catch (TaskCanceledException tce)
+            {
+                FileLogger.LogStringInFile(tce.Message);
             }
         }
 
@@ -1072,7 +1163,7 @@ namespace Scannex
             errorProvider1.SetError(lblOnly, "");
         }
 
-        private string Convertpdf()
+        private string Convertpdf(string name)
         {
             string ret = "";
             if (imageListSelected.Count > 0)
@@ -1081,7 +1172,7 @@ namespace Scannex
                 iTextSharp.text.Document document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4);
                 try
                 {
-                    string name = cmbEmployee.Text;
+                    //string name = cmbEmployee.Text;
                     string filename = String.Format("{0}_{1}.{2}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), name.Trim(), "pdf");
                     iTextSharp.text.pdf.PdfWriter.GetInstance(document, new FileStream(path + filename, FileMode.Create));
 
@@ -1382,9 +1473,18 @@ namespace Scannex
         private void pictureBox5_MouseLeave(object sender, EventArgs e)
         {
             pictureBox5.Image = Scannex.Properties.Resources.Help_button__normal_;
+        }     
+
+        private void pictureBox3_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Scannex.Properties.Resources.error_over;
+        }
+              
+        private void pictureBox3_MouseLeave_1(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Scannex.Properties.Resources.error50;
         }
 
         #endregion
-
     }
 }

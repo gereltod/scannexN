@@ -161,13 +161,18 @@ namespace Scannex
         {
             if (textBox2.Text.Length > 0)
                 if (e.KeyCode == Keys.Enter)
-                    button1.Focus();
+                    button1_Click((object)button1, new EventArgs());
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
             ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/password/reset");
             Process.Start(sInfo);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
