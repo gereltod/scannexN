@@ -309,6 +309,16 @@
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
     <Content Include="logo_b9O_icon.ico" />
+    <None Include="Resources\logo_small.png" />
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\Scan button %28mouseover%29.png" />
+    <None Include="Resources\Settings button %28mouseover%29.png" />
+    <None Include="Resources\Import button %28mouseover%29.png" />
+    <None Include="Resources\Help button %28mouseover%29.png" />
+    <None Include="Resources\Help button %28normal%29.png" />
+    <None Include="Resources\Settings button %28normal%29.png" />
+    <None Include="Resources\Import button %28normal%29.png" />
+    <None Include="Resources\Scan button %28normal%29.png" />
     <None Include="Resources\Login close icon3.png" />
     <None Include="Resources\Loading_icon.gif" />
     <None Include="Resources\success1.png" />

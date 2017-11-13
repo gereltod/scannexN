@@ -1341,5 +1341,50 @@ namespace Scannex
             frmOptions frm = new frmOptions();
             frm.ShowDialog();
         }
+
+        #region Mouseover
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Scannex.Properties.Resources.Scan_button__mouseover_;
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Scannex.Properties.Resources.Scan_button__normal_;
+        }
+
+        private void btnImport_MouseHover(object sender, EventArgs e)
+        {
+            btnImport.Image = Scannex.Properties.Resources.Import_button__mouseover_;
+        }
+
+        private void btnImport_MouseLeave(object sender, EventArgs e)
+        {
+            btnImport.Image = Scannex.Properties.Resources.Import_button__normal_;
+        }
+
+        private void pictureBox4_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Scannex.Properties.Resources.Settings_button__mouseover_;
+        }
+
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Scannex.Properties.Resources.Settings_button__normal_;
+        }
+
+        private void pictureBox5_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox5.Image = Scannex.Properties.Resources.Help_button__mouseover_;
+        }
+
+        private void pictureBox5_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox5.Image = Scannex.Properties.Resources.Help_button__normal_;
+        }
+
+        #endregion
+
     }
 }
