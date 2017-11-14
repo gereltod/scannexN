@@ -164,15 +164,50 @@ namespace Scannex
                     button1_Click((object)button1, new EventArgs());
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Scannex.Properties.Resources.log_error;
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Scannex.Properties.Resources.log_error50;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
             ProcessStartInfo sInfo = new ProcessStartInfo("https://smartdrawers.com/password/reset");
             Process.Start(sInfo);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void pictureBox4_MouseHover(object sender, EventArgs e)
         {
-            Application.Exit();
+            pictureBox4.Image = Scannex.Properties.Resources.Forgot_password_mouse_over;
+        }
+
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Scannex.Properties.Resources.Forgot_password_1;
+        }
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            button1.BackgroundImage = Scannex.Properties.Resources.login_button;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.BackgroundImage = Scannex.Properties.Resources.login_button_mouse_over;
         }
     }
 }
