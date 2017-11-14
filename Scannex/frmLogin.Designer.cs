@@ -112,7 +112,7 @@
             this.textBox2.Location = new System.Drawing.Point(187, 262);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 14);
+            this.textBox2.Size = new System.Drawing.Size(259, 18);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);

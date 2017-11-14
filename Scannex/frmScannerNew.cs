@@ -952,7 +952,7 @@ namespace Scannex
                     if (cmbLocation.SelectedIndex == -1)
                     {
                         json += "\"location\":\"\",";
-                        errorProvider1.SetError(cmbLocation, "Enter your location or employee");
+                        errorProvider1.SetError(cmbLocation, "Enter Employee or Location.");
                         return;
                     }
                     else
@@ -984,7 +984,7 @@ namespace Scannex
 
                 if (cmbDoctype.SelectedIndex == -1)
                 {
-                    errorProvider1.SetError(cmbDoctype, "Enter your doc type information");
+                    errorProvider1.SetError(cmbDoctype, "Enter Document Type.");
                     cmbDoctype.Focus();
                     return;
                 }
@@ -996,12 +996,14 @@ namespace Scannex
 
                 if (imageListSelected.Count() == 0)
                 {
-                    errorProvider1.SetError(lblOnly, "Enter your upload files");
+                    errorProvider1.SetError(lblOnly, "Select upload files.");
                     return;
                 }
                 string name = cmbEmployee.Text;
                 if (name == String.Empty)
                     name = Constants.USERNAME;
+
+                string subjson = GetControlsValue();
 
                 Task t;
                 var tasks = new ConcurrentBag<Task>();
@@ -1017,16 +1019,10 @@ namespace Scannex
                 progressLoading.Activate();
                 //Save(json);
 
-                t = Task.Factory.StartNew(() => Save(json, name, token), token);                
+                t = Task.Factory.StartNew(() => Save(json, name, subjson, token), token);                
                 tasks.Add(t);
                 string path = Constants.FILE_PATH_TODAY + "\\UPLOAD\\";
-                //if (progressLoading.IsDisposed)
-                //{
-                //    tokenSource.Cancel();
-                //    progressLoading.CloseForm();
-                //    this.Activate();  
-                //    MessageBox.Show("Command cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+               
                 try
                 {
                     Task.WaitAll(tasks.ToArray());
@@ -1044,7 +1040,7 @@ namespace Scannex
                     FileLogger.LogStringInFile(err.Message);
                     progressLoading.CloseForm();
                     this.Activate();
-                    MessageBox.Show("Command cancelled", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Command cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -1065,7 +1061,7 @@ namespace Scannex
 
 
 
-        private void Save(object param, string name, CancellationToken ct)
+        private void Save(object param, string name, string subjson, CancellationToken ct)
         {
             try
             {
@@ -1078,11 +1074,7 @@ namespace Scannex
                 {
                     ct.ThrowIfCancellationRequested();
                 }
-                string subjson = GetControlsValue();
-                if (ct.IsCancellationRequested)
-                {
-                    ct.ThrowIfCancellationRequested();
-                }
+               
                 string json = param.ToString();
 
                 if (subjson.Length > 0)
@@ -1351,6 +1343,8 @@ namespace Scannex
             string json = "";
             bool isEnter = false;
 
+            //this.Invoke(new Action(() =>
+            //{
             foreach (Control c in pnlAdd.Controls)
             {
                 if (c.GetType() == typeof(TextBox))
@@ -1385,6 +1379,7 @@ namespace Scannex
                 }
             }
 
+            //}));
             return ret;
         }
 
@@ -1411,6 +1406,7 @@ namespace Scannex
         private void cmbEmployee_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorProvider1.SetError(cmbEmployee, "");
+            errorProvider1.SetError(cmbLocation, "");
             if (cmbEmployee.SelectedIndex != -1)
             {
                 cmbLocation.SelectedIndex = -1;
@@ -1419,6 +1415,7 @@ namespace Scannex
 
         private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            errorProvider1.SetError(cmbEmployee, "");
             errorProvider1.SetError(cmbLocation, "");
             if (cmbLocation.SelectedIndex != -1)
             {
