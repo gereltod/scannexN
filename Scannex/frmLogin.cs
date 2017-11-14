@@ -118,7 +118,14 @@ namespace Scannex
         private void textBox1_Enter(object sender, EventArgs e)
         {
             if (textBox1.Text.Length > 0)
-                textBox1.SelectAll();
+            {
+                if (textBox1.Text == "User email")
+                {
+                    textBox1.Text = "";                    
+                }
+                else
+                    textBox1.SelectAll();
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -128,14 +135,23 @@ namespace Scannex
 
         private void textBox2_MouseCaptureChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text.Length > 0)
-                textBox2.SelectAll();
+            if (textBox2.Text.Length > 0)              
+                    textBox2.SelectAll();
+
+            
         }
 
         private void textBox2_Enter(object sender, EventArgs e)
         {
             if (textBox2.Text.Length > 0)
-                textBox2.SelectAll();
+            {
+                if (textBox2.Text == "Password")
+                {                   
+                    textBox2.Text = "";                    
+                }
+                else
+                    textBox2.SelectAll();
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -208,6 +224,18 @@ namespace Scannex
         private void button1_MouseLeave(object sender, EventArgs e)
         {
             button1.BackgroundImage = Scannex.Properties.Resources.login_button_mouse_over;
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                textBox1.Text = "User email";
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            //if (textBox2.Text == "")
+            //    textBox2.Text = "Password";
         }
     }
 }
