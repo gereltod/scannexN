@@ -634,20 +634,20 @@ namespace Scannex
                 Constants.ST_LOCATIONS = ServerConnections.ServerGETData<List<Locations>>("api/scannex/v2/locations");
                 Constants.ST_EMPLOYEES = ServerConnections.ServerGETData<List<Employees>>("api/scannex/v2/employees");
                 Constants.ST_DOCTYPES = ServerConnections.ServerGETData<List<DocTypes>>("api/scannex/v2/doctypes");
-                Constants.COMPANY = ServerConnections.ServerGETData<Info>("api/scannex/v2/user");
-                lblCompany.Text = Constants.COMPANY.client_name;
+                Constants.USER = ServerConnections.ServerGETData<Info>("api/scannex/v2/user");
+                lblCompany.Text = Constants.USER.client_name;
                 mTimer.Interval = Constants.EXPIRE_TIME * 1000;
                 mTimer.Enabled = true;
-                lblStatus.Text = String.Format("Logged in as {0}", Constants.USERNAME);
+                lblStatus.Text = String.Format("Logged in as {0}", Constants.USER.name);
 
 
                 Comboload();
                 LoadFolder();
-
+                
                 cmbDoctype.SelectedIndex = -1;
                 cmbEmployee.SelectedIndex = -1;
                 cmbLocation.SelectedIndex = -1;
-
+                
                 backgroundWorker1.WorkerReportsProgress = true;
                 backgroundWorker1.RunWorkerAsync();
 
@@ -1389,6 +1389,7 @@ namespace Scannex
         {
             if (cmbDoctype.SelectedIndex != -1)
             {
+                errorProvider1.SetError(cmbDoctype, "");
                 pnlAdd.Controls.Clear();
                 foreach (DocTypes t in Constants.ST_DOCTYPES)
                 {
@@ -1403,8 +1404,7 @@ namespace Scannex
 
         private void cmbEmployee_SelectedIndexChanged(object sender, EventArgs e)
         {
-            errorProvider1.SetError(cmbLocation, "");
-
+            errorProvider1.SetError(cmbEmployee, "");
             if (cmbEmployee.SelectedIndex != -1)
             {
                 cmbLocation.SelectedIndex = -1;
@@ -1413,7 +1413,7 @@ namespace Scannex
 
         private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            errorProvider1.SetError(cmbEmployee, "");
+            errorProvider1.SetError(cmbLocation, "");
             if (cmbLocation.SelectedIndex != -1)
             {
                 cmbEmployee.SelectedIndex = -1;
@@ -1486,5 +1486,20 @@ namespace Scannex
         }
 
         #endregion
+
+        private void cmbEmployee_Enter(object sender, EventArgs e)
+        {
+            lblEmployee.Visible = false;
+        }
+
+        private void cmbLocation_Enter(object sender, EventArgs e)
+        {
+            lblLocation.Visible = false;
+        }
+
+        private void cmbDoctype_Enter(object sender, EventArgs e)
+        {
+            lblDocType.Visible = false;
+        }
     }
 }

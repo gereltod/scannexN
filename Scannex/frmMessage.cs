@@ -23,7 +23,7 @@ namespace Scannex
 
         public void Message(string msg)
         {
-            lblName.Text = string.Format("{0}", Constants.COMPANY.name);
+            lblName.Text = string.Format("{0}", Constants.USER.name);
             lblMessage.Text = msg;
             label3.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 3, lblMessage.Location.Y);
             lblName.Location = new Point(lblMessage.Location.X + lblMessage.Size.Width + 28, lblMessage.Location.Y);

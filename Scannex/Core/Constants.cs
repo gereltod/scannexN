@@ -33,7 +33,7 @@ namespace Scannex
         public static List<Locations> ST_LOCATIONS;
         public static List<Employees> ST_EMPLOYEES;
         public static List<DocTypes> ST_DOCTYPES;
-        public static Info COMPANY;
+        public static Info USER;
 
         public static T Deserialize<T>(this string toDeserialize)
         {
