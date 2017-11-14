@@ -647,7 +647,9 @@ namespace Scannex
                 cmbDoctype.SelectedIndex = -1;
                 cmbEmployee.SelectedIndex = -1;
                 cmbLocation.SelectedIndex = -1;
-                
+                cmbEmployee.Text = "Employee";
+                cmbLocation.Text = "Location";
+                cmbDoctype.Text = "Document Type";
                 backgroundWorker1.WorkerReportsProgress = true;
                 backgroundWorker1.RunWorkerAsync();
 
@@ -874,6 +876,7 @@ namespace Scannex
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            progressDialog = new frmTwainLoading();
             frmScanPages frmshow = new frmScanPages();
             frmshow._twain = _twain;
             if (frmshow.ShowDialog() == DialogResult.OK)
@@ -1155,6 +1158,9 @@ namespace Scannex
             cmbEmployee.SelectedIndex = -1;
             cmbLocation.SelectedIndex = -1;
             cmbDoctype.SelectedIndex = -1;
+            cmbEmployee.Text = "Employee";
+            cmbLocation.Text = "Location";
+            cmbDoctype.Text = "Document Type";
             txtComment.Text = "";
             pnlAdd.Controls.Clear();
             errorProvider1.SetError(cmbEmployee, "");
@@ -1486,20 +1492,7 @@ namespace Scannex
         }
 
         #endregion
-
-        private void cmbEmployee_Enter(object sender, EventArgs e)
-        {
-            lblEmployee.Visible = false;
-        }
-
-        private void cmbLocation_Enter(object sender, EventArgs e)
-        {
-            lblLocation.Visible = false;
-        }
-
-        private void cmbDoctype_Enter(object sender, EventArgs e)
-        {
-            lblDocType.Visible = false;
-        }
+    
+       
     }
 }

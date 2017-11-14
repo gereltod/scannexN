@@ -39,9 +39,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblDocType = new System.Windows.Forms.Label();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.lblEmployee = new System.Windows.Forms.Label();
             this.pnlAdd = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.txtComment = new System.Windows.Forms.TextBox();
@@ -205,9 +202,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.lblDocType);
-            this.panel2.Controls.Add(this.lblLocation);
-            this.panel2.Controls.Add(this.lblEmployee);
             this.panel2.Controls.Add(this.pnlAdd);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.txtComment);
@@ -223,39 +217,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(250, 457);
             this.panel2.TabIndex = 3;
-            // 
-            // lblDocType
-            // 
-            this.lblDocType.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDocType.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocType.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblDocType.Location = new System.Drawing.Point(22, 120);
-            this.lblDocType.Name = "lblDocType";
-            this.lblDocType.Size = new System.Drawing.Size(185, 20);
-            this.lblDocType.TabIndex = 20;
-            this.lblDocType.Text = " Document Type";
-            // 
-            // lblLocation
-            // 
-            this.lblLocation.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblLocation.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocation.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblLocation.Location = new System.Drawing.Point(22, 66);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(185, 20);
-            this.lblLocation.TabIndex = 19;
-            this.lblLocation.Text = " Location";
-            // 
-            // lblEmployee
-            // 
-            this.lblEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblEmployee.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployee.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblEmployee.Location = new System.Drawing.Point(22, 37);
-            this.lblEmployee.Name = "lblEmployee";
-            this.lblEmployee.Size = new System.Drawing.Size(185, 20);
-            this.lblEmployee.TabIndex = 0;
-            this.lblEmployee.Text = " Employee";
             // 
             // pnlAdd
             // 
@@ -325,7 +286,6 @@
             this.cmbDoctype.Size = new System.Drawing.Size(204, 25);
             this.cmbDoctype.TabIndex = 3;
             this.cmbDoctype.SelectedIndexChanged += new System.EventHandler(this.cmbDoctype_SelectedIndexChanged);
-            this.cmbDoctype.Enter += new System.EventHandler(this.cmbDoctype_Enter);
             // 
             // cmbLocation
             // 
@@ -335,7 +295,6 @@
             this.cmbLocation.Size = new System.Drawing.Size(204, 25);
             this.cmbLocation.TabIndex = 2;
             this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
-            this.cmbLocation.Enter += new System.EventHandler(this.cmbLocation_Enter);
             // 
             // cmbEmployee
             // 
@@ -345,7 +304,6 @@
             this.cmbEmployee.Size = new System.Drawing.Size(204, 25);
             this.cmbEmployee.TabIndex = 1;
             this.cmbEmployee.SelectedIndexChanged += new System.EventHandler(this.cmbEmployee_SelectedIndexChanged);
-            this.cmbEmployee.Enter += new System.EventHandler(this.cmbEmployee_Enter);
             // 
             // panel3
             // 
@@ -669,8 +627,5 @@
         private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Panel pnlAdd;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Label lblEmployee;
-        private System.Windows.Forms.Label lblDocType;
-        private System.Windows.Forms.Label lblLocation;
     }
 }
