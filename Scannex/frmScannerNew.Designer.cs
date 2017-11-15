@@ -70,6 +70,20 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -82,6 +96,7 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -233,7 +248,7 @@
             this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(18, 339);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(182, 17);
+            this.label8.Size = new System.Drawing.Size(155, 15);
             this.label8.TabIndex = 7;
             this.label8.Text = "Custom longtext field label:";
             // 
@@ -253,7 +268,7 @@
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(18, 99);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 18);
+            this.label7.Size = new System.Drawing.Size(94, 15);
             this.label7.TabIndex = 5;
             this.label7.Text = "Document Type";
             // 
@@ -263,7 +278,7 @@
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(18, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 18);
+            this.label6.Size = new System.Drawing.Size(45, 15);
             this.label6.TabIndex = 4;
             this.label6.Text = "Owner";
             // 
@@ -283,7 +298,7 @@
             this.cmbDoctype.FormattingEnabled = true;
             this.cmbDoctype.Location = new System.Drawing.Point(21, 118);
             this.cmbDoctype.Name = "cmbDoctype";
-            this.cmbDoctype.Size = new System.Drawing.Size(204, 25);
+            this.cmbDoctype.Size = new System.Drawing.Size(204, 23);
             this.cmbDoctype.TabIndex = 3;
             this.cmbDoctype.SelectedIndexChanged += new System.EventHandler(this.cmbDoctype_SelectedIndexChanged);
             // 
@@ -292,7 +307,7 @@
             this.cmbLocation.FormattingEnabled = true;
             this.cmbLocation.Location = new System.Drawing.Point(21, 64);
             this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(204, 25);
+            this.cmbLocation.Size = new System.Drawing.Size(204, 23);
             this.cmbLocation.TabIndex = 2;
             this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
@@ -301,7 +316,7 @@
             this.cmbEmployee.FormattingEnabled = true;
             this.cmbEmployee.Location = new System.Drawing.Point(21, 35);
             this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(204, 25);
+            this.cmbEmployee.Size = new System.Drawing.Size(204, 23);
             this.cmbEmployee.TabIndex = 1;
             this.cmbEmployee.SelectedIndexChanged += new System.EventHandler(this.cmbEmployee_SelectedIndexChanged);
             // 
@@ -329,7 +344,7 @@
             this.label5.ForeColor = System.Drawing.Color.DimGray;
             this.label5.Location = new System.Drawing.Point(891, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 16);
+            this.label5.Size = new System.Drawing.Size(83, 14);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scannex v2.0.1";
             // 
@@ -343,7 +358,7 @@
             this.lblSelected.ForeColor = System.Drawing.Color.DimGray;
             this.lblSelected.Location = new System.Drawing.Point(608, 8);
             this.lblSelected.Name = "lblSelected";
-            this.lblSelected.Size = new System.Drawing.Size(122, 16);
+            this.lblSelected.Size = new System.Drawing.Size(95, 14);
             this.lblSelected.TabIndex = 1;
             this.lblSelected.Text = "Selected of pages";
             // 
@@ -354,7 +369,7 @@
             this.lblStatus.ForeColor = System.Drawing.Color.DimGray;
             this.lblStatus.Location = new System.Drawing.Point(13, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(90, 16);
+            this.lblStatus.Size = new System.Drawing.Size(69, 14);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Logged in as";
             // 
@@ -379,6 +394,7 @@
             this.pnlPictures.Name = "pnlPictures";
             this.pnlPictures.Size = new System.Drawing.Size(749, 407);
             this.pnlPictures.TabIndex = 2;
+            this.pnlPictures.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlPictures_MouseDown);
             // 
             // panel5
             // 
@@ -419,7 +435,7 @@
             this.lblUnselected.ForeColor = System.Drawing.Color.DarkGray;
             this.lblUnselected.Location = new System.Drawing.Point(213, 17);
             this.lblUnselected.Name = "lblUnselected";
-            this.lblUnselected.Size = new System.Drawing.Size(124, 19);
+            this.lblUnselected.Size = new System.Drawing.Size(108, 16);
             this.lblUnselected.TabIndex = 10;
             this.lblUnselected.Text = "Unselected only";
             this.lblUnselected.Click += new System.EventHandler(this.lblUnselected_Click);
@@ -441,7 +457,7 @@
             this.lblOnly.ForeColor = System.Drawing.Color.DarkGray;
             this.lblOnly.Location = new System.Drawing.Point(114, 17);
             this.lblOnly.Name = "lblOnly";
-            this.lblOnly.Size = new System.Drawing.Size(107, 19);
+            this.lblOnly.Size = new System.Drawing.Size(93, 16);
             this.lblOnly.TabIndex = 8;
             this.lblOnly.Text = "Selected only";
             this.lblOnly.Click += new System.EventHandler(this.lblOnly_Click);
@@ -462,7 +478,7 @@
             this.lblAll.ForeColor = System.Drawing.Color.Black;
             this.lblAll.Location = new System.Drawing.Point(13, 17);
             this.lblAll.Name = "lblAll";
-            this.lblAll.Size = new System.Drawing.Size(113, 19);
+            this.lblAll.Size = new System.Drawing.Size(98, 16);
             this.lblAll.TabIndex = 0;
             this.lblAll.Text = "View all pages";
             this.lblAll.Click += new System.EventHandler(this.lblAll_Click);
@@ -472,11 +488,11 @@
             this.lblZoomOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblZoomOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblZoomOut.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZoomOut.Location = new System.Drawing.Point(438, 17);
+            this.lblZoomOut.Location = new System.Drawing.Point(447, 17);
             this.lblZoomOut.Name = "lblZoomOut";
             this.lblZoomOut.Size = new System.Drawing.Size(67, 16);
             this.lblZoomOut.TabIndex = 5;
-            this.lblZoomOut.Text = "Zoom out";
+            this.lblZoomOut.Text = "Zoom in";
             this.lblZoomOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblZoomOut.Click += new System.EventHandler(this.lblZoomOut_Click);
             this.lblZoomOut.MouseLeave += new System.EventHandler(this.lblZoomIn_MouseLeave);
@@ -489,9 +505,9 @@
             this.lblZoomIn.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblZoomIn.Location = new System.Drawing.Point(374, 17);
             this.lblZoomIn.Name = "lblZoomIn";
-            this.lblZoomIn.Size = new System.Drawing.Size(58, 16);
+            this.lblZoomIn.Size = new System.Drawing.Size(67, 16);
             this.lblZoomIn.TabIndex = 4;
-            this.lblZoomIn.Text = "Zoom in";
+            this.lblZoomIn.Text = "Zoom out";
             this.lblZoomIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblZoomIn.Click += new System.EventHandler(this.lblZoomIn_Click);
             this.lblZoomIn.MouseLeave += new System.EventHandler(this.lblZoomIn_MouseLeave);
@@ -505,7 +521,7 @@
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(702, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 19);
+            this.label4.Size = new System.Drawing.Size(38, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "90°L";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -520,7 +536,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(653, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 19);
+            this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "90°R";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -534,7 +550,7 @@
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(530, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 19);
+            this.label2.Size = new System.Drawing.Size(111, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Rotate selected:";
             // 
@@ -550,6 +566,117 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStripMenu,
+            this.toolStripMenuItem2,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripSeparator2,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6,
+            this.toolStripSeparator3,
+            this.toolStripMenuItem7,
+            this.toolStripMenuItem8,
+            this.toolStripSeparator4,
+            this.toolStripMenuItem9});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 248);
+            // 
+            // tStripMenu
+            // 
+            this.tStripMenu.Name = "tStripMenu";
+            this.tStripMenu.Size = new System.Drawing.Size(197, 22);
+            this.tStripMenu.Tag = "rr";
+            this.tStripMenu.Text = "Rotate this 90° right";
+            this.tStripMenu.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem2.Tag = "rl";
+            this.toolStripMenuItem2.Text = "Rotate this 90° left";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem3.Tag = "rar";
+            this.toolStripMenuItem3.Text = "Rotate all 90° right";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem4.Tag = "ral";
+            this.toolStripMenuItem4.Text = "Rotate all 90° left";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem5.Tag = "sa";
+            this.toolStripMenuItem5.Text = "Select all";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem6.Tag = "de";
+            this.toolStripMenuItem6.Text = "Deselect all";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem7.Tag = "ret";
+            this.toolStripMenuItem7.Text = "Remove this page";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem8.Tag = "res";
+            this.toolStripMenuItem8.Text = "Remove selected pages";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.tStripMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem9.Tag = "rea";
+            this.toolStripMenuItem9.Text = "Remove ALL page";
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.tStripMenu_Click);
             // 
             // frmScannerNew
             // 
@@ -581,6 +708,7 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -627,5 +755,19 @@
         private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Panel pnlAdd;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tStripMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
     }
 }

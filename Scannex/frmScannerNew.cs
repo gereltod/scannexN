@@ -164,7 +164,8 @@ namespace Scannex
             com.SizeMode = PictureBoxSizeMode.CenterImage;
             com.MouseHover += Com_MouseHover;
             com.MouseLeave += Com_MouseLeave;
-            com.MouseClick += Com_MouseClick;            
+            com.MouseClick += Com_MouseClick;
+            com.MouseDown += pnlPictures_MouseDown;
             com.Image = f.ViewImage;
             com.Name = f.FileName;
 
@@ -795,7 +796,6 @@ namespace Scannex
                         pnlPictures.Controls.Add(f.MyLabel);                        
                     }
                 }
-
             }
         }
 
@@ -1002,8 +1002,12 @@ namespace Scannex
                     return;
                 }
                 string name = cmbEmployee.Text;
+                string forn = cmbEmployee.Text;
                 if (name == String.Empty)
+                {
                     name = Constants.USERNAME;
+                    forn = cmbLocation.Text;
+                }
 
                 string subjson = GetControlsValue();
 
@@ -1014,7 +1018,7 @@ namespace Scannex
                 Thread backgroundThread = new Thread(new ThreadStart(MyThreadRoutine));
                 progressLoading = new frmMessage();
                 progressLoading.tokenSource = this.tokenSource;
-                progressLoading.Message(cmbDoctype.Text);
+                progressLoading.Message(cmbDoctype.Text, forn);
                 progressLoading.StartPosition = FormStartPosition.CenterParent;
                 progressLoading.Title("Uploading");
                 backgroundThread.Start();
@@ -1060,8 +1064,7 @@ namespace Scannex
             //progressLoading.CloseForm();
             this.Enabled = true;
         }
-
-
+        
 
         private void Save(object param, string name, string subjson, CancellationToken ct)
         {
@@ -1489,9 +1492,187 @@ namespace Scannex
         {
             pictureBox3.Image = Scannex.Properties.Resources.error50;
         }
-
+        
         #endregion
-    
-       
+
+        private void tStripMenu_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem click = (ToolStripMenuItem)sender;
+            if (click != null)
+            {
+                switch(click.Tag.ToString())
+                {
+                    case "rr": // rotate this page right
+                        if (RightpictureBox != null)
+                        {
+                            foreach (ImageFile f in imageList.Values)
+                            {
+                                if (f.MyPicture == RightpictureBox)
+                                {
+                                    Image img = f.FileImage;
+                                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                                    f.ViewImage = Constants.ResizeImageFixedWidth(img, Constants.IMAGE_WIDTH);
+                                    f.MyPicture.Image = f.ViewImage;
+
+                                    pnlPictures.Controls.Add(f.MyCheck);
+                                    pnlPictures.Controls.Add(f.MyPicture);
+                                    pnlPictures.Controls.Add(f.MyLabel);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case "rl":// rotate this page left
+                        if (RightpictureBox != null)
+                        {
+                            foreach (ImageFile f in imageList.Values)
+                            {
+                                if (f.MyPicture == RightpictureBox)
+                                {
+                                    Image img = f.FileImage;
+                                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                                    f.ViewImage = Constants.ResizeImageFixedWidth(img, Constants.IMAGE_WIDTH);
+                                    f.MyPicture.Image = f.ViewImage;
+                                    f.SaveAll(Constants.FILE_PATH_TODAY);
+
+                                    pnlPictures.Controls.Add(f.MyCheck);
+                                    pnlPictures.Controls.Add(f.MyPicture);
+                                    pnlPictures.Controls.Add(f.MyLabel);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case "rar":// rotate all  page left
+                        foreach (ImageFile f in imageList.Values)
+                        {
+                            Image img = f.FileImage;
+                            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            f.ViewImage = Constants.ResizeImageFixedWidth(img, Constants.IMAGE_WIDTH);
+                            f.MyPicture.Image = f.ViewImage;
+                            f.SaveAll(Constants.FILE_PATH_TODAY);
+
+                            pnlPictures.Controls.Add(f.MyCheck);
+                            pnlPictures.Controls.Add(f.MyPicture);
+                            pnlPictures.Controls.Add(f.MyLabel);
+                        }
+                        break;
+                    case "ral":// rotate all  page left
+                        foreach (ImageFile f in imageList.Values)
+                        {
+                            Image img = f.FileImage;
+                            img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            f.ViewImage = Constants.ResizeImageFixedWidth(img, Constants.IMAGE_WIDTH);
+                            f.MyPicture.Image = f.ViewImage;
+                            f.SaveAll(Constants.FILE_PATH_TODAY);
+
+                            pnlPictures.Controls.Add(f.MyCheck);
+                            pnlPictures.Controls.Add(f.MyPicture);
+                            pnlPictures.Controls.Add(f.MyLabel);
+                        }
+                        break;
+                    case "sa":// Select all
+                        imageListSelected.Clear();
+                        foreach (ImageFile f in imageList.Values)
+                        {
+                            if (!imageListSelected.Contains(f))
+                                imageListSelected.Add(f);
+                            f.MyCheck.Visible = true;
+
+                            f.MyCheck.Location = new Point(f.MyPicture.Location.X, f.MyPicture.Location.Y);
+                            pnlPictures.Controls.Add(f.MyCheck);
+                            pnlPictures.Controls.Add(f.MyPicture);
+                            pnlPictures.Controls.Add(f.MyLabel);
+                        }
+                        errorProvider1.SetError(lblOnly, "");                        
+                        break;
+                    case "de":// Deselect all
+                        foreach (ImageFile f in imageList.Values)
+                        {
+                            f.MyCheck.Visible = false;
+                            for (int i = 0; i < imageListSelected.Count; i++)
+                            {
+                                if (imageListSelected[i].FileName == f.FileName)
+                                {
+                                    imageListSelected.RemoveAt(i);
+                                    break;
+                                }
+                            }                            
+                            f.MyCheck.Location = new Point(f.MyPicture.Location.X, f.MyPicture.Location.Y);
+                            pnlPictures.Controls.Add(f.MyCheck);
+                            pnlPictures.Controls.Add(f.MyPicture);
+                            pnlPictures.Controls.Add(f.MyLabel);
+                        }
+                        imageListSelected.Clear();
+                        break;
+                    case "ret":// Remove this page
+                        foreach (int f in imageList.Keys)
+                        {
+                            if (imageList[f].MyPicture == RightpictureBox)
+                            {                                
+                                imageList.Remove(f);
+                                for (int i = 0; i < imageListSelected.Count(); i++)
+                                {
+                                    if (imageListSelected[i].MyPicture == RightpictureBox)
+                                    {
+                                        imageListSelected.RemoveAt(i);
+                                        break;
+                                    }
+                                }
+                                RefreshPnl(true);
+                                break;
+                            }
+                        }
+                        break;
+                    case "res":// Remove selected pages
+                        for (int i = 0; i < imageListSelected.Count(); i++)
+                        {
+                            foreach (int f in imageList.Keys)
+                            {
+                                if (imageList[f].MyPicture == imageListSelected[i].MyPicture)
+                                {
+                                    imageList.Remove(f);
+                                    break;
+                                }
+                            }
+                            imageListSelected.RemoveAt(i);
+                        }         
+                        RefreshPnl(true);
+                        break;
+                    case "rea":// Remove ALL page
+                        imageList.Clear();
+                        imageListSelected.Clear();                       
+                        RefreshPnl(true);
+                        break;
+                }
+                lblSelected.Text = String.Format("Selected {0} of {1} pages", imageListSelected.Count, imageList.Count);
+            }
+        }
+
+        PictureBox RightpictureBox;
+
+        private void pnlPictures_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var relativeClickedPosition = e.Location;
+                var screenClickedPosition = (sender as Control).PointToScreen(relativeClickedPosition);
+                if (typeof(PictureBox) == sender.GetType())
+                {
+                    RightpictureBox = (PictureBox)sender;
+                    tStripMenu.Enabled = true;
+                    toolStripMenuItem2.Enabled = true;
+                    toolStripMenuItem7.Enabled = true;
+                }
+                else
+                {
+                    RightpictureBox = null;
+                    tStripMenu.Enabled = false;
+                    toolStripMenuItem2.Enabled = false;
+                    toolStripMenuItem7.Enabled = false;
+                }
+                contextMenuStrip1.Show(screenClickedPosition);
+            }
+        }
     }
 }

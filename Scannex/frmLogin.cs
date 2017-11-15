@@ -16,8 +16,7 @@ namespace Scannex
     {
         public string _UserName = "";
 
-
-
+        
         public frmLogin()
         {
             InitializeComponent();
@@ -55,22 +54,25 @@ namespace Scannex
                 textBox2.Focus();
                 return;
             }
-            string ret = ServerConnections.Login(textBox1.Text, textBox2.Text);
-            if (ret == "200")
+            if (textBox1.Tag != null && textBox2.Tag != null)
             {
-                Constants.USERNAME = textBox1.Text;
-                SaveConfig();
-                DialogResult = DialogResult.OK;
-            }
-            else if(ret == "Unauthorized")
-            {
-                MessageBox.Show("Invalid password or username", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox1.Focus();
-            }
-            else if (ret == "error")
-            {
-                MessageBox.Show("An unknown error has occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox1.Focus();
+                string ret = ServerConnections.Login(textBox1.Tag.ToString(), textBox2.Tag.ToString());
+                if (ret == "200")
+                {
+                    Constants.USERNAME = textBox1.Text;
+                    SaveConfig();
+                    DialogResult = DialogResult.OK;
+                }
+                else if (ret == "Unauthorized")
+                {
+                    MessageBox.Show("Invalid password or username", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Focus();
+                }
+                else if (ret == "error")
+                {
+                    MessageBox.Show("An unknown error has occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Focus();
+                }
             }
         }
         
@@ -160,11 +162,16 @@ namespace Scannex
         {
             if (textBox2.Text.Length == 0)
             {
-                textBox2.PasswordChar = ' ';
+                textBox2.UseSystemPasswordChar = false;
+            }
+            else if (textBox2.Tag != null)
+            {
+                textBox2.UseSystemPasswordChar = true;
+                textBox2.Tag = textBox2.Text;
             }
             else
             {
-                textBox2.PasswordChar = '*';
+                textBox2.Tag = textBox2.Text;
             }
         }
 
@@ -178,8 +185,10 @@ namespace Scannex
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
             if (textBox2.Text.Length > 0)
+            {
                 if (e.KeyCode == Keys.Enter)
                     button1_Click((object)button1, new EventArgs());
+            }                            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -231,13 +240,26 @@ namespace Scannex
         private void textBox1_Leave(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
+            {
                 textBox1.Text = "User email";
+                textBox1.Tag = null;
+            }
+            else if (textBox1.Text.Length > 0)
+                textBox1.Tag = textBox1.Text;
         }
 
         private void textBox2_Leave(object sender, EventArgs e)
         {
-            //if (textBox2.Text == "")
-            //    textBox2.Text = "Password";
+            if (textBox2.Text == "")
+            {
+                textBox2.Tag = null;
+                textBox2.UseSystemPasswordChar = false;
+                textBox2.Text = "Password";
+            }
+            else
+            {
+                textBox2.Tag = textBox2.Text;
+            }
         }
     }
 }
