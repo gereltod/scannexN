@@ -65,10 +65,12 @@ namespace Scannex
             else if(ret == "Unauthorized")
             {
                 MessageBox.Show("Invalid password or username", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox1.Focus();
             }
             else if (ret == "error")
             {
-                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unknown error has occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox1.Focus();
             }
         }
         

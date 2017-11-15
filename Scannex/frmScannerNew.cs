@@ -169,9 +169,11 @@ namespace Scannex
             com.Name = f.FileName;
 
             PictureBox check = new PictureBox();
+            
             check.Location = new Point(x, y);
             check.BackColor = Color.Transparent;
-            check.Size = new Size(32, 32);
+            check.Padding = new Padding(2);
+            check.Size = new Size(42, 42);
             check.SizeMode = PictureBoxSizeMode.StretchImage;
             check.Visible = false;
             foreach (ImageFile sf in imageListSelected)
@@ -183,7 +185,7 @@ namespace Scannex
                 }
             }
             
-            check.Image = Scannex.Properties.Resources._checked;
+            check.Image = Scannex.Properties.Resources.zov3;
             
 
             Label lbl = new Label();
