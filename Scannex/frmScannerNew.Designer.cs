@@ -85,6 +85,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -111,9 +112,9 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(2, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 60);
+            this.panel1.Size = new System.Drawing.Size(995, 60);
             this.panel1.TabIndex = 0;
             this.panel1.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -126,7 +127,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::Scannex.Properties.Resources.error50;
-            this.pictureBox3.Location = new System.Drawing.Point(960, 12);
+            this.pictureBox3.Location = new System.Drawing.Point(958, 12);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 36);
             this.pictureBox3.TabIndex = 6;
@@ -141,10 +142,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCompany.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCompany.ForeColor = System.Drawing.Color.White;
-            this.lblCompany.Location = new System.Drawing.Point(602, 17);
+            this.lblCompany.Location = new System.Drawing.Point(745, 17);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCompany.Size = new System.Drawing.Size(350, 27);
+            this.lblCompany.Size = new System.Drawing.Size(205, 27);
             this.lblCompany.TabIndex = 5;
             this.lblCompany.Text = "Sage Corp, LLC.";
             this.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -266,6 +267,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(18, 99);
             this.label7.Name = "label7";
@@ -329,9 +331,9 @@
             this.panel3.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(0, 517);
+            this.panel3.Location = new System.Drawing.Point(2, 517);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(997, 33);
+            this.panel3.Size = new System.Drawing.Size(995, 33);
             this.panel3.TabIndex = 2;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
@@ -343,7 +345,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(889, 9);
+            this.label5.Location = new System.Drawing.Point(887, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 14);
             this.label5.TabIndex = 2;
@@ -380,9 +382,9 @@
             this.panel4.Controls.Add(this.pnlPictures);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 60);
+            this.panel4.Location = new System.Drawing.Point(2, 60);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(747, 457);
+            this.panel4.Size = new System.Drawing.Size(745, 457);
             this.panel4.TabIndex = 3;
             // 
             // pnlPictures
@@ -393,7 +395,7 @@
             this.pnlPictures.Location = new System.Drawing.Point(0, 50);
             this.pnlPictures.MinimumSize = new System.Drawing.Size(700, 350);
             this.pnlPictures.Name = "pnlPictures";
-            this.pnlPictures.Size = new System.Drawing.Size(747, 407);
+            this.pnlPictures.Size = new System.Drawing.Size(745, 407);
             this.pnlPictures.TabIndex = 2;
             this.pnlPictures.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlPictures_MouseDown);
             // 
@@ -416,7 +418,7 @@
             this.panel5.ForeColor = System.Drawing.Color.DimGray;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(747, 50);
+            this.panel5.Size = new System.Drawing.Size(745, 50);
             this.panel5.TabIndex = 1;
             // 
             // pnlUnselected
@@ -489,7 +491,7 @@
             this.lblZoomOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblZoomOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblZoomOut.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZoomOut.Location = new System.Drawing.Point(445, 17);
+            this.lblZoomOut.Location = new System.Drawing.Point(443, 17);
             this.lblZoomOut.Name = "lblZoomOut";
             this.lblZoomOut.Size = new System.Drawing.Size(67, 16);
             this.lblZoomOut.TabIndex = 5;
@@ -504,7 +506,7 @@
             this.lblZoomIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblZoomIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblZoomIn.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZoomIn.Location = new System.Drawing.Point(372, 17);
+            this.lblZoomIn.Location = new System.Drawing.Point(370, 17);
             this.lblZoomIn.Name = "lblZoomIn";
             this.lblZoomIn.Size = new System.Drawing.Size(67, 16);
             this.lblZoomIn.TabIndex = 4;
@@ -520,7 +522,7 @@
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(700, 17);
+            this.label4.Location = new System.Drawing.Point(698, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 16);
             this.label4.TabIndex = 3;
@@ -535,7 +537,7 @@
             this.label3.AutoSize = true;
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(651, 17);
+            this.label3.Location = new System.Drawing.Point(649, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 2;
@@ -549,7 +551,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(528, 17);
+            this.label2.Location = new System.Drawing.Point(526, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 16);
             this.label2.TabIndex = 1;
@@ -681,7 +683,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.panel6.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(997, 0);
@@ -690,6 +692,18 @@
             this.panel6.TabIndex = 4;
             this.panel6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.panel7.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(2, 550);
+            this.panel7.TabIndex = 0;
+            this.panel7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            this.panel7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
             // frmScannerNew
             // 
@@ -700,6 +714,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 550);
@@ -784,5 +799,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
     }
 }

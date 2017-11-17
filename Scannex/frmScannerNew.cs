@@ -539,12 +539,23 @@ namespace Scannex
         }
 
         bool pnlRight = false;
+        bool pnlLeft = false;
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!pnlRight)
+            if (!pnlRight && !pnlLeft)
                 this.Size = new Size(MousePosition);
-            else
+            else if (pnlRight)
+            {
                 this.Width = (new Size(MousePosition)).Width;
+            }
+            else if (pnlLeft)
+            {
+                int width = Screen.PrimaryScreen.WorkingArea.Width;
+                this.Width = width - (new Size(MousePosition)).Width;
+                this.Left = MousePosition.X;
+
+            }
         }
 
         private void panel3_MouseUp(object sender, MouseEventArgs e)
@@ -555,9 +566,20 @@ namespace Scannex
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
             if (((Panel)sender).Name == "panel6")
+            {
                 pnlRight = true;
-            else
+                pnlLeft = false;
+            }
+            else if (((Panel)sender).Name == "panel7")
+            {
+                pnlLeft = true;
                 pnlRight = false;
+            }
+            else
+            {
+                pnlRight = false;
+                pnlLeft = false;
+            }
 
             timer1.Enabled = true;
             timer1.Interval = 3;
