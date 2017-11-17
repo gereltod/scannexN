@@ -541,10 +541,11 @@ namespace Scannex
         bool pnlRight = false;
         bool pnlLeft = false;
         bool pnlTop = false;
+        bool pnlResize = false;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!pnlRight && !pnlLeft && !pnlTop)
+            if (!pnlRight && !pnlLeft && !pnlTop && !pnlResize)
             {
                 this.Height = new Size(MousePosition).Height - this.Top;
             }
@@ -565,6 +566,10 @@ namespace Scannex
                 this.Height = heigh - (new Size(MousePosition)).Height;
                 this.Top = MousePosition.Y;
             }
+            else if (pnlResize)
+            {
+                this.Size = new Size(MousePosition.X - this.Left, MousePosition.Y - this.Top);                
+            }
         }
 
         private void panel3_MouseUp(object sender, MouseEventArgs e)
@@ -579,24 +584,35 @@ namespace Scannex
                 pnlRight = true;
                 pnlLeft = false;
                 pnlTop = false;
+                pnlResize = false;
+            }
+            else if (((Panel)sender).Name == "panel10")
+            {
+                pnlResize = true;
+                pnlLeft = false;
+                pnlRight = false;
+                pnlTop = false;
             }
             else if (((Panel)sender).Name == "panel7")
             {
                 pnlLeft = true;
                 pnlRight = false;
                 pnlTop = false;
+                pnlResize = false;
             }
             else if (((Panel)sender).Name == "panel8")
             {
                 pnlTop = true;
                 pnlLeft = false;
                 pnlRight = false;
+                pnlResize = false;
             }
             else
             {
                 pnlRight = false;
                 pnlLeft = false;
                 pnlTop = false;
+                pnlResize = false;
             }
 
             timer1.Enabled = true;

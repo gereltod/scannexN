@@ -309,6 +309,7 @@
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
     <Content Include="logo_b9O_icon.ico" />
+    <None Include="Resources\resize.png" />
     <None Include="Resources\zov3.png" />
     <None Include="Resources\zov2.png" />
     <None Include="Resources\zov1.png" />
