@@ -552,20 +552,29 @@ namespace Scannex
             }
             else if (pnlRight)
             {
-                int width = Screen.PrimaryScreen.WorkingArea.Width;
-                this.Width = (new Size(MousePosition)).Width - this.Left;
+                if (this.MinimumSize.Width < (new Size(MousePosition)).Width - this.Left)
+                {
+                    int width = Screen.PrimaryScreen.WorkingArea.Width;
+                    this.Width = (new Size(MousePosition)).Width - this.Left;
+                }
             }
             else if (pnlLeft)
             {
                 int width = Screen.PrimaryScreen.WorkingArea.Width;
-                this.Width = width - (new Size(MousePosition)).Width;
-                this.Left = MousePosition.X;
+                if (this.MinimumSize.Width < width - (new Size(MousePosition)).Width)
+                {
+                    this.Width = width - (new Size(MousePosition)).Width;
+                    this.Left = MousePosition.X;
+                }
             }
             else if (pnlTop)
             {
                 int heigh = Screen.PrimaryScreen.WorkingArea.Height;
-                this.Height = heigh - (new Size(MousePosition)).Height;
-                this.Top = MousePosition.Y;
+                if (this.MinimumSize.Height < heigh - (new Size(MousePosition)).Height)
+                {                    
+                    this.Height = heigh - (new Size(MousePosition)).Height;
+                    this.Top = MousePosition.Y;
+                }
             }
             else if (pnlResize)
             {
@@ -609,7 +618,6 @@ namespace Scannex
                 }
             }
         }
-
         private void panel3_MouseUp(object sender, MouseEventArgs e)
         {
             timer1.Enabled = false;
@@ -1130,8 +1138,8 @@ namespace Scannex
                     errorProvider1.SetError(lblOnly, "Select upload files.");
                     return;
                 }
-                string name = cmbEmployee.Text;
-                string forn = cmbEmployee.Text;
+                string name = cmbEmployee.SelectedIndex == -1 ? "" : cmbEmployee.Text;
+                string forn = cmbEmployee.SelectedIndex == -1 ? "" : cmbEmployee.Text;
                 if (name == String.Empty)
                 {
                     name = Constants.USERNAME;

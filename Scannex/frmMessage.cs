@@ -50,6 +50,9 @@ namespace Scannex
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            if (tokenSource != null)
+                tokenSource.Cancel();
+
             DialogResult = DialogResult.No;
         }
 
