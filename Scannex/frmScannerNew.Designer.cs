@@ -86,6 +86,7 @@
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -112,9 +113,9 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(2, 0);
+            this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(995, 60);
+            this.panel1.Size = new System.Drawing.Size(995, 58);
             this.panel1.TabIndex = 0;
             this.panel1.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -129,7 +130,7 @@
             this.pictureBox3.Image = global::Scannex.Properties.Resources.error50;
             this.pictureBox3.Location = new System.Drawing.Point(958, 12);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 36);
+            this.pictureBox3.Size = new System.Drawing.Size(32, 34);
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
@@ -145,7 +146,7 @@
             this.lblCompany.Location = new System.Drawing.Point(745, 17);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCompany.Size = new System.Drawing.Size(205, 27);
+            this.lblCompany.Size = new System.Drawing.Size(205, 25);
             this.lblCompany.TabIndex = 5;
             this.lblCompany.Text = "Sage Corp, LLC.";
             this.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -328,7 +329,7 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.lblSelected);
             this.panel3.Controls.Add(this.lblStatus);
-            this.panel3.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.panel3.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(2, 517);
@@ -686,9 +687,9 @@
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.panel6.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(997, 0);
+            this.panel6.Location = new System.Drawing.Point(997, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(2, 550);
+            this.panel6.Size = new System.Drawing.Size(2, 548);
             this.panel6.TabIndex = 4;
             this.panel6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
@@ -698,12 +699,24 @@
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.panel7.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Location = new System.Drawing.Point(0, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(2, 550);
+            this.panel7.Size = new System.Drawing.Size(2, 548);
             this.panel7.TabIndex = 0;
             this.panel7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.panel8.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(999, 2);
+            this.panel8.TabIndex = 5;
+            this.panel8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            this.panel8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
             // frmScannerNew
             // 
@@ -715,6 +728,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 550);
@@ -800,5 +814,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
     }
 }
