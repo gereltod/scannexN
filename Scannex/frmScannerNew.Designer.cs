@@ -90,8 +90,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -280,7 +280,7 @@
             this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(18, 339);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(155, 15);
+            this.label8.Size = new System.Drawing.Size(182, 17);
             this.label8.TabIndex = 7;
             this.label8.Text = "Custom longtext field label:";
             // 
@@ -301,7 +301,7 @@
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(18, 99);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 15);
+            this.label7.Size = new System.Drawing.Size(118, 18);
             this.label7.TabIndex = 5;
             this.label7.Text = "Document Type";
             // 
@@ -311,7 +311,7 @@
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(18, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 15);
+            this.label6.Size = new System.Drawing.Size(55, 18);
             this.label6.TabIndex = 4;
             this.label6.Text = "Owner";
             // 
@@ -331,7 +331,7 @@
             this.cmbDoctype.FormattingEnabled = true;
             this.cmbDoctype.Location = new System.Drawing.Point(21, 118);
             this.cmbDoctype.Name = "cmbDoctype";
-            this.cmbDoctype.Size = new System.Drawing.Size(204, 23);
+            this.cmbDoctype.Size = new System.Drawing.Size(204, 25);
             this.cmbDoctype.TabIndex = 3;
             this.cmbDoctype.SelectedIndexChanged += new System.EventHandler(this.cmbDoctype_SelectedIndexChanged);
             // 
@@ -340,7 +340,7 @@
             this.cmbLocation.FormattingEnabled = true;
             this.cmbLocation.Location = new System.Drawing.Point(21, 64);
             this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(204, 23);
+            this.cmbLocation.Size = new System.Drawing.Size(204, 25);
             this.cmbLocation.TabIndex = 2;
             this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
@@ -349,7 +349,7 @@
             this.cmbEmployee.FormattingEnabled = true;
             this.cmbEmployee.Location = new System.Drawing.Point(21, 35);
             this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(204, 23);
+            this.cmbEmployee.Size = new System.Drawing.Size(204, 25);
             this.cmbEmployee.TabIndex = 1;
             this.cmbEmployee.SelectedIndexChanged += new System.EventHandler(this.cmbEmployee_SelectedIndexChanged);
             // 
@@ -377,7 +377,7 @@
             this.label5.ForeColor = System.Drawing.Color.DimGray;
             this.label5.Location = new System.Drawing.Point(846, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 14);
+            this.label5.Size = new System.Drawing.Size(105, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scannex v2.0.1";
             // 
@@ -391,7 +391,7 @@
             this.lblSelected.ForeColor = System.Drawing.Color.DimGray;
             this.lblSelected.Location = new System.Drawing.Point(608, 8);
             this.lblSelected.Name = "lblSelected";
-            this.lblSelected.Size = new System.Drawing.Size(95, 14);
+            this.lblSelected.Size = new System.Drawing.Size(122, 16);
             this.lblSelected.TabIndex = 1;
             this.lblSelected.Text = "Selected of pages";
             // 
@@ -402,7 +402,7 @@
             this.lblStatus.ForeColor = System.Drawing.Color.DimGray;
             this.lblStatus.Location = new System.Drawing.Point(13, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(69, 14);
+            this.lblStatus.Size = new System.Drawing.Size(90, 16);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Logged in as";
             // 
@@ -468,7 +468,7 @@
             this.lblUnselected.ForeColor = System.Drawing.Color.DarkGray;
             this.lblUnselected.Location = new System.Drawing.Point(213, 17);
             this.lblUnselected.Name = "lblUnselected";
-            this.lblUnselected.Size = new System.Drawing.Size(108, 16);
+            this.lblUnselected.Size = new System.Drawing.Size(124, 19);
             this.lblUnselected.TabIndex = 10;
             this.lblUnselected.Text = "Unselected only";
             this.lblUnselected.Click += new System.EventHandler(this.lblUnselected_Click);
@@ -490,7 +490,7 @@
             this.lblOnly.ForeColor = System.Drawing.Color.DarkGray;
             this.lblOnly.Location = new System.Drawing.Point(114, 17);
             this.lblOnly.Name = "lblOnly";
-            this.lblOnly.Size = new System.Drawing.Size(93, 16);
+            this.lblOnly.Size = new System.Drawing.Size(107, 19);
             this.lblOnly.TabIndex = 8;
             this.lblOnly.Text = "Selected only";
             this.lblOnly.Click += new System.EventHandler(this.lblOnly_Click);
@@ -511,7 +511,7 @@
             this.lblAll.ForeColor = System.Drawing.Color.Black;
             this.lblAll.Location = new System.Drawing.Point(13, 17);
             this.lblAll.Name = "lblAll";
-            this.lblAll.Size = new System.Drawing.Size(98, 16);
+            this.lblAll.Size = new System.Drawing.Size(113, 19);
             this.lblAll.TabIndex = 0;
             this.lblAll.Text = "View all pages";
             this.lblAll.Click += new System.EventHandler(this.lblAll_Click);
@@ -554,7 +554,7 @@
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(689, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 16);
+            this.label4.Size = new System.Drawing.Size(43, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "90°L";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -569,7 +569,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(640, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.Size = new System.Drawing.Size(45, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "90°R";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -583,7 +583,7 @@
             this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(517, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 16);
+            this.label2.Size = new System.Drawing.Size(125, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Rotate selected:";
             // 
@@ -602,6 +602,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tStripMenu,
             this.toolStripMenuItem2,
@@ -617,12 +618,12 @@
             this.toolStripSeparator4,
             this.toolStripMenuItem9});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 226);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(236, 244);
             // 
             // tStripMenu
             // 
             this.tStripMenu.Name = "tStripMenu";
-            this.tStripMenu.Size = new System.Drawing.Size(197, 22);
+            this.tStripMenu.Size = new System.Drawing.Size(235, 24);
             this.tStripMenu.Tag = "rr";
             this.tStripMenu.Text = "Rotate this 90° right";
             this.tStripMenu.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -630,7 +631,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem2.Tag = "rl";
             this.toolStripMenuItem2.Text = "Rotate this 90° left";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -638,12 +639,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(194, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem3.Tag = "rar";
             this.toolStripMenuItem3.Text = "Rotate all 90° right";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -651,7 +652,7 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem4.Tag = "ral";
             this.toolStripMenuItem4.Text = "Rotate all 90° left";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -659,12 +660,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(194, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(232, 6);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem5.Tag = "sa";
             this.toolStripMenuItem5.Text = "Select all";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -672,7 +673,7 @@
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem6.Tag = "de";
             this.toolStripMenuItem6.Text = "Deselect all";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -680,12 +681,12 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(194, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(232, 6);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem7.Tag = "ret";
             this.toolStripMenuItem7.Text = "Remove this page";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -693,7 +694,7 @@
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem8.Tag = "res";
             this.toolStripMenuItem8.Text = "Remove selected pages";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -701,12 +702,12 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(194, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(232, 6);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(235, 24);
             this.toolStripMenuItem9.Tag = "rea";
             this.toolStripMenuItem9.Text = "Remove ALL page";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.tStripMenu_Click);
@@ -758,6 +759,17 @@
             this.panel9.Size = new System.Drawing.Size(990, 33);
             this.panel9.TabIndex = 0;
             // 
+            // panel13
+            // 
+            this.panel13.Cursor = System.Windows.Forms.Cursors.SizeNESW;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(18, 33);
+            this.panel13.TabIndex = 4;
+            this.panel13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            this.panel13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
+            // 
             // panel10
             // 
             this.panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -769,17 +781,6 @@
             this.panel10.TabIndex = 3;
             this.panel10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
-            // 
-            // panel13
-            // 
-            this.panel13.Cursor = System.Windows.Forms.Cursors.SizeNESW;
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel13.Location = new System.Drawing.Point(0, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(18, 33);
-            this.panel13.TabIndex = 4;
-            this.panel13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
-            this.panel13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
             // frmScannerNew
             // 

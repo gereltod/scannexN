@@ -105,6 +105,7 @@ namespace Scannex
             {
                 textBox1.Text = _UserName.Trim();                
             }
+            button1.Focus();
         }
 
         private void frmLogin_KeyDown(object sender, KeyEventArgs e)
@@ -193,7 +194,12 @@ namespace Scannex
             if (textBox2.Text.Length > 0)
             {
                 if (e.KeyCode == Keys.Enter)
+                {
+                    //button1_MouseHover((object)button1, new EventArgs());
+                    button1.BackgroundImage = Scannex.Properties.Resources.login_button;
+                    //System.Threading.Thread.Sleep(1500);
                     button1_Click((object)button1, new EventArgs());
+                }
             }                            
         }
 
