@@ -538,9 +538,13 @@ namespace Scannex
                 this.WindowState = FormWindowState.Maximized;
         }
 
+        bool pnlRight = false;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.Size = new Size(MousePosition);
+            if (!pnlRight)
+                this.Size = new Size(MousePosition);
+            else
+                this.Width = (new Size(MousePosition)).Width;
         }
 
         private void panel3_MouseUp(object sender, MouseEventArgs e)
@@ -550,6 +554,11 @@ namespace Scannex
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
+            if (((Panel)sender).Name == "panel6")
+                pnlRight = true;
+            else
+                pnlRight = false;
+
             timer1.Enabled = true;
             timer1.Interval = 3;
         }

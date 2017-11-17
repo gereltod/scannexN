@@ -55,7 +55,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(354, 33);
+            this.panel1.Size = new System.Drawing.Size(400, 33);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox2
@@ -63,7 +63,7 @@
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Image = global::Scannex.Properties.Resources.error50;
-            this.pictureBox2.Location = new System.Drawing.Point(330, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(376, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -99,14 +99,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 33);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(354, 186);
+            this.panel2.Size = new System.Drawing.Size(400, 186);
             this.panel2.TabIndex = 1;
             // 
             // lblCancel
             // 
             this.lblCancel.AutoSize = true;
             this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancel.Location = new System.Drawing.Point(148, 159);
+            this.lblCancel.Location = new System.Drawing.Point(177, 159);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(46, 15);
             this.lblCancel.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             this.lblDone.AutoSize = true;
             this.lblDone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDone.Location = new System.Drawing.Point(151, 161);
+            this.lblDone.Location = new System.Drawing.Point(182, 161);
             this.lblDone.Name = "lblDone";
             this.lblDone.Size = new System.Drawing.Size(37, 15);
             this.lblDone.TabIndex = 5;
@@ -139,7 +139,7 @@
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::Scannex.Properties.Resources.success1;
-            this.pictureBox3.Location = new System.Drawing.Point(127, 44);
+            this.pictureBox3.Location = new System.Drawing.Point(150, 44);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 100);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -182,7 +182,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Scannex.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(102, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(126, 40);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(149, 113);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(354, 219);
+            this.ClientSize = new System.Drawing.Size(400, 219);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
