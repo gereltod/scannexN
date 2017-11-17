@@ -35,6 +35,15 @@ namespace Scannex
         public static List<DocTypes> ST_DOCTYPES;
         public static Info USER;
 
+
+        public enum CORNER
+        {
+            EMPTY,
+            TOP_LEFT = 0,
+            TOP_RIGHT = 1,
+            BOTTOM_RIGHT = 2,
+            BOTTOM_LEFT = 3
+        }
         public static T Deserialize<T>(this string toDeserialize)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));

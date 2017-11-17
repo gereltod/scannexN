@@ -74,6 +74,11 @@ namespace Scannex
                 {
                    ret= ((HttpWebResponse)e.Response).StatusCode.ToString();
                 }
+                else
+                {
+                    Constants.ISLOGIN = false;
+                    ret = "error";
+                }
                 FileLogger.LogStringInFile(e.Message);
             }            
             catch (Exception ex)

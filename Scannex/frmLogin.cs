@@ -74,6 +74,12 @@ namespace Scannex
                     textBox1.Focus();
                 }
             }
+            else
+            {
+                errorProvider1.SetError(textBox2, "Enter your password");
+                textBox2.Focus();
+                return;
+            }
         }
         
         private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)

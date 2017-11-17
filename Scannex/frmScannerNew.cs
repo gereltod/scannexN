@@ -542,6 +542,7 @@ namespace Scannex
         bool pnlLeft = false;
         bool pnlTop = false;
         bool pnlResize = false;
+        Constants.CORNER CORNER;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -568,7 +569,44 @@ namespace Scannex
             }
             else if (pnlResize)
             {
-                this.Size = new Size(MousePosition.X - this.Left, MousePosition.Y - this.Top);                
+                if (CORNER == Constants.CORNER.BOTTOM_RIGHT)
+                {
+                    if (this.MinimumSize.Width < MousePosition.X - this.Left && this.MinimumSize.Height < MousePosition.Y - this.Top)
+                    {
+                        this.Size = new Size(MousePosition.X - this.Left, MousePosition.Y - this.Top);
+                    }
+                }
+                else if (CORNER == Constants.CORNER.BOTTOM_LEFT)
+                {
+                    int width = Screen.PrimaryScreen.WorkingArea.Width;
+                    int heigth = Screen.PrimaryScreen.WorkingArea.Height;
+                    if (this.MinimumSize.Width < width - MousePosition.X && this.MinimumSize.Height < MousePosition.Y)
+                    {
+                        this.Size = new Size(width - MousePosition.X, MousePosition.Y);
+                        this.Left = MousePosition.X;
+                    }
+                }
+                else if (CORNER == Constants.CORNER.TOP_LEFT)
+                {
+                    int width = Screen.PrimaryScreen.WorkingArea.Width;
+                    int heigth = Screen.PrimaryScreen.WorkingArea.Height;
+                    if (this.MinimumSize.Width < width - MousePosition.X && this.MinimumSize.Height < heigth - MousePosition.Y)
+                    {
+                        this.Size = new Size(width - MousePosition.X, heigth - MousePosition.Y);
+                        this.Left = MousePosition.X;
+                        this.Top = MousePosition.Y;
+                    }
+                }
+                else if (CORNER == Constants.CORNER.TOP_RIGHT)
+                {
+                    int width = Screen.PrimaryScreen.WorkingArea.Width;
+                    int heigth = Screen.PrimaryScreen.WorkingArea.Height;
+                    if (this.MinimumSize.Width < MousePosition.X && this.MinimumSize.Height < heigth - MousePosition.Y)
+                    {
+                        this.Size = new Size(MousePosition.X, heigth - MousePosition.Y);
+                        this.Top = MousePosition.Y;
+                    }
+                }
             }
         }
 
@@ -592,6 +630,31 @@ namespace Scannex
                 pnlLeft = false;
                 pnlRight = false;
                 pnlTop = false;
+                CORNER = Constants.CORNER.BOTTOM_RIGHT;
+            }
+            else if (((Panel)sender).Name == "panel11")
+            {
+                pnlRight = false;
+                pnlLeft = false;
+                pnlTop = false;
+                pnlResize = true;
+                CORNER = Constants.CORNER.TOP_LEFT;
+            }
+            else if (((Panel)sender).Name == "panel12")
+            {
+                pnlRight = false;
+                pnlLeft = false;
+                pnlTop = false;
+                pnlResize = true;
+                CORNER = Constants.CORNER.TOP_RIGHT;
+            }
+            else if (((Panel)sender).Name == "panel13")
+            {
+                pnlRight = false;
+                pnlLeft = false;
+                pnlTop = false;
+                pnlResize = true;
+                CORNER = Constants.CORNER.BOTTOM_LEFT;
             }
             else if (((Panel)sender).Name == "panel7")
             {
@@ -606,13 +669,14 @@ namespace Scannex
                 pnlLeft = false;
                 pnlRight = false;
                 pnlResize = false;
-            }
+            }          
             else
             {
                 pnlRight = false;
                 pnlLeft = false;
                 pnlTop = false;
                 pnlResize = false;
+                CORNER = Constants.CORNER.EMPTY;
             }
 
             timer1.Enabled = true;
