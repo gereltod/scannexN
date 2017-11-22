@@ -55,7 +55,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo_b9O_icon.ico</ApplicationIcon>
+    <ApplicationIcon>logo_trans.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -309,6 +309,13 @@
     <Content Include="dll\TwainDotNet.WinFroms.dll" />
     <Content Include="login-default-logo11.ico" />
     <Content Include="logo_b9O_icon.ico" />
+    <Content Include="logo_trans.ico" />
+    <None Include="Resources\minimize50.png" />
+    <None Include="Resources\minimize75.png" />
+    <None Include="Resources\expand-button50.png" />
+    <None Include="Resources\expand-button75.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\expand-button.png" />
     <None Include="Resources\resize.png" />
     <None Include="Resources\zov3.png" />
     <None Include="Resources\zov2.png" />

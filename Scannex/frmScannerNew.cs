@@ -1811,5 +1811,39 @@ namespace Scannex
                 contextMenuStrip1.Show(screenClickedPosition);
             }
         }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            this.Left = this.Top = 0;
+            this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            this.Left = this.Top = 0;
+            this.Width = this.MinimumSize.Width;
+            this.Height = this.MinimumSize.Height;
+        }
+
+        private void pictureBox7_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox7.Image = Scannex.Properties.Resources.minimize75;
+        }
+
+        private void pictureBox7_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox7.Image = Scannex.Properties.Resources.minimize50;
+        }
+
+        private void pictureBox6_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox6.Image = Scannex.Properties.Resources.expand_button75;
+        }
+
+        private void pictureBox6_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox6.Image = Scannex.Properties.Resources.expand_button50;
+        }
     }
 }
