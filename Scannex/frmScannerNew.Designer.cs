@@ -144,6 +144,7 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(18, 10);
             this.panel12.TabIndex = 8;
+            this.panel12.Visible = false;
             this.panel12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
@@ -154,6 +155,7 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(16, 16);
             this.panel11.TabIndex = 7;
+            this.panel11.Visible = false;
             this.panel11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
@@ -284,7 +286,7 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.lblSelected);
             this.panel3.Controls.Add(this.lblStatus);
-            this.panel3.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.panel3.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(18, 0);
@@ -693,6 +695,7 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(18, 33);
             this.panel13.TabIndex = 4;
+            this.panel13.Visible = false;
             this.panel13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
@@ -705,6 +708,7 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(18, 33);
             this.panel10.TabIndex = 3;
+            this.panel10.Visible = false;
             this.panel10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             this.panel10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseUp);
             // 
@@ -719,6 +723,7 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 10;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Visible = false;
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             this.pictureBox7.MouseLeave += new System.EventHandler(this.pictureBox7_MouseLeave);
             this.pictureBox7.MouseHover += new System.EventHandler(this.pictureBox7_MouseHover);
@@ -734,6 +739,7 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 9;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Visible = false;
             this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             this.pictureBox6.MouseLeave += new System.EventHandler(this.pictureBox6_MouseLeave);
             this.pictureBox6.MouseHover += new System.EventHandler(this.pictureBox6_MouseHover);
@@ -749,6 +755,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(32, 34);
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave_1);
             this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
@@ -829,11 +836,11 @@
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel9);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "frmScannerNew";
-            this.Text = "frmScannerNew";
+            this.Text = "Scannex";
             this.Load += new System.EventHandler(this.frmScannerNew_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmScannerNew_KeyDown_1);
             this.panel1.ResumeLayout(false);
