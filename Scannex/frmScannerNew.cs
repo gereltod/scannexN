@@ -1773,7 +1773,8 @@ namespace Scannex
                                 }
                             }
                             imageListSelected.RemoveAt(i);
-                        }         
+                        }
+                        imageListSelected.Clear();
                         RefreshPnl(true);
                         break;
                     case "rea":// Remove ALL page
