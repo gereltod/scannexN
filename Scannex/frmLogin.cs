@@ -103,7 +103,8 @@ namespace Scannex
             _UserName = System.Configuration.ConfigurationManager.AppSettings["LASTUSER"].ToString();
             if (_UserName.Length > 0)
             {
-                textBox1.Text = _UserName.Trim();                
+                textBox1.Text = _UserName.Trim();
+                textBox1.Tag = textBox1.Text;     
             }
             button1.Focus();
         }
