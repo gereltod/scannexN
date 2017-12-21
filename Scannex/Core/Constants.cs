@@ -29,6 +29,8 @@ namespace Scannex
         public static int PIC_SIZEX = 220;
         public static int PIC_SIZEY = 330;
         public static Int16 PAGE_SIZE = 4;
+        public static int PIC_MINSIZEX = 60;
+        public static int PIC_MAXSIZEX = 500;
 
         public static List<Locations> ST_LOCATIONS;
         public static List<Employees> ST_EMPLOYEES;

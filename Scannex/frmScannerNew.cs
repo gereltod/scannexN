@@ -37,23 +37,30 @@ namespace Scannex
 
         public void Init()
         {
-            _twain = new Twain(new WinFormsWindowMessageHook(this));
-            _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
+            try
             {
-                if (args.Image != null)
+                _twain = new Twain(new WinFormsWindowMessageHook(this));
+                _twain.TransferImage += delegate (Object sender, TransferImageEventArgs args)
                 {
-                    ImageFile file = new Scannex.ImageFile();
-                    file.FileImage = args.Image;
-                    file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
-                    file.ViewImage = args.Image;
-                    AddPicList(args.Image, ".jpg", file.FileName, true, true);
-                }
-                pnlPictures.VerticalScroll.Value = pnlPictures.VerticalScroll.Maximum;
-            };
-            _twain.ScanningComplete += delegate
+                    if (args.Image != null)
+                    {
+                        ImageFile file = new Scannex.ImageFile();
+                        file.FileImage = args.Image;
+                        file.FileName = String.Format("{0}{1}", Path.GetFileNameWithoutExtension(Path.GetRandomFileName()), ".jpg");
+                        file.ViewImage = args.Image;
+                        AddPicList(args.Image, ".jpg", file.FileName, true, true);
+                    }
+                    pnlPictures.VerticalScroll.Value = pnlPictures.VerticalScroll.Maximum;
+                };
+                _twain.ScanningComplete += delegate
+                {
+                    Enabled = true;
+                };
+            }
+            catch (Exception ex)
             {
-                Enabled = true;
-            };
+                FileLogger.LogStringInFile(ex.Message);
+            }
         }
 
         int selected = 0;
@@ -61,17 +68,24 @@ namespace Scannex
 
         public frmScannerNew()
         {
-            InitializeComponent();
-            Init();
-            (pnlPictures as Control).KeyDown += new KeyEventHandler(FrmScannerNew_KeyDown);
+            try
+            {
+                InitializeComponent();
+                Init();
+                (pnlPictures as Control).KeyDown += new KeyEventHandler(FrmScannerNew_KeyDown);
 
-            backgroundWorker1.DoWork += _work_DoWork;
-            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-            mTimer = new System.Windows.Forms.Timer();
-            mTimer.Tick += LogoutUser;
+                backgroundWorker1.DoWork += _work_DoWork;
+                backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+                backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+                mTimer = new System.Windows.Forms.Timer();
+                mTimer.Tick += LogoutUser;
 
-            Application.AddMessageFilter(this);
+                Application.AddMessageFilter(this);
+            }
+            catch (Exception ex)
+            {
+                FileLogger.LogStringInFile(ex.Message);
+            }
         }
              
         private void FrmScannerNew_KeyDown(object sender, KeyEventArgs e)
@@ -100,14 +114,16 @@ namespace Scannex
             {
                 int sizex = Constants.PIC_SIZEX + 30;
                 int sizey = Constants.PIC_SIZEY + 30;
+                if (Constants.PIC_MAXSIZEX >= sizex)
+                {
+                    Constants.PIC_SIZEX = sizex;
+                    Constants.PIC_SIZEY = sizey;
+                    Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH + 30;
+                    int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
+                    Constants.PAGE_SIZE = (short)t;
 
-                Constants.PIC_SIZEX = sizex;
-                Constants.PIC_SIZEY = sizey;
-                Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH + 30;
-                int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
-                Constants.PAGE_SIZE = (short)t;
-
-                RefreshPnl(true);
+                    RefreshPnl(true);
+                }
             }
         }
 
@@ -118,15 +134,19 @@ namespace Scannex
 
                 int sizex = Constants.PIC_SIZEX - 30;
                 int sizey = Constants.PIC_SIZEY - 30;
-                if (sizex > 0)
+                if (Constants.PIC_MINSIZEX <= sizex)
                 {
-                    Constants.PIC_SIZEX = sizex;
-                    Constants.PIC_SIZEY = sizey;
-                    Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH - 30;
-                    int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
-                    Constants.PAGE_SIZE = (short)t;
+
+                    if (sizex > 0)
+                    {
+                        Constants.PIC_SIZEX = sizex;
+                        Constants.PIC_SIZEY = sizey;
+                        Constants.IMAGE_WIDTH = Constants.IMAGE_WIDTH - 30;
+                        int t = (pnlPictures.Width) / (Constants.PIC_SIZEX + Constants.PADDING_SIZE);
+                        Constants.PAGE_SIZE = (short)t;
+                    }
+                    RefreshPnl(true);
                 }
-                RefreshPnl(true);
             }
         }
 
